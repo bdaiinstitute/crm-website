@@ -6,6 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchIiwaStats } from "./iiwaApi";
 import { IiwaStats } from "./IiwaSceneState";
 
+// Define a structure for plot custom data.
+interface CustomData {
+  id: string;
+  seed: string;
+  segment: string;
+}
+
 // Enum representing the error type to be displayed on the 3D plot.
 enum ErrorType {
   Position = "Position error",
@@ -79,8 +86,9 @@ export const ScatterPlot3DComponent = ({ onPointSelected }: ScatterPlot3DProps) 
     (event: PlotMouseEvent) => {
       if (event.points && event.points.length > 0) {
         const point = event.points[0];
-        const id = point.customdata as string;
-        if (id !== undefined) {
+        if (point) {
+          const customData = point.customdata as unknown as CustomData;
+          const id = customData.id;
           onPointSelected(id);
         }
       }
@@ -89,7 +97,14 @@ export const ScatterPlot3DComponent = ({ onPointSelected }: ScatterPlot3DProps) 
   );
 
   if (stats) {
-    const ids: string[] = stats.map((episode) => episode.episodeId);
+    // Extract seed and segment information from the episode id.
+    const ids = stats.map((episode) => {
+      const match = episode.episodeId.match(/seed_(\d+)_segment_(\d+)/);
+      if (match) {
+        return { id: episode.episodeId, seed: match[1], segment: match[2] };
+      }
+      return { id: "", seed: "", segment: "" };
+    });
 
     // Extract the delta x between the initial position and the goal.
     const goalXPositions: number[] = stats.map(
@@ -158,8 +173,8 @@ export const ScatterPlot3DComponent = ({ onPointSelected }: ScatterPlot3DProps) 
             y: 0.5
           }
         },
-        customdata: ids,
-        hovertemplate: `<b>Δx:</b> %{x:.4f}<br><b>Δy:</b> %{y:.4f}<br><b>Δθ:</b> %{z:.4f}<br><extra></extra>`
+        customdata: ids as unknown as any,
+        hovertemplate: `<b>ID:</b> (seed %{customdata.seed}, segment %{customdata.segment})<br><b>Δx:</b> %{x:.4f}<br><b>Δy:</b> %{y:.4f}<br><b>Δθ:</b> %{z:.4f}<br><extra></extra>`
       }
     ];
 
