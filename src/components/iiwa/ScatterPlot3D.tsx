@@ -41,8 +41,11 @@ const calculateError = (episode: IiwaEpisodeInfo, errorType: ErrorType): number 
         Math.pow(episode.goal.position.y - episode.finalPose.position.y, 2)
     );
   } else {
-    // Calculate the rotation error between the goal and the final position.
-    return Math.abs(episode.goal.rotation.theta - episode.finalPose.rotation.theta);
+    // Calculate the angular error between the goal and the final position.
+    // If the error exceeds a full rotation, use a module operation to keep it
+    // between -PI and PI.
+    const deltaTheta = episode.goal.rotation.theta - episode.finalPose.rotation.theta;
+    return Math.abs(((deltaTheta + Math.PI) % (2 * Math.PI)) - Math.PI);
   }
 };
 
