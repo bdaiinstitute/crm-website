@@ -2,17 +2,22 @@ import { Suspense, useCallback, useState } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
-import { Player } from "../Player";
-import { Scene } from "./IiwaScene";
-import { ScatterPlot3D } from "./ScatterPlot3D";
-import { RobotContextProvider } from "../../context/RobotContext";
-import { CylinderState, IiwaEpisode, IiwaSceneState, IiwaStats } from "./IiwaSceneState";
-import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
-import { getAbsoluteUrl } from "../../http";
-import { Menu } from "../navbar/Menu";
-import useOptions from "../../hooks/useOptions";
 import { useQuery } from "@tanstack/react-query";
 
+import { Player } from "../Player";
+import { Scene } from "./IiwaScene";
+import { Menu } from "../navbar/Menu";
+import { getAbsoluteUrl } from "../../http";
+import { ScatterPlot3D } from "./ScatterPlot3D";
+import useOptions from "../../hooks/useOptions";
+import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
+import { RobotContextProvider } from "../../context/RobotContext";
+import { CylinderState, IiwaEpisode, IiwaSceneState, IiwaStats } from "./IiwaSceneState";
+
+/**
+ * This is a component that renders two IIWA arms and a target object and allows the
+ * user to play episodes selecting data from a scatter plot.
+ */
 export const IiwaComponent = () => {
   const {
     errorType,
@@ -30,6 +35,25 @@ export const IiwaComponent = () => {
     queryKey: ["iiwaStats", controllerType],
     queryFn: () => fetchIiwaStats(controllerType)
   });
+
+  /**
+   * Handles the selection of a point in the scatter plot.
+   * @param id The ID of the selected point.
+   * @returns A Promise that resolves when the episode data has been fetched
+   * and the scene state has been updated.
+   */
+  const handleSelectedPoint = useCallback(
+    async (id: string) => {
+      try {
+        const episode: IiwaEpisode = await fetchIiwaEpisode(id, controllerType);
+        setGoal(episode.goal);
+        setSceneSequence(episode.points);
+      } catch (error) {
+        throw new Error(`Error loading episode: ${(error as Error).message}`);
+      }
+    },
+    [controllerType]
+  );
 
   const [goal, setGoal] = useState<CylinderState>({
     position: {
@@ -77,22 +101,6 @@ export const IiwaComponent = () => {
    */
   const onStateChanged = useCallback((state: IiwaSceneState) => {
     setSceneState(state);
-  }, []);
-
-  /**
-   * Handles the selection of a point in the scatter plot.
-   * @param id The ID of the selected point.
-   * @returns A Promise that resolves when the episode data has been fetched
-   * and the scene state has been updated.
-   */
-  const handleSelectedPoint = useCallback(async (id: string) => {
-    try {
-      const episode: IiwaEpisode = await fetchIiwaEpisode(id);
-      setGoal(episode.goal);
-      setSceneSequence(episode.points);
-    } catch (error) {
-      throw new Error(`Error loading episode: ${(error as Error).message}`);
-    }
   }, []);
 
   return (

@@ -7,8 +7,14 @@ import { IiwaEpisode, IiwaStats } from "./IiwaSceneState";
  * @param id The file id.
  * @returns An IIWA episode.
  */
-export const fetchIiwaEpisode = async (id: string): Promise<IiwaEpisode> => {
-  const url = getAbsoluteUrl(`data/iiwa/simulation/closed_loop/${id}.json`);
+export const fetchIiwaEpisode = async (
+  id: string,
+  controllerType: ControllerType
+): Promise<IiwaEpisode> => {
+  const url =
+    controllerType === ControllerType.ClosedLoop
+      ? getAbsoluteUrl(`data/iiwa/simulation/closed_loop/${id}.json`)
+      : getAbsoluteUrl(`data/iiwa/simulation/open_loop/${id}.json`);
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
