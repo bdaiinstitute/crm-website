@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+
+<robot name="allegro_hand_right">
+
+  <material name="Black">
+    <color rgba="0.2 0.2 0.2 1"/>
+  </material>
+
+  <material name="White">
+    <color rgba=".9 .9 .9 1"/>
+  </material>
+
+  <!-- Base link -->
+  <link name="hand_root">
+    <origin xyz="0 0 0"/>
+  </link>
+
+  <joint name="root_to_base" type="fixed">
+    <parent link="hand_root"/>
+    <child link="palm_link"/>
+    <origin xyz="0 0 0.095"/>
+  </joint>
+
+  <!-- PALM -->
+  <link name="palm_link">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/base_link.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0 "/>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <!-- [LINK 0, 4, 8] -->
+  <link name="link_0">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_0.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_0" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="palm_link"/>
+    <child link="link_0"/>
+    <origin rpy="-0.08726646255 0 0" xyz="0 0.0435 -0.001542"/>
+  </joint>
+
+  <!-- [LINK 1, 5, 9] -->
+  <link name="link_1">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_1.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_1" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_0"/>
+    <child link="link_1"/>
+    <origin xyz="0 0 0.0164"/>
+  </joint>
+
+  <!-- [LINK 2, 6, 10]-->
+  <link name="link_2">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_2.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_2" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <origin xyz="0 0 0.054"/>
+  </joint>
+
+  <!-- [LINK 3, 7, 11] -->
+  <link name="link_3">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_3" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_2"/>
+    <child link="link_3"/>
+    <origin xyz="0 0 0.0384"/>
+  </joint>
+
+  <!-- [FINGER TIP] -->
+  <link name="link_3_tip">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3_tip.stl"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+  </link>
+
+  <joint name="joint_3_tip" type="fixed">
+    <parent link="link_3"/>
+    <child link="link_3_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
+  </joint>
+
+  <!-- [LINK 0, 4, 8] -->
+  <link name="link_4">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_0.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_4" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="palm_link"/>
+    <child link="link_4"/>
+    <origin rpy="0.0 0 0" xyz="0 0 0.0007"/>
+  </joint>
+
+  <!-- [LINK 1, 5, 9] -->
+  <link name="link_5">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_1.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_5" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_4"/>
+    <child link="link_5"/>
+    <origin xyz="0 0 0.0164"/>
+  </joint>
+
+  <!-- [LINK 2, 6, 10]-->
+  <link name="link_6">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_2.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_6" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_5"/>
+    <child link="link_6"/>
+    <origin xyz="0 0 0.054"/>
+  </joint>
+
+  <!-- [LINK 3, 7, 11] -->
+  <link name="link_7">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_7" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_6"/>
+    <child link="link_7"/>
+    <origin xyz="0 0 0.0384"/>
+  </joint>
+
+  <!-- [FINGER TIP] -->
+  <link name="link_7_tip">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3_tip.stl"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+  </link>
+
+  <joint name="joint_7_tip" type="fixed">
+    <parent link="link_7"/>
+    <child link="link_7_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
+  </joint>
+
+  <!-- [LINK 0, 4, 8] -->
+  <link name="link_8">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_0.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_8" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="palm_link"/>
+    <child link="link_8"/>
+    <origin rpy="0.08726646255 0 0" xyz="0 -0.0435 -0.001542"/>
+  </joint>
+
+  <!-- [LINK 1, 5, 9] -->
+  <link name="link_9">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_1.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_9" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_8"/>
+    <child link="link_9"/>
+    <origin xyz="0 0 0.0164"/>
+  </joint>
+
+  <!-- [LINK 2, 6, 10]-->
+  <link name="link_10">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_2.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_10" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_9"/>
+    <child link="link_10"/>
+    <origin xyz="0 0 0.054"/>
+  </joint>
+
+  <!-- [LINK 3, 7, 11] -->
+  <link name="link_11">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_11" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_10"/>
+    <child link="link_11"/>
+    <origin xyz="0 0 0.0384"/>
+  </joint>
+
+  <!-- [FINGER TIP] -->
+  <link name="link_11_tip">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3_tip.stl"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+  </link>
+
+  <joint name="joint_11_tip" type="fixed">
+    <parent link="link_11"/>
+    <child link="link_11_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
+  </joint>
+
+  <!-- [LINK 12] -->
+  <link name="link_12">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_12_right.stl"/>
+      </geometry>
+      <material name="Black"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="joint_12" type="continuous">
+    <axis xyz="-1 0 0"/>
+    <parent link="palm_link"/>
+    <child link="link_12"/>
+    <origin rpy="0 -1.65806278845 -1.5707963259" xyz="-0.0182 0.019333 -0.045987"/>
+  </joint>
+
+  <!-- [LINK 13] -->
+  <link name="link_13">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_13.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_13" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="link_12"/>
+    <child link="link_13"/>
+    <origin xyz="-0.027 0.005 0.0399"/>
+  </joint>
+
+  <!-- [LINK 14] -->
+  <link name="link_14">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_14.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_14" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_13"/>
+    <child link="link_14"/>
+    <origin xyz="0 0 0.0177"/>
+  </joint>
+
+  <!-- [LINK 15] -->
+  <link name="link_15">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_15.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+
+  <joint name="joint_15" type="continuous">
+    <axis xyz="0 1 0"/>
+    <parent link="link_14"/>
+    <child link="link_15"/>
+    <origin xyz="0 0 0.0514"/>
+  </joint>
+
+  <!-- [FINGER TIP] -->
+  <link name="link_15_tip">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_15_tip.stl"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+  </link>
+  
+  <joint name="joint_15_tip" type="fixed">
+    <parent link="link_15"/>
+    <child link="link_15_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0423"/>
+  </joint>
+</robot>

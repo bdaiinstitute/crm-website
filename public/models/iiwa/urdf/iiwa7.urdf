@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+
+<robot name="iiwa7">
+
+  <material name="Orange">
+    <color rgba="1 0.423 0.039 1.0"/>
+  </material>
+
+  <material name="Grey">
+    <color rgba="0.4 0.4 0.4 1.0"/>
+  </material>
+
+  <material name="LightGrey">
+    <color rgba="0.8 0.8 0.8 1.0"/>
+  </material>
+
+  <link name="world" />
+
+  <!-- Joint between world and link_0 -->
+  <joint name="world_iiwa_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="iiwa_link_0"/>
+  </joint>
+
+  <!-- Link 0 -->
+  <link name="iiwa_link_0">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_0.stl"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+  </link>
+
+  <!-- Link 1 -->
+  <link name="iiwa_link_1">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_1.stl"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+  </link>
+
+  <!-- Joint 0 -->
+  <joint name="iiwa_joint0" type="continuous">
+    <parent link="iiwa_link_0"/>
+    <child link="iiwa_link_1"/>
+    <origin xyz="0 0 0.1575" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Link 2 -->
+  <link name="iiwa_link_2">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_2.stl"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+  </link>
+
+  <!-- Joint 1 -->
+  <joint name="iiwa_joint1" type="continuous">
+    <parent link="iiwa_link_1"/>
+    <child link="iiwa_link_2"/>
+    <origin xyz="0 0 0.183" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+ 
+  <!-- Link 3 -->
+  <link name="iiwa_link_3">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_3.stl"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+  </link>
+
+  <!-- Joint 2 -->
+  <joint name="iiwa_joint2" type="continuous">
+    <parent link="iiwa_link_2"/>
+    <child link="iiwa_link_3"/>
+    <origin xyz="0 0 0.183" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Link 4 -->
+  <link name="iiwa_link_4">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_4.stl"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+  </link>
+
+  <!-- Joint 3 -->
+  <joint name="iiwa_joint3" type="continuous">
+    <parent link="iiwa_link_3"/>
+    <child link="iiwa_link_4"/>
+    <origin xyz="0 0 0.2155" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- Link 5 -->
+  <link name="iiwa_link_5">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_5.stl"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+  </link>
+
+  <!-- Joint 4 -->
+  <joint name="iiwa_joint4" type="continuous">
+    <parent link="iiwa_link_4"/>
+    <child link="iiwa_link_5"/>
+    <origin xyz="0 0 0.184" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Link 6 -->
+  <link name="iiwa_link_6">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_6.stl"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+  </link>
+
+  <!-- Joint 5 -->
+  <joint name="iiwa_joint5" type="continuous">
+    <parent link="iiwa_link_5"/>
+    <child link="iiwa_link_6"/>
+    <origin xyz="0 -0.060700 0.2155" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <!-- Link 7 -->
+  <link name="iiwa_link_7">
+    <visual>
+      <geometry>
+        <mesh filename="../meshes/visual/link_7.stl"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+    <visual>
+     <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.031"/>
+      </geometry>
+      <material name="LightGrey"/>
+    </visual>
+  </link> 
+
+  <!-- Joint 6 -->
+  <joint name="iiwa_joint6" type="continuous">
+    <parent link="iiwa_link_6"/>
+    <child link="iiwa_link_7"/>
+    <origin xyz="0 0.060700 0.0805" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+</robot>

@@ -1,0 +1,43 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  line-height: 1.5;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin: 3px;
+}
+
+.publication-title {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-authors {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: "Google Sans", sans-serif;
+}

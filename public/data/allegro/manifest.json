@@ -1,0 +1,23 @@
+{
+  "cube": {
+    "size": "0.06"
+  },
+  "hand": {
+    "joint_0": "2nd finger, base roll",
+    "joint_1": "2nd finger 1st joint pitch",
+    "joint_2": "2nd finger, 2nd joint pitch",
+    "joint_3": "2nd finger, 3rd joint pitch",
+    "joint_4": "3rd finger, base roll",
+    "joint_5": "3rd finger, 1st joint pitch",
+    "joint_6": "3rd finger, 2nd joint pitch",
+    "joint_7": "3rd finger, 3rd joint pitch",
+    "joint_8": "4th finger, base roll",
+    "joint_9": "4th finger, 1st joint pitch",
+    "joint_10": "4th finger, 2nd joint pitch",
+    "joint_11": "4th finger, 3rd joint pitch",
+    "joint_12": "1st finger (thumb), base pitch",
+    "joint_13": "1st finger (thumb), base roll",
+    "joint_14": "1st finger (thumb), 1st joint pitch",
+    "joint_15": "1st finger (thumb), 2nd joint pitch"
+  }
+}
