@@ -57,36 +57,36 @@ export const IiwaComponent = () => {
 
   const [goal, setGoal] = useState<CylinderState>({
     position: {
-      x: 0.6718483143235885,
-      y: -0.23452121868326742
+      x: 0.5,
+      y: 0
     },
-    rotation: { theta: 0.5336689388195219 }
+    rotation: { theta: 0 }
   });
 
   const [sceneState, setSceneState] = useState<IiwaSceneState>({
     timeFromStart: 0,
     leftArm: {
-      joint0: 0.014487597656250184,
-      joint1: 1.5707,
-      joint2: -1.5707,
-      joint3: 0.9621149999999998,
+      joint0: 0,
+      joint1: Math.PI / 2,
+      joint2: -Math.PI / 2,
+      joint3: 0,
       joint4: 0,
-      joint5: 1.8224313687622034,
+      joint5: -Math.PI / 2,
       joint6: 0
     },
     rightArm: {
-      joint0: 0.8866409765625005,
-      joint1: 1.5707,
-      joint2: -1.5707,
-      joint3: 1.48407875,
+      joint0: 0,
+      joint1: Math.PI / 2,
+      joint2: -Math.PI / 2,
+      joint3: 0,
       joint4: 0,
-      joint5: 1.4970950337700102,
+      joint5: Math.PI / 2,
       joint6: 0
     },
     cylinder: {
       position: {
-        x: 0.6184808436607272,
-        y: -0.09208531449445188
+        x: 0.5,
+        y: 0
       },
       rotation: { theta: 0 }
     }
