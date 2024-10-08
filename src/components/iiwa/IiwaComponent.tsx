@@ -69,7 +69,7 @@ export const IiwaComponent = () => {
       joint0: 0,
       joint1: Math.PI / 2,
       joint2: -Math.PI / 2,
-      joint3: 0,
+      joint3: 0.6,
       joint4: 0,
       joint5: -Math.PI / 2,
       joint6: 0
@@ -78,7 +78,7 @@ export const IiwaComponent = () => {
       joint0: 0,
       joint1: Math.PI / 2,
       joint2: -Math.PI / 2,
-      joint3: 0,
+      joint3: -0.6,
       joint4: 0,
       joint5: Math.PI / 2,
       joint6: 0
