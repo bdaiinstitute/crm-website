@@ -30,7 +30,7 @@ A GitHub Action, defined in the `gh-pages.yaml` workflow file, is triggered auto
 
 The `gh-pages` branch is utilized by GitHub Pages to host and serve the compiled website, making it publicly accessible. This setup separates the development (main branch) and deployment (gh-pages branch) processes.
 
-The configuration for GitHub Pages is available in the menu Pages under the project Settings.
+The link to the published website is available in the menu Pages under the project Settings.
 
 ## Dependencies
 
