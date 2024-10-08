@@ -33,7 +33,8 @@ export const IiwaComponent = () => {
   // Load episode statistics.
   const { data: stats } = useQuery<IiwaStats, Error>({
     queryKey: ["iiwaStats", controllerType],
-    queryFn: () => fetchIiwaStats(controllerType)
+    queryFn: () => fetchIiwaStats(controllerType),
+    placeholderData: []
   });
 
   /**
