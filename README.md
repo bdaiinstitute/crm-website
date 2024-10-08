@@ -1,7 +1,7 @@
 # GitHub pages example <!-- omit from toc -->
 
-[![ProjectPage](https://img.shields.io/badge/Project-Page-Green)](https://kineticsystem.github.io)
-[![CI](https://github.com/kineticsystem/test_website/actions/workflows/deploy.yaml/badge.svg)](https://github.com/kineticsystem/test_website/actions/workflows/deploy.yaml)
+[![ProjectPage](https://img.shields.io/badge/Project-Page-Green)](https://crm-website.github.io)
+[![CI](https://github.com/bdaiinstitute/crm-website/actions/workflows/deploy.yaml/badge.svg)](https://github.com/bdaiinstitute/crm-website/actions/workflows/deploy.yaml)
 
 ## Table of Contents <!-- omit from toc -->
 
@@ -20,17 +20,17 @@
 
 ## Introduction
 
-This is a dynamic website to be deployed on GitHub pages.
+This repository contains the code for the Contact Rich Manipulation project page.
 
 ## Website deployment
 
-The development code for the website is maintained in the `main` branch of the project's GitHub repository, accessible at the following URL:
-
-https://kineticsystem.github.io/test_website
+The website development code is maintained in the `main` branch of the project's GitHub repository.
 
 A GitHub Action, defined in the `gh-pages.yaml` workflow file, is triggered automatically with each commit to the `main` branch. This action compiles the website and deploys the resulting code to the `gh-pages` branch.
 
 The `gh-pages` branch is utilized by GitHub Pages to host and serve the compiled website, making it publicly accessible. This setup separates the development (main branch) and deployment (gh-pages branch) processes.
+
+The configuration for GitHub Pages is available in the menu Pages under the project Settings.
 
 ## Dependencies
 
