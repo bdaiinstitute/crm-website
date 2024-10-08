@@ -6,14 +6,30 @@ import { Player } from "../Player";
 import { Scene } from "./IiwaScene";
 import { ScatterPlot3D } from "./ScatterPlot3D";
 import { RobotContextProvider } from "../../context/RobotContext";
-import { CylinderState, IiwaEpisode, IiwaSceneState } from "./IiwaSceneState";
-import { fetchIiwaEpisode } from "./iiwaApi";
+import { CylinderState, IiwaEpisode, IiwaSceneState, IiwaStats } from "./IiwaSceneState";
+import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
+import { getAbsoluteUrl } from "../../http";
+import { Menu } from "../navbar/Menu";
+import useOptions from "../../hooks/useOptions";
+import { useQuery } from "@tanstack/react-query";
 
 export const IiwaComponent = () => {
-  // Dynamically get the base URL from Vite's environment variables
-  const BASE_URL = `${window.location.origin}${import.meta.env.BASE_URL}`;
+  const {
+    errorType,
+    setErrorType,
+    controllerType,
+    setControllerType,
+    dataType,
+    setDataType
+  } = useOptions();
 
-  const urdf = `${BASE_URL}/models/iiwa/urdf/iiwa7.urdf`;
+  const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
+
+  // Load episode statistics.
+  const { data: stats } = useQuery<IiwaStats, Error>({
+    queryKey: ["iiwaStats", controllerType],
+    queryFn: () => fetchIiwaStats(controllerType)
+  });
 
   const [goal, setGoal] = useState<CylinderState>({
     position: {
@@ -55,10 +71,20 @@ export const IiwaComponent = () => {
   // State to hold the sequence of SceneStates.
   const [sceneSequence, setSceneSequence] = useState<IiwaSceneState[]>([sceneState]);
 
+  /**
+   * Player callback function that updates the scene state.
+   * @param state The new scene state.
+   */
   const onStateChanged = useCallback((state: IiwaSceneState) => {
     setSceneState(state);
   }, []);
 
+  /**
+   * Handles the selection of a point in the scatter plot.
+   * @param id The ID of the selected point.
+   * @returns A Promise that resolves when the episode data has been fetched
+   * and the scene state has been updated.
+   */
   const handleSelectedPoint = useCallback(async (id: string) => {
     try {
       const episode: IiwaEpisode = await fetchIiwaEpisode(id);
@@ -71,12 +97,27 @@ export const IiwaComponent = () => {
 
   return (
     <>
+      {/* Top Menu */}
+
       <div className="container mx-auto px-2 py-2 max-w-3xl">
+        <Menu
+          errorType={errorType}
+          setErrorType={setErrorType}
+          controllerType={controllerType}
+          setControllerType={setControllerType}
+          dataType={dataType}
+          setDataType={setDataType}
+        />
+
         {/* Center the column. */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <ScatterPlot3D onPointSelected={handleSelectedPoint} />
+            <ScatterPlot3D
+              stats={stats}
+              errorType={errorType}
+              onPointSelected={handleSelectedPoint}
+            />
           </div>
 
           {/* Scene. */}
