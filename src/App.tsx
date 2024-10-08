@@ -23,32 +23,22 @@ const App = () => {
               <div className="column has-text-centered">
                 {/* Title. */}
                 <h1 className="title is-1 publication-title">
-                  Geodroix: Auto classification with Machine Learning
+                  Contact Rich Manipulation
                 </h1>
 
                 {/* Authors. */}
                 <div className="is-size-5 publication-authors">
                   <span className="author-block">
-                    Eliza M. Thornton
-                    <sup>1,2</sup>,&nbsp;
-                  </span>
-                  <span className="author-block">
                     <a href="#" target="_blank">
-                      Jonathan R. Wexler
+                      Tao Pang
                       <sup>1</sup>,&nbsp;
                     </a>
                   </span>
                   <span className="author-block">
-                    Sophia Lanford
-                    <sup>1</sup>,&nbsp;
-                  </span>
-                  <span className="author-block">
-                    Marina Fenwick
-                    <sup>1</sup>,&nbsp;
-                  </span>
-                  <span className="author-block">
-                    Felix P. Nightingale
-                    <sup>1</sup>
+                    <a href="#" target="_blank">
+                      Tong Zhao
+                      <sup>2</sup>,&nbsp;
+                    </a>
                   </span>
                 </div>
 

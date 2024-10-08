@@ -1,6 +1,6 @@
 # GitHub pages example <!-- omit from toc -->
 
-[![ProjectPage](https://img.shields.io/badge/Project-Page-Green)](https://crm-website.github.io)
+[![ProjectPage](https://img.shields.io/badge/Project-Page-Green)](https://effective-funicular-2kqy14r.pages.github.io/)
 [![CI](https://github.com/bdaiinstitute/crm-website/actions/workflows/deploy.yaml/badge.svg)](https://github.com/bdaiinstitute/crm-website/actions/workflows/deploy.yaml)
 
 ## Table of Contents <!-- omit from toc -->
@@ -15,22 +15,22 @@
   - [Vite](#vite)
 - [How to build and run the website locally](#how-to-build-and-run-the-website-locally)
 - [Extra packages](#extra-packages)
-- [Development environmen](#development-environmen)
+- [Development environment](#development-environment)
 - [Project layout](#project-layout)
 
 ## Introduction
 
-This repository contains the code for the Contact Rich Manipulation project page.
+This repository houses the source code for the Contact Rich Manipulation project website.
 
 ## Website deployment
 
-The website development code is maintained in the `main` branch of the project's GitHub repository.
+The website's development is managed within the `main` branch of this repository.
 
-A GitHub Action, defined in the `gh-pages.yaml` workflow file, is triggered automatically with each commit to the `main` branch. This action compiles the website and deploys the resulting code to the `gh-pages` branch.
+Each commit to the `main` branch automatically triggers a GitHub Action, as specified in the `gh-pages.yaml` workflow file. This automated process builds the website and deploys the resulting assets to the `gh-pages` branch.
 
-The `gh-pages` branch is utilized by GitHub Pages to host and serve the compiled website, making it publicly accessible. This setup separates the development (main branch) and deployment (gh-pages branch) processes.
+GitHub Pages utilizes the `gh-pages` branch to host and serve the compiled website, ensuring it is publicly accessible. This configuration effectively segregates the development process (`main` branch) from the deployment process (`gh-pages` branch).
 
-The link to the published website is available in the menu Pages under the project Settings.
+The URL for the published website can be found under the "Pages" section in the project settings menu.
 
 ## Dependencies
 
@@ -109,9 +109,9 @@ pnpm add urdf-loader
 pnpm add react-hot-toast
 ```
 
-## Development environmen
+## Development environment
 
-We used VSCode and Chrome to develop and test this website.
+We use VSCode and Chrome to develop and test this website.
 
 **VSCode**
 
