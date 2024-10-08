@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { fetchIiwaEpisode } from "../iiwa/iiwaApi";
+import { ControllerType } from "../../types/DataTypes";
 
 export const DownloadIiwaEpisode = () => {
   // Function to handle the download
@@ -12,7 +13,7 @@ export const DownloadIiwaEpisode = () => {
 
     const id = "id";
 
-    const episode = await fetchIiwaEpisode(id);
+    const episode = await fetchIiwaEpisode(id, ControllerType.OpenLoop);
 
     const newGoal = {
       position: {
