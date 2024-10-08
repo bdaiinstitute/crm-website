@@ -4,13 +4,14 @@ import Plot from "react-plotly.js";
 import { Data, Layout, PlotMouseEvent } from "plotly.js";
 import { useQuery } from "@tanstack/react-query";
 import { fetchIiwaStats } from "./iiwaApi";
-import { IiwaStats } from "./IiwaSceneState";
+import { IiwaEpisodeInfo, IiwaStats } from "./IiwaSceneState";
 
 // Define a structure for plot custom data.
 interface CustomData {
   id: string;
   seed: string;
   segment: string;
+  error: number;
 }
 
 // Enum representing the error type to be displayed on the 3D plot.
@@ -31,6 +32,25 @@ enum ErrorType {
 
 const MAX_DISTANCE_ERROR = 0.1; // m
 const MAX_ROTATION_ERROR = 0.4; // rad
+
+/**
+ *
+ * @param episode Return the error assigned to a particular episode.
+ * @param errorType Can be distance error or rotation error.
+ * @returns The error assigned to a particular episode.
+ */
+const calculateError = (episode: IiwaEpisodeInfo, errorType: ErrorType): number => {
+  if (errorType === ErrorType.Position) {
+    // Calculate the distance between the goal and the final position.
+    return Math.sqrt(
+      Math.pow(episode.goal.position.x - episode.finalPose.position.x, 2) +
+        Math.pow(episode.goal.position.y - episode.finalPose.position.y, 2)
+    );
+  } else {
+    // Calculate the rotation error between the goal and the final position.
+    return Math.abs(episode.goal.rotation.theta - episode.finalPose.rotation.theta);
+  }
+};
 
 /**
  * Props for the ScatterPlot3DComponent component.
@@ -97,58 +117,50 @@ export const ScatterPlot3DComponent = ({ onPointSelected }: ScatterPlot3DProps) 
   );
 
   if (stats) {
-    // Extract seed and segment information from the episode id.
-    const ids = stats.map((episode) => {
+    const ids: CustomData[] = [];
+    const goalXPositions: number[] = [];
+    const goalYPositions: number[] = [];
+    const goalThetaPositions: number[] = [];
+    let errors: number[] = [];
+
+    stats.forEach((episode) => {
+      // Extract the delta x between the initial position and the goal.
+      goalXPositions.push(episode.goal.position.x - episode.initialPose.position.x);
+      // Extract the delta y between the initial position and the goal.
+      goalYPositions.push(episode.goal.position.y - episode.initialPose.position.y);
+      // Extract the delta theta between the initial position and the goal.
+      goalThetaPositions.push(
+        episode.goal.rotation.theta - episode.initialPose.rotation.theta
+      );
+      // Extract error.
+      const error = calculateError(episode, errorType);
+      errors.push(error);
+      // Extract id and other properties.
       const match = episode.episodeId.match(/seed_(\d+)_segment_(\d+)/);
       if (match) {
-        return { id: episode.episodeId, seed: match[1], segment: match[2] };
+        ids.push({
+          id: episode.episodeId,
+          seed: match[1],
+          segment: match[2],
+          error: error
+        });
+      } else {
+        ids.push({ id: "", seed: "", segment: "", error: 0 });
       }
-      return { id: "", seed: "", segment: "" };
     });
 
-    // Extract the delta x between the initial position and the goal.
-    const goalXPositions: number[] = stats.map(
-      (episode) => episode.goal.position.x - episode.initialPose.position.x
-    );
     const goalMaxXPosition = Math.max(...goalXPositions);
     const goalMinXPosition = Math.min(...goalXPositions);
 
-    // Extract the delta y between the initial position and the goal.
-    const goalYPositions: number[] = stats.map(
-      (episode) => episode.goal.position.y - episode.initialPose.position.y
-    );
     const goalMaxYPosition = Math.max(...goalYPositions);
     const goalMinYPosition = Math.min(...goalYPositions);
 
-    // Extract the delta theta between the initial position and the goal.
-    const goalThetaPositions: number[] = stats.map(
-      (episode) => episode.goal.rotation.theta - episode.initialPose.rotation.theta
-    );
     const goalMaxThetaPosition = Math.max(...goalThetaPositions);
     const goalMinThetaPosition = Math.min(...goalThetaPositions);
 
-    let errors: number[] = [];
-    let minError = 0;
-    let maxError = 0;
-
-    if (errorType === ErrorType.Position) {
-      // Calculate the distance between the goal and the final position.
-      errors = stats.map((episode) =>
-        Math.sqrt(
-          Math.pow(episode.goal.position.x - episode.finalPose.position.x, 2) +
-            Math.pow(episode.goal.position.y - episode.finalPose.position.y, 2)
-        )
-      );
-      minError = Math.min(...errors);
-      maxError = MAX_DISTANCE_ERROR;
-    } else {
-      // Calculate the rotation error between the goal and the final position.
-      errors = stats.map((episode) =>
-        Math.abs(episode.goal.rotation.theta - episode.finalPose.rotation.theta)
-      );
-      minError = Math.min(...errors);
-      maxError = MAX_ROTATION_ERROR;
-    }
+    const minError = Math.min(...errors);
+    const maxError =
+      errorType === ErrorType.Position ? MAX_DISTANCE_ERROR : MAX_ROTATION_ERROR;
 
     // Prepare the plot data.
     const data: Data[] = [
@@ -174,7 +186,7 @@ export const ScatterPlot3DComponent = ({ onPointSelected }: ScatterPlot3DProps) 
           }
         },
         customdata: ids as unknown as any,
-        hovertemplate: `<b>ID:</b> (seed %{customdata.seed}, segment %{customdata.segment})<br><b>Δx:</b> %{x:.4f}<br><b>Δy:</b> %{y:.4f}<br><b>Δθ:</b> %{z:.4f}<br><extra></extra>`
+        hovertemplate: `<b>ID:</b> (seed %{customdata.seed}, segment %{customdata.segment})<br><b>Δx:</b> %{x:.4f}<br><b>Δy:</b> %{y:.4f}<br><b>Δθ:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
       }
     ];
 
