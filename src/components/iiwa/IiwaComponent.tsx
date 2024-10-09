@@ -9,7 +9,7 @@ import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../http";
 import { ScatterPlot3D } from "./ScatterPlot3D";
-import useOptions from "../../hooks/useOptions";
+import useMenuContext from "../../hooks/useMenuContext";
 import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { CylinderState, IiwaEpisode, IiwaSceneState, IiwaStats } from "./IiwaSceneState";
@@ -27,7 +27,7 @@ export const IiwaComponent = () => {
     setControllerType,
     dataType,
     setDataType
-  } = useOptions();
+  } = useMenuContext();
 
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
 
@@ -108,17 +108,16 @@ export const IiwaComponent = () => {
   return (
     <>
       {/* Top Menu */}
+      <Menu
+        errorType={errorType}
+        setErrorType={setErrorType}
+        controllerType={controllerType}
+        setControllerType={setControllerType}
+        dataType={dataType}
+        setDataType={setDataType}
+      />
 
       <div className="container mx-auto px-2 py-2 max-w-3xl">
-        <Menu
-          errorType={errorType}
-          setErrorType={setErrorType}
-          controllerType={controllerType}
-          setControllerType={setControllerType}
-          dataType={dataType}
-          setDataType={setDataType}
-        />
-
         {/* Center the column. */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
           {/* Scatter Plot. */}
@@ -146,7 +145,6 @@ export const IiwaComponent = () => {
           </div>
         </div>
       </div>
-
       <div>
         <Player sequence={sceneSequence} onFrameChanged={onStateChanged} />
       </div>

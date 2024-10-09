@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { ErrorType, ControllerType, DataType } from "../../types/DataTypes";
 
 /**
@@ -33,6 +34,9 @@ export const Menu = ({
   dataType,
   setDataType
 }: MenuProps) => {
+  // Generate a unique ID for this component instance
+  const uniqueId = useId();
+
   /**
    * Handles the change event for the error type selection.
    * @param event The change event triggered by the input element.
@@ -59,15 +63,15 @@ export const Menu = ({
   };
 
   return (
-    <nav className=" m-0 ">
-      <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row items-start md:items-center justify-between">
+    <nav className=" m-0 bg">
+      <div className="container mx-auto px-2 py-3 space-x-2 flex flex-col md:flex-row items-start md:items-center justify-between">
         {/* Error Type Radio Buttons */}
         <div className="flex items-center">
           <span className="font-bold">Error:</span>
           <label className="flex items-center ml-2">
             <input
               type="radio"
-              name="errorType"
+              name={`errorType-${uniqueId}`}
               value={ErrorType.Position}
               className="form-radio h-4 w-4"
               aria-label="PositionError"
@@ -79,7 +83,7 @@ export const Menu = ({
           <label className="flex items-center ml-2">
             <input
               type="radio"
-              name="errorType"
+              name={`errorType-${uniqueId}`}
               value={ErrorType.Rotation}
               className="form-radio h-4 w-4"
               aria-label="RotationError"
@@ -96,7 +100,7 @@ export const Menu = ({
           <label className="flex items-center ml-2">
             <input
               type="radio"
-              name="controllerType"
+              name={`controllerType-${uniqueId}`}
               value={ControllerType.OpenLoop}
               className="form-radio h-4 w-4"
               aria-label="OpenLoop"
@@ -108,7 +112,7 @@ export const Menu = ({
           <label className="flex items-center ml-2">
             <input
               type="radio"
-              name="controllerType"
+              name={`controllerType-${uniqueId}`}
               value={ControllerType.ClosedLoop}
               className="form-radio h-4 w-4"
               aria-label="ClosedLoop"
@@ -125,7 +129,7 @@ export const Menu = ({
           <label className="flex items-center ml-2">
             <input
               type="radio"
-              name="dataType"
+              name={`dataType-${uniqueId}`}
               value={DataType.Simulation}
               className="form-radio h-4 w-4"
               aria-label="Simulation"
@@ -137,7 +141,7 @@ export const Menu = ({
           <label className="flex items-center ml-2">
             <input
               type="radio"
-              name="dataType"
+              name={`dataType-${uniqueId}`}
               value={DataType.Hardware}
               className="form-radio h-4 w-4"
               aria-label="Hardware"
