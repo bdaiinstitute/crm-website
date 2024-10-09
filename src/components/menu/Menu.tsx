@@ -74,7 +74,7 @@ export const Menu = ({
               checked={errorType === ErrorType.Position}
               onChange={handleErrorTypeChange}
             />
-            <span className="ml-1">position</span>
+            <span className="ml-1 whitespace-nowrap">position</span>
           </label>
           <label className="flex items-center ml-2">
             <input
@@ -86,7 +86,7 @@ export const Menu = ({
               checked={errorType === ErrorType.Rotation}
               onChange={handleErrorTypeChange}
             />
-            <span className="ml-1">rotation</span>
+            <span className="ml-1 whitespace-nowrap">rotation</span>
           </label>
         </div>
 
@@ -103,7 +103,7 @@ export const Menu = ({
               checked={controllerType === ControllerType.OpenLoop}
               onChange={handleControllerTypeChange}
             />
-            <span className="ml-1">open-loop</span>
+            <span className="ml-1 whitespace-nowrap">open-loop</span>
           </label>
           <label className="flex items-center ml-2">
             <input
@@ -115,13 +115,13 @@ export const Menu = ({
               checked={controllerType === ControllerType.ClosedLoop}
               onChange={handleControllerTypeChange}
             />
-            <span className="ml-1">closed-loop</span>
+            <span className="ml-1 whitespace-nowrap">closed-loop</span>
           </label>
         </div>
 
         {/* Data Type Radio Buttons */}
         <div className="flex items-center">
-          <span className="font-bold">Type:</span>
+          <span className="font-bold">Data:</span>
           <label className="flex items-center ml-2">
             <input
               type="radio"
@@ -132,7 +132,7 @@ export const Menu = ({
               checked={dataType === DataType.Simulation}
               onChange={handleDataTypeChange}
             />
-            <span className="ml-1">simulation</span>
+            <span className="ml-1 whitespace-nowrap">simulation</span>
           </label>
           <label className="flex items-center ml-2">
             <input
@@ -144,7 +144,7 @@ export const Menu = ({
               checked={dataType === DataType.Hardware}
               onChange={handleDataTypeChange}
             />
-            <span className="ml-1">hardware</span>
+            <span className="ml-1 whitespace-nowrap">hardware</span>
           </label>
         </div>
       </div>

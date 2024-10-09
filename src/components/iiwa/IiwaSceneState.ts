@@ -4,7 +4,7 @@
  */
 
 /**
- * Represents the state of an IIWA arm, including the angles of each joint.
+ * Represents the state of an IIWA arm, the angles of each joint.
  */
 export interface IiwaArmState {
   joint0: number;
@@ -17,7 +17,7 @@ export interface IiwaArmState {
 }
 
 /**
- * Represents the state of a cylinder object in the scene, including its
+ * Represents the state of a cylinder in the scene, including its
  * position and rotation.
  */
 export interface CylinderState {

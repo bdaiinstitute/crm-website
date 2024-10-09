@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Player } from "../Player";
 import { Scene } from "./IiwaScene";
-import { Menu } from "../navbar/Menu";
+import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../http";
 import { ScatterPlot3D } from "./ScatterPlot3D";
 import useOptions from "../../hooks/useOptions";
@@ -19,6 +19,7 @@ import { CylinderState, IiwaEpisode, IiwaSceneState, IiwaStats } from "./IiwaSce
  * user to play episodes selecting data from a scatter plot.
  */
 export const IiwaComponent = () => {
+  // State variables.
   const {
     errorType,
     setErrorType,
@@ -32,8 +33,8 @@ export const IiwaComponent = () => {
 
   // Load episode statistics.
   const { data: stats } = useQuery<IiwaStats, Error>({
-    queryKey: ["iiwaStats", controllerType],
-    queryFn: () => fetchIiwaStats(controllerType),
+    queryKey: ["iiwaStats", controllerType, dataType],
+    queryFn: () => fetchIiwaStats(controllerType, dataType),
     placeholderData: []
   });
 
@@ -46,14 +47,14 @@ export const IiwaComponent = () => {
   const handleSelectedPoint = useCallback(
     async (id: string) => {
       try {
-        const episode: IiwaEpisode = await fetchIiwaEpisode(id, controllerType);
+        const episode: IiwaEpisode = await fetchIiwaEpisode(id, controllerType, dataType);
         setGoal(episode.goal);
         setSceneSequence(episode.points);
       } catch (error) {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
     },
-    [controllerType]
+    [controllerType, dataType]
   );
 
   const [goal, setGoal] = useState<CylinderState>({

@@ -3,6 +3,9 @@
  * in the scene.
  */
 
+/**
+ * Represents the state of the allegro hand, the angles of each joint.
+ */
 export interface AllegroHandState {
   joint0: number; // 2nd finger, base roll.
   joint1: number; // 2nd finger 1st joint pitch.
@@ -22,6 +25,10 @@ export interface AllegroHandState {
   joint15: number; // 1st finger (thumb), 2nd joint pitch.
 }
 
+/**
+ * Represents the state of a cube in the scene, including its
+ * position and rotation.
+ */
 export interface CubeState {
   position: {
     x: number;
@@ -36,14 +43,69 @@ export interface CubeState {
   };
 }
 
+/**
+ * Represents the state of the Allegro scene, including the state of the hand
+ * and the state of the cube.
+ */
 export interface AllegroSceneState {
   timeFromStart: number;
   hand: AllegroHandState;
   cube: CubeState;
 }
 
+/**
+ * Represents an episode of Allegro manipulation.
+ */
 export interface AllegroEpisode {
   episodeId: number;
   goal: CubeState;
   points: AllegroSceneState[];
 }
+
+/**
+ * Provides information about an Allegro episode.
+ */
+export interface AllegroEpisodeInfo {
+  episodeId: string;
+  goal: {
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
+    rotation: {
+      w: number;
+      x: number;
+      y: number;
+      z: number;
+    };
+  };
+  initialPose: {
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
+    rotation: {
+      w: number;
+      x: number;
+      y: number;
+      z: number;
+    };
+  };
+  finalPose: {
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
+    rotation: {
+      w: number;
+      x: number;
+      y: number;
+      z: number;
+    };
+  };
+}
+
+export type AllegroStats = AllegroEpisodeInfo[];
