@@ -29,7 +29,7 @@ export const fetchAllegroEpisode = async (
   dataType: DataType
 ): Promise<AllegroEpisode> => {
   const dataFolder = getDataFolder(controllerType, dataType);
-  const url = `${dataFolder}/episode_${id}.json`;
+  const url = `${dataFolder}/${id}.json`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);

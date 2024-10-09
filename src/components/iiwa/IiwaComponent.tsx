@@ -8,7 +8,7 @@ import { Player } from "../Player";
 import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../http";
-import { ScatterPlot3D } from "./ScatterPlot3D";
+import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
 import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
 import { RobotContextProvider } from "../../context/RobotContext";
@@ -122,7 +122,7 @@ export const IiwaComponent = () => {
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <ScatterPlot3D
+            <IiwaScatterPlot
               stats={stats}
               errorType={errorType}
               onPointSelected={handleSelectedPoint}

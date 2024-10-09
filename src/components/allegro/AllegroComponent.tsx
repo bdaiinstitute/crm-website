@@ -8,7 +8,7 @@ import { Player } from "../Player";
 import { Menu } from "../menu/Menu";
 import { Scene } from "./AllegroScene";
 import { getAbsoluteUrl } from "../../http";
-import { ScatterPlot } from "../ScatterPlot";
+import { AllegroScatterPlot } from "./AllegroScatterPlot";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { fetchAllegroEpisode, fetchAllegroStats } from "./allegroApi";
 import { AllegroSceneState, AllegroStats, CubeState } from "./AllegroSceneState";
@@ -59,15 +59,15 @@ export const AllegroComponent = () => {
 
   const [goal, setGoal] = useState<CubeState>({
     position: {
-      x: 0.07481670858231289,
-      y: 0.0033861859459129156,
-      z: 0.05812032524744818
+      x: 0.065,
+      y: 0.0,
+      z: 0.042
     },
     rotation: {
-      w: 0.9512620870428025,
-      x: -0.14976138347929052,
-      y: 0.2230638640876131,
-      z: -0.15137530284575615
+      w: 1.0,
+      x: 0.0,
+      y: 0.0,
+      z: 0.0
     }
   });
 
@@ -135,7 +135,7 @@ export const AllegroComponent = () => {
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <ScatterPlot onPointSelected={handleSelectedPoint} />
+            <AllegroScatterPlot stats={stats} onPointSelected={handleSelectedPoint} />
           </div>
 
           {/* Scene. */}
