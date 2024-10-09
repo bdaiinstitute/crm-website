@@ -127,6 +127,7 @@ export const AllegroComponent = () => {
         setControllerType={setControllerType}
         dataType={dataType}
         setDataType={setDataType}
+        errorTypeEnabled={false}
       />
 
       <div className="container mx-auto px-2 py-2 max-w-3xl">
