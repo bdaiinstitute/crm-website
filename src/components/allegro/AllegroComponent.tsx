@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Player } from "../Player";
 import { Menu } from "../menu/Menu";
 import { Scene } from "./AllegroScene";
-import { getAbsoluteUrl } from "../../http";
+import { getAbsoluteUrl } from "../../util/http";
 import { AllegroScatterPlot } from "./AllegroScatterPlot";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { fetchAllegroEpisode, fetchAllegroStats } from "./allegroApi";
@@ -28,6 +28,8 @@ export const AllegroComponent = () => {
     dataType,
     setDataType
   } = useMenuContext();
+
+  const [id, setId] = useState<string>("");
 
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
 
@@ -56,6 +58,7 @@ export const AllegroComponent = () => {
 
         setGoal(episode.goal);
         setSceneSequence(episode.points);
+        setId(id);
       } catch (error) {
         throw new Error(`Error loading trajectory: ${(error as Error).message}`);
       }
@@ -139,6 +142,13 @@ export const AllegroComponent = () => {
       <div className="container mx-auto px-2 py-2 max-w-3xl">
         {/* Center the column. */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
+          {/* Episode id. */}
+          {id && id.trim() != "" && (
+            <div className="absolute top-3 left-4 z-10 bg-white bg-opacity-75 p-2 rounded shadow">
+              <label className="mr-4 flex items-center">{id}</label>
+            </div>
+          )}
+
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
             <AllegroScatterPlot stats={stats} onPointSelected={handleSelectedPoint} />

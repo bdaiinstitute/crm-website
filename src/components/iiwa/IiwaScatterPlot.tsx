@@ -140,7 +140,6 @@ export const IiwaScatterPlotComponent = ({
         mode: "markers",
         type: "scatter3d",
         marker: {
-          size: 6,
           color: errors, // Use the error values for coloring.
           colorscale: "Viridis",
           cmin: minError, // Minimum of the error range.

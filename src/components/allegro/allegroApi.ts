@@ -1,4 +1,4 @@
-import { getAbsoluteUrl } from "../../http";
+import { getAbsoluteUrl } from "../../util/http";
 import { ControllerType, DataType } from "../../types/DataTypes";
 import { AllegroEpisode, AllegroStats } from "./AllegroSceneState";
 

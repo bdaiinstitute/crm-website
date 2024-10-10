@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Player } from "../Player";
 import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
-import { getAbsoluteUrl } from "../../http";
+import { getAbsoluteUrl } from "../../util/http";
 import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
 import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
@@ -31,6 +31,8 @@ export const IiwaComponent = () => {
 
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
 
+  const [id, setId] = useState<string>("");
+
   // Load episode statistics.
   const { data: stats } = useQuery<IiwaStats, Error>({
     queryKey: ["iiwaStats", controllerType, dataType],
@@ -50,6 +52,7 @@ export const IiwaComponent = () => {
         const episode: IiwaEpisode = await fetchIiwaEpisode(id, controllerType, dataType);
         setGoal(episode.goal);
         setSceneSequence(episode.points);
+        setId(id);
       } catch (error) {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
@@ -120,6 +123,12 @@ export const IiwaComponent = () => {
       <div className="container mx-auto px-2 py-2 max-w-3xl">
         {/* Center the column. */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
+          {/* Episode id. */}
+          {id && id.trim() != "" && (
+            <div className="absolute top-3 left-4 z-10 bg-white bg-opacity-75 p-2 rounded shadow">
+              <label className="mr-4 flex items-center">{id}</label>
+            </div>
+          )}
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
             <IiwaScatterPlot

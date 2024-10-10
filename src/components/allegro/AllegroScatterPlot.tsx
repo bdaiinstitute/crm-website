@@ -1,11 +1,10 @@
 import { memo, useCallback, useEffect, useState } from "react";
 
-import * as THREE from "three";
 import Plot from "react-plotly.js";
-import { Euler, Quaternion } from "three";
 import { Data, Datum, Layout, PlotMouseEvent } from "plotly.js";
 
 import { AllegroStats } from "./AllegroSceneState";
+import { quaternionToEuler } from "../../util/math";
 
 // Define a structure for plot custom data.
 interface CustomData {
@@ -13,37 +12,6 @@ interface CustomData {
   segment: string;
   error: number;
 }
-
-const unwrapYaw = (yaw: number, previousYaw: number = 0): number => {
-  const twoPi = Math.PI * 2;
-  const delta = yaw - previousYaw;
-
-  if (delta > Math.PI) {
-    return yaw - twoPi;
-  } else if (delta < -Math.PI) {
-    return yaw + twoPi;
-  }
-  return yaw;
-};
-
-/**
- * Converts a Quaternion to Euler angles.
- * @param q The Quaternion to convert.
- * @returns An object with the roll, pitch, and yaw angles in degrees.
- */
-const quaternionToEuler = (
-  quaternion: Quaternion
-): { roll: number; pitch: number; yaw: number } => {
-  const euler = new Euler().setFromQuaternion(quaternion, "XYZ");
-  const roll = euler.x;
-  const pitch = euler.y;
-  const yaw = euler.z;
-  return {
-    roll,
-    pitch,
-    yaw
-  };
-};
 
 /**
  * Props for the ScatterPlotComponent component.
@@ -104,28 +72,27 @@ export const AllegroScatterPlotComponent = ({
     const goalYawPositions: number[] = [];
     const errors: number[] = [];
 
-    stats.forEach((episode) => {
-      const goalQuaternion = new THREE.Quaternion(
-        episode.goal.rotation.w,
-        episode.goal.rotation.x,
-        episode.goal.rotation.y,
-        episode.goal.rotation.z
+    stats.forEach((episodeInfo) => {
+      const { roll, pitch, yaw } = quaternionToEuler(
+        episodeInfo.goal.rotation.w,
+        episodeInfo.goal.rotation.x,
+        episodeInfo.goal.rotation.y,
+        episodeInfo.goal.rotation.z
       );
 
-      const { roll, pitch, yaw } = quaternionToEuler(goalQuaternion);
-
-      goalPitchPositions.push(pitch);
-      goalRollPositions.push(roll);
+      goalPitchPositions.push(roll);
+      goalRollPositions.push(pitch);
       goalYawPositions.push(yaw);
 
       // Extract error.
-      const error = episode.rotationError;
+      const error = episodeInfo.rotationError;
       errors.push(error);
+
       // Extract id and other properties.
-      const match = episode.episodeId.match(/segment_(\d+)/);
+      const match = episodeInfo.episodeId.match(/segment_(\d+)/);
       if (match) {
         ids.push({
-          id: episode.episodeId,
+          id: episodeInfo.episodeId,
           segment: match[1],
           error: error
         });
@@ -134,19 +101,10 @@ export const AllegroScatterPlotComponent = ({
       }
     });
 
-    const goalMaxRollPosition = Math.max(...goalRollPositions);
-    const goalMinRollPosition = Math.min(...goalRollPositions);
-
-    const goalMaxPitchPosition = Math.max(...goalPitchPositions);
-    const goalMinPitchPosition = Math.min(...goalPitchPositions);
-
-    const goalMaxYawPosition = Math.max(...goalYawPositions);
-    const goalMinYawPosition = Math.min(...goalYawPositions);
-
     const minError = Math.min(...errors);
     const maxError = Math.max(...errors);
 
-    // Prepare the plot data.
+    // Main plot data.
     const data: Data[] = [
       {
         name: "Episodes",
@@ -156,7 +114,6 @@ export const AllegroScatterPlotComponent = ({
         mode: "markers",
         type: "scatter3d",
         marker: {
-          size: 6,
           color: errors, // Use the error values for coloring.
           colorscale: "Viridis",
           cmin: minError, // Minimum of the error range.
@@ -170,7 +127,7 @@ export const AllegroScatterPlotComponent = ({
           }
         },
         customdata: ids as unknown as Datum[],
-        hovertemplate: `<b>ID:</b> (segment %{customdata.segment})<br><b>Δroll:</b> %{x:.4f}<br><b>Δpitch:</b> %{y:.4f}<br><b>Δyaw:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
+        hovertemplate: `<b>ID:</b> (segment %{customdata.segment})<br><b>roll:</b> %{x:.4f}<br><b>pitch:</b> %{y:.4f}<br><b>yaw:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
       }
     ];
 
@@ -178,8 +135,8 @@ export const AllegroScatterPlotComponent = ({
     const layout: Partial<Layout> = {
       scene: {
         xaxis: {
-          title: "Δroll",
-          range: [goalMinRollPosition, goalMaxRollPosition],
+          title: "roll",
+          range: [-1, 1],
           fixedrange: true,
           showgrid: true,
           gridcolor: "#AAAAAA",
@@ -190,8 +147,8 @@ export const AllegroScatterPlotComponent = ({
           zerolinewidth: 1
         },
         yaxis: {
-          title: "Δpitch",
-          range: [goalMinPitchPosition, goalMaxPitchPosition],
+          title: "pitch",
+          range: [-1, 1],
           fixedrange: true,
           showgrid: true,
           gridcolor: "#AAAAAA",
@@ -202,8 +159,8 @@ export const AllegroScatterPlotComponent = ({
           zerolinewidth: 1
         },
         zaxis: {
-          title: "Δyaw",
-          range: [goalMinYawPosition, goalMaxYawPosition],
+          title: "yaw",
+          range: [-1, 1],
           fixedrange: true,
           showgrid: true,
           gridcolor: "#AAAAAA",
