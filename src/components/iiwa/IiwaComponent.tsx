@@ -12,7 +12,14 @@ import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
 import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
 import { RobotContextProvider } from "../../context/RobotContext";
-import { CylinderState, IiwaEpisode, IiwaSceneState, IiwaStats } from "./IiwaSceneState";
+import {
+  CylinderState,
+  IiwaEpisode,
+  IiwaEpisodeInfo,
+  IiwaSceneState,
+  IiwaStats
+} from "./IiwaSceneState";
+import { ErrorType } from "../../types/DataTypes";
 
 /**
  * This is a component that renders two IIWA arms and a target object and allows the
@@ -31,10 +38,21 @@ export const IiwaComponent = () => {
 
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
 
-  const [id, setId] = useState<string>("");
+  const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo | null>(null);
+
+  // Extract id and other properties.
+  let seed = "";
+  let segment = "";
+  if (episodeInfo) {
+    const match = episodeInfo.episodeId.match(/seed_(\d+)_segment_(\d+)/);
+    if (match) {
+      seed = match[1];
+      segment = match[2];
+    }
+  }
 
   // Load episode statistics.
-  const { data: stats } = useQuery<IiwaStats, Error>({
+  const { data: stats = [] } = useQuery<IiwaStats, Error>({
     queryKey: ["iiwaStats", controllerType, dataType],
     queryFn: () => fetchIiwaStats(controllerType, dataType),
     placeholderData: []
@@ -47,12 +65,16 @@ export const IiwaComponent = () => {
    * and the scene state has been updated.
    */
   const handleSelectedPoint = useCallback(
-    async (id: string) => {
+    async (episodeInfo: IiwaEpisodeInfo) => {
       try {
-        const episode: IiwaEpisode = await fetchIiwaEpisode(id, controllerType, dataType);
+        const episode: IiwaEpisode = await fetchIiwaEpisode(
+          episodeInfo.episodeId,
+          controllerType,
+          dataType
+        );
         setGoal(episode.goal);
         setSceneSequence(episode.points);
-        setId(id);
+        setEpisodeInfo(episodeInfo);
       } catch (error) {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
@@ -123,10 +145,18 @@ export const IiwaComponent = () => {
       <div className="container mx-auto px-2 py-2 max-w-3xl">
         {/* Center the column. */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
-          {/* Episode id. */}
-          {id && id.trim() != "" && (
-            <div className="absolute top-3 left-4 z-10 bg-white bg-opacity-75 p-2 rounded shadow">
-              <label className="mr-4 flex items-center">{id}</label>
+          {/* Episode info. */}
+          {!!episodeInfo?.episodeId?.trim() && (
+            <div className="absolute top-3 left-4 z-10 bg-white bg-opacity-75 p-2 rounded shadow flex flex-col">
+              <label className="mb-2 flex items-center">
+                Id: (seed: {seed}, segment: {segment})
+              </label>
+              <label className="flex items-center">
+                Error:{" "}
+                {errorType === ErrorType.Rotation
+                  ? episodeInfo.rotationError.toFixed(4)
+                  : episodeInfo.translationError.toFixed(4)}
+              </label>
             </div>
           )}
           {/* Scatter Plot. */}

@@ -11,7 +11,12 @@ import { getAbsoluteUrl } from "../../util/http";
 import { AllegroScatterPlot } from "./AllegroScatterPlot";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { fetchAllegroEpisode, fetchAllegroStats } from "./allegroApi";
-import { AllegroSceneState, AllegroStats, CubeState } from "./AllegroSceneState";
+import {
+  AllegroEpisodeInfo,
+  AllegroSceneState,
+  AllegroStats,
+  CubeState
+} from "./AllegroSceneState";
 import useMenuContext from "../../hooks/useMenuContext";
 
 /**
@@ -29,12 +34,12 @@ export const AllegroComponent = () => {
     setDataType
   } = useMenuContext();
 
-  const [id, setId] = useState<string>("");
+  const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
 
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
 
   // Load episode statistics.
-  const { data: stats } = useQuery<AllegroStats, Error>({
+  const { data: stats = [] } = useQuery<AllegroStats, Error>({
     queryKey: ["allegroStats", controllerType, dataType],
     queryFn: () => fetchAllegroStats(controllerType, dataType),
     placeholderData: []
@@ -47,9 +52,13 @@ export const AllegroComponent = () => {
    * and the scene state has been updated.
    */
   const handleSelectedPoint = useCallback(
-    async (id: string) => {
+    async (episodeInfo: AllegroEpisodeInfo) => {
       try {
-        const episode = await fetchAllegroEpisode(id, controllerType, dataType);
+        const episode = await fetchAllegroEpisode(
+          episodeInfo.episodeId,
+          controllerType,
+          dataType
+        );
         const finalPose = episode.points[episode.points.length - 1].cube;
 
         // We are only interested in evaluating rotation errors.
@@ -58,7 +67,7 @@ export const AllegroComponent = () => {
 
         setGoal(episode.goal);
         setSceneSequence(episode.points);
-        setId(id);
+        setEpisodeInfo(episodeInfo);
       } catch (error) {
         throw new Error(`Error loading trajectory: ${(error as Error).message}`);
       }
@@ -142,10 +151,15 @@ export const AllegroComponent = () => {
       <div className="container mx-auto px-2 py-2 max-w-3xl">
         {/* Center the column. */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
-          {/* Episode id. */}
-          {id && id.trim() != "" && (
-            <div className="absolute top-3 left-4 z-10 bg-white bg-opacity-75 p-2 rounded shadow">
-              <label className="mr-4 flex items-center">{id}</label>
+          {/* Episode info. */}
+          {!!episodeInfo?.episodeId?.trim() && (
+            <div className="absolute top-3 left-4 z-10 bg-white bg-opacity-75 p-2 rounded shadow flex flex-col">
+              <label className="mb-2 flex items-center">
+                Id: {episodeInfo.episodeId}
+              </label>
+              <label className="flex items-center">
+                Error: {episodeInfo.rotationError.toFixed(4)}
+              </label>
             </div>
           )}
 

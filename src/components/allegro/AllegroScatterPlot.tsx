@@ -3,7 +3,7 @@ import { memo, useCallback, useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { Data, Datum, Layout, PlotMouseEvent } from "plotly.js";
 
-import { AllegroStats } from "./AllegroSceneState";
+import { AllegroEpisodeInfo, AllegroStats } from "./AllegroSceneState";
 import { quaternionToEuler } from "../../util/math";
 
 // Define a structure for plot custom data.
@@ -20,8 +20,8 @@ interface CustomData {
  * a point on the scatter plot.
  */
 export interface AllegroScatterPlotProps {
-  stats: AllegroStats | undefined;
-  onPointSelected: (id: string) => void;
+  stats: AllegroStats;
+  onPointSelected: (episodeInfo: AllegroEpisodeInfo) => void;
 }
 
 /**
@@ -58,150 +58,150 @@ export const AllegroScatterPlotComponent = ({
         if (point) {
           const customData = point.customdata as unknown as CustomData;
           const id = customData.id;
-          onPointSelected(id);
+
+          const episodeInfo = stats.find((episode) => episode.episodeId === id);
+          if (episodeInfo) {
+            onPointSelected(episodeInfo);
+          }
         }
       }
     },
-    [onPointSelected]
+    [onPointSelected, stats]
   );
 
-  if (stats) {
-    const ids: CustomData[] = [];
-    const goalRollPositions: number[] = [];
-    const goalPitchPositions: number[] = [];
-    const goalYawPositions: number[] = [];
-    const errors: number[] = [];
+  const ids: CustomData[] = [];
+  const goalRollPositions: number[] = [];
+  const goalPitchPositions: number[] = [];
+  const goalYawPositions: number[] = [];
+  const errors: number[] = [];
 
-    stats.forEach((episodeInfo) => {
-      const { roll, pitch, yaw } = quaternionToEuler(
-        episodeInfo.goal.rotation.w,
-        episodeInfo.goal.rotation.x,
-        episodeInfo.goal.rotation.y,
-        episodeInfo.goal.rotation.z
-      );
+  stats.forEach((episodeInfo) => {
+    const { roll, pitch, yaw } = quaternionToEuler(
+      episodeInfo.goal.rotation.w,
+      episodeInfo.goal.rotation.x,
+      episodeInfo.goal.rotation.y,
+      episodeInfo.goal.rotation.z
+    );
 
-      goalPitchPositions.push(roll);
-      goalRollPositions.push(pitch);
-      goalYawPositions.push(yaw);
+    goalPitchPositions.push(roll);
+    goalRollPositions.push(pitch);
+    goalYawPositions.push(yaw);
 
-      // Extract error.
-      const error = episodeInfo.rotationError;
-      errors.push(error);
+    // Extract error.
+    const error = episodeInfo.rotationError;
+    errors.push(error);
 
-      // Extract id and other properties.
-      const match = episodeInfo.episodeId.match(/segment_(\d+)/);
-      if (match) {
-        ids.push({
-          id: episodeInfo.episodeId,
-          segment: match[1],
-          error: error
-        });
-      } else {
-        ids.push({ id: "", segment: "", error: 0 });
-      }
-    });
+    // Extract id and other properties.
+    const match = episodeInfo.episodeId.match(/segment_(\d+)/);
+    if (match) {
+      ids.push({
+        id: episodeInfo.episodeId,
+        segment: match[1],
+        error: error
+      });
+    } else {
+      ids.push({ id: "", segment: "", error: 0 });
+    }
+  });
 
-    const minError = Math.min(...errors);
-    const maxError = Math.max(...errors);
+  const minError = Math.min(...errors);
+  const maxError = Math.max(...errors);
 
-    // Main plot data.
-    const data: Data[] = [
-      {
-        name: "Episodes",
-        x: goalRollPositions,
-        y: goalPitchPositions,
-        z: goalYawPositions,
-        mode: "markers",
-        type: "scatter3d",
-        marker: {
-          color: errors, // Use the error values for coloring.
-          colorscale: "Viridis",
-          cmin: minError, // Minimum of the error range.
-          cmax: maxError, // Maximum of the error range.
-          colorbar: {
-            tickformat: ".3f", // Format ticks to three decimal places.
-            thickness: 10,
-            len: 0.8,
-            x: 1.05, // Position it to the right of the plot.
-            y: 0.45
-          }
-        },
-        customdata: ids as unknown as Datum[],
-        hovertemplate: `<b>ID:</b> (segment %{customdata.segment})<br><b>roll:</b> %{x:.4f}<br><b>pitch:</b> %{y:.4f}<br><b>yaw:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
-      }
-    ];
-
-    // Prepare the plot layout.
-    const layout: Partial<Layout> = {
-      scene: {
-        xaxis: {
-          title: "roll",
-          range: [-1, 1],
-          fixedrange: true,
-          showgrid: true,
-          gridcolor: "#AAAAAA",
-          gridwidth: 1,
-          tick0: 0,
-          zeroline: true,
-          zerolinecolor: "#000000",
-          zerolinewidth: 1
-        },
-        yaxis: {
-          title: "pitch",
-          range: [-1, 1],
-          fixedrange: true,
-          showgrid: true,
-          gridcolor: "#AAAAAA",
-          gridwidth: 1,
-          tick0: 0,
-          zeroline: true,
-          zerolinecolor: "#000000",
-          zerolinewidth: 1
-        },
-        zaxis: {
-          title: "yaw",
-          range: [-1, 1],
-          fixedrange: true,
-          showgrid: true,
-          gridcolor: "#AAAAAA",
-          gridwidth: 1,
-          tick0: 0,
-          zeroline: true,
-          zerolinecolor: "#000000",
-          zerolinewidth: 1
-        },
-        camera: {
-          eye: { x: 1.5, y: 1.5, z: 1.5 },
-          center: { x: 0.1, y: -0.15, z: -0.05 }
+  // Main plot data.
+  const data: Data[] = [
+    {
+      name: "Episodes",
+      x: goalRollPositions,
+      y: goalPitchPositions,
+      z: goalYawPositions,
+      mode: "markers",
+      type: "scatter3d",
+      marker: {
+        color: errors, // Use the error values for coloring.
+        colorscale: "Viridis",
+        cmin: minError, // Minimum of the error range.
+        cmax: maxError, // Maximum of the error range.
+        colorbar: {
+          tickformat: ".3f", // Format ticks to three decimal places.
+          thickness: 10,
+          len: 0.8,
+          x: 1.05, // Position it to the right of the plot.
+          y: 0.45
         }
       },
-      margin: { l: 0, r: 0, t: 0, b: 0 }, // Removes all margins
-      showlegend: false,
-      plot_bgcolor: "#F0F0F0",
-      paper_bgcolor: "#F0F0F0"
-    };
+      customdata: ids as unknown as Datum[],
+      hovertemplate: `<b>ID:</b> (segment %{customdata.segment})<br><b>roll:</b> %{x:.4f}<br><b>pitch:</b> %{y:.4f}<br><b>yaw:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
+    }
+  ];
 
-    return (
-      <div className="w-full">
-        <div className="aspect-square bg-white rounded-md overflow-hidden">
-          <Plot
-            data={data}
-            layout={layout}
-            // This event does not work with a handler reference, and must be
-            // given a function reference instead.
-            onClick={(event: PlotMouseEvent) => handleClick(event)}
-            config={{
-              responsive: true,
-              displayModeBar: false
-            }}
-            style={{ width: "100%", height: "100%" }}
-          />
-        </div>
+  // Prepare the plot layout.
+  const layout: Partial<Layout> = {
+    scene: {
+      xaxis: {
+        title: "roll",
+        range: [-1, 1],
+        fixedrange: true,
+        showgrid: true,
+        gridcolor: "#AAAAAA",
+        gridwidth: 1,
+        tick0: 0,
+        zeroline: true,
+        zerolinecolor: "#000000",
+        zerolinewidth: 1
+      },
+      yaxis: {
+        title: "pitch",
+        range: [-1, 1],
+        fixedrange: true,
+        showgrid: true,
+        gridcolor: "#AAAAAA",
+        gridwidth: 1,
+        tick0: 0,
+        zeroline: true,
+        zerolinecolor: "#000000",
+        zerolinewidth: 1
+      },
+      zaxis: {
+        title: "yaw",
+        range: [-1, 1],
+        fixedrange: true,
+        showgrid: true,
+        gridcolor: "#AAAAAA",
+        gridwidth: 1,
+        tick0: 0,
+        zeroline: true,
+        zerolinecolor: "#000000",
+        zerolinewidth: 1
+      },
+      camera: {
+        eye: { x: 1.5, y: 1.5, z: 1.5 },
+        center: { x: 0.1, y: -0.15, z: -0.05 }
+      }
+    },
+    margin: { l: 0, r: 0, t: 0, b: 0 }, // Removes all margins
+    showlegend: false,
+    plot_bgcolor: "#F0F0F0",
+    paper_bgcolor: "#F0F0F0"
+  };
+
+  return (
+    <div className="w-full">
+      <div className="aspect-square bg-white rounded-md overflow-hidden">
+        <Plot
+          data={data}
+          layout={layout}
+          // This event does not work with a handler reference, and must be
+          // given a function reference instead.
+          onClick={(event: PlotMouseEvent) => handleClick(event)}
+          config={{
+            responsive: true,
+            displayModeBar: false
+          }}
+          style={{ width: "100%", height: "100%" }}
+        />
       </div>
-    );
-  }
-
-  return <div></div>;
+    </div>
+  );
 };
 
 // Memoize the named component
