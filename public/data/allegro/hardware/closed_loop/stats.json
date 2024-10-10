@@ -1,10 +1,11 @@
 [
   {
     "episodeId": "segment_1",
+    "rotationError": 0.03855334469637487,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.04607952134648645
       },
       "rotation": {
@@ -43,10 +44,11 @@
   },
   {
     "episodeId": "segment_2",
+    "rotationError": 0.13291007838328314,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05352746473726047
       },
       "rotation": {
@@ -85,10 +87,11 @@
   },
   {
     "episodeId": "segment_3",
+    "rotationError": 0.14097924584723806,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05578837887104168
       },
       "rotation": {
@@ -127,10 +130,11 @@
   },
   {
     "episodeId": "segment_4",
+    "rotationError": 0.5647865657000861,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05443021370517738
       },
       "rotation": {
@@ -169,10 +173,11 @@
   },
   {
     "episodeId": "segment_7",
+    "rotationError": 0.595128775592158,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.060260668421630234
       },
       "rotation": {
@@ -211,10 +216,11 @@
   },
   {
     "episodeId": "segment_8",
+    "rotationError": 0.1875816269126743,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05416996932603134
       },
       "rotation": {
@@ -253,10 +259,11 @@
   },
   {
     "episodeId": "segment_14",
+    "rotationError": 0.044853879435697644,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.04828508718162508
       },
       "rotation": {
@@ -295,10 +302,11 @@
   },
   {
     "episodeId": "segment_15",
+    "rotationError": 0.4526895190613958,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05536657090888365
       },
       "rotation": {
@@ -337,10 +345,11 @@
   },
   {
     "episodeId": "segment_16",
+    "rotationError": 0.2853134955438808,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05950147452372667
       },
       "rotation": {
@@ -379,10 +388,11 @@
   },
   {
     "episodeId": "segment_17",
+    "rotationError": 0.09603775576184394,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06017388180291802
       },
       "rotation": {
@@ -421,10 +431,11 @@
   },
   {
     "episodeId": "segment_18",
+    "rotationError": 0.04929980398479106,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.051720822162109145
       },
       "rotation": {
@@ -463,10 +474,11 @@
   },
   {
     "episodeId": "segment_23",
+    "rotationError": 0.4177454728597993,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06278199149372518
       },
       "rotation": {
@@ -479,7 +491,7 @@
     "initialPose": {
       "position": {
         "x": 0.06500038012695275,
-        "y": -0.00004205427922615579,
+        "y": -4.205427922615579e-05,
         "z": 0.040039796812381456
       },
       "rotation": {
@@ -505,10 +517,11 @@
   },
   {
     "episodeId": "segment_24",
+    "rotationError": 0.029237742890773084,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05171668376749272
       },
       "rotation": {
@@ -547,10 +560,11 @@
   },
   {
     "episodeId": "segment_29",
+    "rotationError": 0.03252973393672919,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.047156988279314985
       },
       "rotation": {
@@ -589,10 +603,11 @@
   },
   {
     "episodeId": "segment_41",
+    "rotationError": 0.627536797901467,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06280522139097933
       },
       "rotation": {
@@ -631,10 +646,11 @@
   },
   {
     "episodeId": "segment_42",
+    "rotationError": 0.10822646344404448,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05989873911103892
       },
       "rotation": {
@@ -673,10 +689,11 @@
   },
   {
     "episodeId": "segment_45",
+    "rotationError": 0.2909245730809598,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06195946447513438
       },
       "rotation": {
@@ -715,10 +732,11 @@
   },
   {
     "episodeId": "segment_47",
+    "rotationError": 0.12816350835116885,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05355631178695537
       },
       "rotation": {
@@ -757,10 +775,11 @@
   },
   {
     "episodeId": "segment_54",
+    "rotationError": 0.08709299049628147,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.052750966094969404
       },
       "rotation": {
@@ -799,10 +818,11 @@
   },
   {
     "episodeId": "segment_66",
+    "rotationError": 0.5322551233096505,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06158050071951658
       },
       "rotation": {
@@ -841,10 +861,11 @@
   },
   {
     "episodeId": "segment_76",
+    "rotationError": 0.06169919875440833,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05005205834553683
       },
       "rotation": {
@@ -883,10 +904,11 @@
   },
   {
     "episodeId": "segment_79",
+    "rotationError": 0.2562815593862067,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.059557274379403405
       },
       "rotation": {
@@ -925,10 +947,11 @@
   },
   {
     "episodeId": "segment_89",
+    "rotationError": 0.2706109520752703,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05914129753262386
       },
       "rotation": {
@@ -941,7 +964,7 @@
     "initialPose": {
       "position": {
         "x": 0.06434772774104602,
-        "y": -0.000006547949694069022,
+        "y": -6.547949694069022e-06,
         "z": 0.03998429247921931
       },
       "rotation": {
@@ -967,10 +990,11 @@
   },
   {
     "episodeId": "segment_91",
+    "rotationError": 0.13842354616736502,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.053335923271595365
       },
       "rotation": {
@@ -1009,10 +1033,11 @@
   },
   {
     "episodeId": "segment_92",
+    "rotationError": 0.20332972450247275,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05731813311057883
       },
       "rotation": {
@@ -1051,10 +1076,11 @@
   },
   {
     "episodeId": "segment_103",
+    "rotationError": 1.0293810656092843,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06064648238212757
       },
       "rotation": {
@@ -1093,10 +1119,11 @@
   },
   {
     "episodeId": "segment_104",
+    "rotationError": 0.19978967627334088,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.062319029116305893
       },
       "rotation": {
@@ -1135,10 +1162,11 @@
   },
   {
     "episodeId": "segment_106",
+    "rotationError": 0.042796730416938246,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.058886412229584656
       },
       "rotation": {
@@ -1177,10 +1205,11 @@
   },
   {
     "episodeId": "segment_110",
+    "rotationError": 0.016589525012178096,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05248005076946957
       },
       "rotation": {
@@ -1219,10 +1248,11 @@
   },
   {
     "episodeId": "segment_111",
+    "rotationError": 0.05055968860673885,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05198869945306689
       },
       "rotation": {
@@ -1261,10 +1291,11 @@
   },
   {
     "episodeId": "segment_113",
+    "rotationError": 0.25185178260994967,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05366428703318127
       },
       "rotation": {
@@ -1303,10 +1334,11 @@
   },
   {
     "episodeId": "segment_120",
+    "rotationError": 0.049727628935974696,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05457643921890426
       },
       "rotation": {
@@ -1345,10 +1377,11 @@
   },
   {
     "episodeId": "segment_121",
+    "rotationError": 0.08373372303732521,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.04867857055706577
       },
       "rotation": {
@@ -1387,10 +1420,11 @@
   },
   {
     "episodeId": "segment_123",
+    "rotationError": 0.3576203947245014,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06102364046266219
       },
       "rotation": {
@@ -1429,10 +1463,11 @@
   },
   {
     "episodeId": "segment_125",
+    "rotationError": 0.03984483417898378,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05987145360635199
       },
       "rotation": {
@@ -1451,7 +1486,7 @@
       "rotation": {
         "w": 0.9999194095892444,
         "x": -0.005090235912935215,
-        "y": 0.0000535142570508511,
+        "y": 5.35142570508511e-05,
         "z": -0.011630174601959585
       }
     },
@@ -1471,10 +1506,11 @@
   },
   {
     "episodeId": "segment_131",
+    "rotationError": 0.3026399332878225,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.048468748124528005
       },
       "rotation": {
@@ -1513,10 +1549,11 @@
   },
   {
     "episodeId": "segment_136",
+    "rotationError": 0.2732643171988116,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.051422849337129234
       },
       "rotation": {
@@ -1555,10 +1592,11 @@
   },
   {
     "episodeId": "segment_140",
+    "rotationError": 0.09130968360062532,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05781131080880672
       },
       "rotation": {
@@ -1597,10 +1635,11 @@
   },
   {
     "episodeId": "segment_143",
+    "rotationError": 0.21631550527823498,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06135214292656711
       },
       "rotation": {
@@ -1639,10 +1678,11 @@
   },
   {
     "episodeId": "segment_145",
+    "rotationError": 0.6502189579295532,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05525780528887393
       },
       "rotation": {
@@ -1681,10 +1721,11 @@
   },
   {
     "episodeId": "segment_153",
+    "rotationError": 0.2144012082245461,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.055625704751931765
       },
       "rotation": {
@@ -1723,10 +1764,11 @@
   },
   {
     "episodeId": "segment_154",
+    "rotationError": 0.1518613861779122,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.059218650801096714
       },
       "rotation": {
@@ -1765,10 +1807,11 @@
   },
   {
     "episodeId": "segment_156",
+    "rotationError": 0.558736538716727,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.057112312542797014
       },
       "rotation": {
@@ -1807,10 +1850,11 @@
   },
   {
     "episodeId": "segment_158",
+    "rotationError": 0.13519669297211834,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05707323147707209
       },
       "rotation": {
@@ -1849,10 +1893,11 @@
   },
   {
     "episodeId": "segment_167",
+    "rotationError": 0.5609728954907333,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06067801560417406
       },
       "rotation": {
@@ -1891,10 +1936,11 @@
   },
   {
     "episodeId": "segment_169",
+    "rotationError": 0.3524717498691725,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.061903071943686605
       },
       "rotation": {
@@ -1933,10 +1979,11 @@
   },
   {
     "episodeId": "segment_170",
+    "rotationError": 0.37422035799563047,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.0620327290796816
       },
       "rotation": {
@@ -1975,10 +2022,11 @@
   },
   {
     "episodeId": "segment_172",
+    "rotationError": 0.15711608022300416,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.04216679452460539
       },
       "rotation": {
@@ -2017,10 +2065,11 @@
   },
   {
     "episodeId": "segment_175",
+    "rotationError": 0.5778362904616624,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.06293114509489409
       },
       "rotation": {
@@ -2059,10 +2108,11 @@
   },
   {
     "episodeId": "segment_178",
+    "rotationError": 0.5116584387320172,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.05765848803464897
       },
       "rotation": {
@@ -2101,10 +2151,11 @@
   },
   {
     "episodeId": "segment_182",
+    "rotationError": 0.26484397926992526,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.062496308118077576
       },
       "rotation": {
@@ -2143,10 +2194,11 @@
   },
   {
     "episodeId": "segment_192",
+    "rotationError": 0.11215887096543038,
     "goal": {
       "position": {
         "x": 0.065,
-        "y": 0,
+        "y": 0.0,
         "z": 0.051398081928789044
       },
       "rotation": {

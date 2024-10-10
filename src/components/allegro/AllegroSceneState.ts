@@ -58,6 +58,7 @@ export interface AllegroSceneState {
  */
 export interface AllegroEpisode {
   episodeId: number;
+  rotationError: number;
   goal: CubeState;
   points: AllegroSceneState[];
 }
@@ -67,6 +68,7 @@ export interface AllegroEpisode {
  */
 export interface AllegroEpisodeInfo {
   episodeId: string;
+  rotationError: number;
   goal: {
     position: {
       x: number;

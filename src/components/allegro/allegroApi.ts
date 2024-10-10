@@ -24,7 +24,7 @@ const getDataFolder = (controllerType: ControllerType, dataType: DataType) => {
  * @returns An Allegro hand episode.
  */
 export const fetchAllegroEpisode = async (
-  id: number,
+  id: string,
   controllerType: ControllerType,
   dataType: DataType
 ): Promise<AllegroEpisode> => {

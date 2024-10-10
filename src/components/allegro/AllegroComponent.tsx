@@ -45,9 +45,15 @@ export const AllegroComponent = () => {
    * and the scene state has been updated.
    */
   const handleSelectedPoint = useCallback(
-    async (id: number) => {
+    async (id: string) => {
       try {
         const episode = await fetchAllegroEpisode(id, controllerType, dataType);
+        const finalPose = episode.points[episode.points.length - 1].cube;
+
+        // We are only interested in evaluating rotation errors.
+        // For this reason, we use the last position of the cube as the position goal.
+        episode.goal.position = finalPose.position;
+
         setGoal(episode.goal);
         setSceneSequence(episode.points);
       } catch (error) {

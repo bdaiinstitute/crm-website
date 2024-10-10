@@ -46,6 +46,8 @@ export interface IiwaSceneState {
  */
 export interface IiwaEpisode {
   episodeId: string;
+  translationError: number;
+  rotationError: number;
   goal: CylinderState;
   points: IiwaSceneState[];
 }
@@ -55,6 +57,8 @@ export interface IiwaEpisode {
  */
 export interface IiwaEpisodeInfo {
   episodeId: string;
+  translationError: number;
+  rotationError: number;
   goal: {
     position: {
       x: number;

@@ -4,7 +4,7 @@ import Plot from "react-plotly.js";
 import { Data, Datum, Layout, PlotMouseEvent } from "plotly.js";
 
 import { ErrorType } from "../../types/DataTypes";
-import { IiwaEpisodeInfo, IiwaStats } from "./IiwaSceneState";
+import { IiwaStats } from "./IiwaSceneState";
 
 // Define a structure for plot custom data.
 interface CustomData {
@@ -26,28 +26,6 @@ interface CustomData {
 
 const MAX_DISTANCE_ERROR = 0.1; // m
 const MAX_ROTATION_ERROR = 0.4; // rad
-
-/**
- *
- * @param episode Return the error assigned to a particular episode.
- * @param errorType Can be distance error or rotation error.
- * @returns The error assigned to a particular episode.
- */
-const calculateError = (episode: IiwaEpisodeInfo, errorType: ErrorType): number => {
-  if (errorType === ErrorType.Position) {
-    // Calculate the distance between the goal and the final position.
-    return Math.sqrt(
-      Math.pow(episode.goal.position.x - episode.finalPose.position.x, 2) +
-        Math.pow(episode.goal.position.y - episode.finalPose.position.y, 2)
-    );
-  } else {
-    // Calculate the angular error between the goal and the final position.
-    // If the error exceeds a full rotation, use a module operation to keep it
-    // between -PI and PI.
-    const deltaTheta = episode.goal.rotation.theta - episode.finalPose.rotation.theta;
-    return Math.abs(((deltaTheta + Math.PI) % (2 * Math.PI)) - Math.PI);
-  }
-};
 
 /**
  * Props for the ScatterPlot3DComponent component.
@@ -120,7 +98,10 @@ export const IiwaScatterPlotComponent = ({
         episode.goal.rotation.theta - episode.initialPose.rotation.theta
       );
       // Extract error.
-      const error = calculateError(episode, errorType);
+      const error =
+        errorType === ErrorType.Position
+          ? episode.translationError
+          : episode.rotationError;
       errors.push(error);
       // Extract id and other properties.
       const match = episode.episodeId.match(/seed_(\d+)_segment_(\d+)/);
@@ -159,7 +140,7 @@ export const IiwaScatterPlotComponent = ({
         mode: "markers",
         type: "scatter3d",
         marker: {
-          size: 4,
+          size: 6,
           color: errors, // Use the error values for coloring.
           colorscale: "Viridis",
           cmin: minError, // Minimum of the error range.
@@ -217,7 +198,7 @@ export const IiwaScatterPlotComponent = ({
           zerolinewidth: 1
         },
         camera: {
-          eye: { x: 1.3, y: 1.3, z: 1.3 },
+          eye: { x: 1.5, y: 1.5, z: 1.5 },
           center: { x: 0.1, y: -0.15, z: -0.05 }
         }
       },
