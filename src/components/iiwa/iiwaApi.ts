@@ -12,7 +12,7 @@ const getDataFolder = (controllerType: ControllerType, dataType: DataType) => {
   const dataFolder = dataType === DataType.Hardware ? "hardware" : "simulation";
   const controllerFolder =
     controllerType === ControllerType.OpenLoop ? "open_loop" : "closed_loop";
-  const url = getAbsoluteUrl(`data/iiwa/${dataFolder}/${controllerFolder}/`);
+  const url = getAbsoluteUrl(`data/iiwa/${dataFolder}/${controllerFolder}`);
   return url;
 };
 
