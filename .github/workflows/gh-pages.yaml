@@ -5,12 +5,11 @@ on:
   push:
     branches:
       - main # Set a branch name to trigger deployment.
-    
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-
   gh-pages:
     runs-on: ubuntu-latest
 
@@ -20,31 +19,30 @@ jobs:
 
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Setup Node.js (Latest LTS)
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
 
-    - name: Setup Node.js (Latest LTS)
-      uses: actions/setup-node@v3
-      with:
-        node-version: 'lts/*'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: latest
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: Install dependencies
-      run: pnpm install
+      - name: Build website
+        run: pnpm build
 
-    - name: Build website
-      run: pnpm build
-    
-    - name: Deploy GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist # Default folder where pnpm bundles the compiled website.
+      - name: Deploy GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Default folder where pnpm bundles the compiled website.
+          cname: crm.theaiinstitute.com # Set a custom domain name.
