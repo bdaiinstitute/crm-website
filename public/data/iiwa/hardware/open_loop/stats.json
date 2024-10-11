@@ -1,0 +1,1634 @@
+[
+  {
+    "episodeId": "seed_0_segment_2_open_loop",
+    "translationError": 0.019533288341515576,
+    "rotationError": 0.012361410299799092,
+    "goal": {
+      "position": {
+        "x": 0.7319404098017955,
+        "y": 0.1833718704696281
+      },
+      "rotation": {
+        "theta": -0.6702928639463964
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6558163715229974,
+        "y": -0.08255747623163212
+      },
+      "rotation": {
+        "theta": 0.01562807740216132
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7254880338095262,
+        "y": 0.20180868682948738
+      },
+      "rotation": {
+        "theta": -0.6826542742461955
+      }
+    }
+  },
+  {
+    "episodeId": "seed_0_segment_6_open_loop",
+    "translationError": 0.023288456037780375,
+    "rotationError": 0.03306367747245553,
+    "goal": {
+      "position": {
+        "x": 0.6775814426356916,
+        "y": 0.2593552298285953
+      },
+      "rotation": {
+        "theta": -0.8662842363315574
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6634850861871711,
+        "y": -0.08089357141905718
+      },
+      "rotation": {
+        "theta": 0.037854452150493156
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6679909851125176,
+        "y": 0.2805772775412885
+      },
+      "rotation": {
+        "theta": -0.8993479138040129
+      }
+    }
+  },
+  {
+    "episodeId": "seed_0_segment_15_open_loop",
+    "translationError": 0.0075163301804704544,
+    "rotationError": 0.020040872165664858,
+    "goal": {
+      "position": {
+        "x": 0.5899592916723571,
+        "y": 0.24153824585231018
+      },
+      "rotation": {
+        "theta": 0.21110429693157487
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6524570568890884,
+        "y": -0.08113672621692647
+      },
+      "rotation": {
+        "theta": -0.035810202211719974
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5841648754386695,
+        "y": 0.246325725344969
+      },
+      "rotation": {
+        "theta": 0.23114516909723973
+      }
+    }
+  },
+  {
+    "episodeId": "seed_0_segment_18_open_loop",
+    "translationError": 0.003483193282700125,
+    "rotationError": 0.0028631731898673962,
+    "goal": {
+      "position": {
+        "x": 0.42649681242443144,
+        "y": -0.0396370145234901
+      },
+      "rotation": {
+        "theta": 0.28550880154655445
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6521798533806262,
+        "y": -0.08140957987599351
+      },
+      "rotation": {
+        "theta": -0.019684083142965658
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.4293737499688348,
+        "y": -0.0416006503884736
+      },
+      "rotation": {
+        "theta": 0.28837197473642184
+      }
+    }
+  },
+  {
+    "episodeId": "seed_1_segment_4_open_loop",
+    "translationError": 0.0061280854308321175,
+    "rotationError": 0.009275702230480909,
+    "goal": {
+      "position": {
+        "x": 0.32717577239489926,
+        "y": 0.37184615887662864
+      },
+      "rotation": {
+        "theta": -0.49015241691570455
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5644897290615769,
+        "y": 0.17469238034839185
+      },
+      "rotation": {
+        "theta": -0.0009620993480048655
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.32814739897660766,
+        "y": 0.3657955909005379
+      },
+      "rotation": {
+        "theta": -0.49942811914618546
+      }
+    }
+  },
+  {
+    "episodeId": "seed_1_segment_18_open_loop",
+    "translationError": 0.007648351001413269,
+    "rotationError": 0.014400601120020728,
+    "goal": {
+      "position": {
+        "x": 0.6341124548673138,
+        "y": -0.08254413112824646
+      },
+      "rotation": {
+        "theta": 0.6687190952306273
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5526276868980975,
+        "y": 0.18410149310450552
+      },
+      "rotation": {
+        "theta": -0.010524551151945442
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6314790618527035,
+        "y": -0.07536342682633979
+      },
+      "rotation": {
+        "theta": 0.6543184941106066
+      }
+    }
+  },
+  {
+    "episodeId": "seed_1_segment_19_open_loop",
+    "translationError": 0.011480613217146276,
+    "rotationError": 0.09395892520066601,
+    "goal": {
+      "position": {
+        "x": 0.6261076795666882,
+        "y": -0.11472366811745857
+      },
+      "rotation": {
+        "theta": 0.40644228412421646
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5684536181485593,
+        "y": 0.17402260672516146
+      },
+      "rotation": {
+        "theta": -0.004179164131859063
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6225761478785419,
+        "y": -0.1037997144477778
+      },
+      "rotation": {
+        "theta": 0.31248335892355045
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_2_open_loop",
+    "translationError": 0.011668365159892127,
+    "rotationError": 0.0695055617335868,
+    "goal": {
+      "position": {
+        "x": 0.3194486187878984,
+        "y": -0.017091846726991582
+      },
+      "rotation": {
+        "theta": 0.9017330384643186
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.44548276881785076,
+        "y": -0.08012723563080004
+      },
+      "rotation": {
+        "theta": 0.002515434737964603
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.3289792448611858,
+        "y": -0.010359988725239133
+      },
+      "rotation": {
+        "theta": 0.8322274767307318
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_7_open_loop",
+    "translationError": 0.01625028210760595,
+    "rotationError": 0.016528115949809963,
+    "goal": {
+      "position": {
+        "x": 0.5290601358844843,
+        "y": 0.03995024515446695
+      },
+      "rotation": {
+        "theta": 0.28935090906645144
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.4456276309164753,
+        "y": -0.07661475478143942
+      },
+      "rotation": {
+        "theta": 0.0031840053415830545
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5445382001453323,
+        "y": 0.044900113366231675
+      },
+      "rotation": {
+        "theta": 0.3058790250162614
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_11_open_loop",
+    "translationError": 0.0218205141526303,
+    "rotationError": 0.05941305137261238,
+    "goal": {
+      "position": {
+        "x": 0.642680852500503,
+        "y": -0.07842757598732886
+      },
+      "rotation": {
+        "theta": -0.3022398533546958
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.44642952220819004,
+        "y": -0.0734457984397463
+      },
+      "rotation": {
+        "theta": -0.031881435251167975
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6644950142984251,
+        "y": -0.0789540576481842
+      },
+      "rotation": {
+        "theta": -0.36165290472730816
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_15_open_loop",
+    "translationError": 0.014061982335948821,
+    "rotationError": 0.005881682842931113,
+    "goal": {
+      "position": {
+        "x": 0.5377031123728813,
+        "y": -0.18261859285608875
+      },
+      "rotation": {
+        "theta": 0.14762475504690165
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.44614107268568326,
+        "y": -0.07653522448625694
+      },
+      "rotation": {
+        "theta": -0.055787558850583535
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5513822861472546,
+        "y": -0.17935982743540663
+      },
+      "rotation": {
+        "theta": 0.15350643788983276
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_16_open_loop",
+    "translationError": 0.0034309471347551174,
+    "rotationError": 0.20770197158176518,
+    "goal": {
+      "position": {
+        "x": 0.16458153994852068,
+        "y": -0.06995331784094819
+      },
+      "rotation": {
+        "theta": 1.2247817386834712
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.4465286723094207,
+        "y": -0.07303786368176457
+      },
+      "rotation": {
+        "theta": -0.00935292185108403
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.16747593646795558,
+        "y": -0.0717955629467274
+      },
+      "rotation": {
+        "theta": 1.4324837102652364
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_17_open_loop",
+    "translationError": 0.0057608475464235795,
+    "rotationError": 0.08767976408274647,
+    "goal": {
+      "position": {
+        "x": 0.17638296826157449,
+        "y": -0.11351976609853626
+      },
+      "rotation": {
+        "theta": 1.246672467386492
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.44622680528480285,
+        "y": -0.07244094679147028
+      },
+      "rotation": {
+        "theta": -0.015666175947411962
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.18116960058266504,
+        "y": -0.1167253105882955
+      },
+      "rotation": {
+        "theta": 1.3343522314692384
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_18_open_loop",
+    "translationError": 0.010667865118870959,
+    "rotationError": 0.04159455489389041,
+    "goal": {
+      "position": {
+        "x": 0.38354050730499395,
+        "y": -0.04039205267101491
+      },
+      "rotation": {
+        "theta": 0.5573143627928095
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.44650625813787104,
+        "y": -0.07446853336091752
+      },
+      "rotation": {
+        "theta": 0.01386058234119232
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.3924913380714519,
+        "y": -0.04619601466129819
+      },
+      "rotation": {
+        "theta": 0.5157198078989191
+      }
+    }
+  },
+  {
+    "episodeId": "seed_2_segment_19_open_loop",
+    "translationError": 0.022001442519717074,
+    "rotationError": 0.07462589589860807,
+    "goal": {
+      "position": {
+        "x": 0.5678542306546188,
+        "y": -0.20085941779822947
+      },
+      "rotation": {
+        "theta": -0.4696047157649004
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.44691741650403505,
+        "y": -0.08089664487633319
+      },
+      "rotation": {
+        "theta": 0.008623069323069799
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.589309240937943,
+        "y": -0.2057324052485383
+      },
+      "rotation": {
+        "theta": -0.5442306116635085
+      }
+    }
+  },
+  {
+    "episodeId": "seed_8_segment_7_open_loop",
+    "translationError": 0.012129936686148732,
+    "rotationError": 0.015881443695249964,
+    "goal": {
+      "position": {
+        "x": 0.551284618201003,
+        "y": -0.07109066931918243
+      },
+      "rotation": {
+        "theta": 0.21597055270120263
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.4612297855261399,
+        "y": 0.21079820729597576
+      },
+      "rotation": {
+        "theta": -0.0771837898190352
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5620421249823184,
+        "y": -0.06548608085436802
+      },
+      "rotation": {
+        "theta": 0.2318519963964526
+      }
+    }
+  },
+  {
+    "episodeId": "seed_8_segment_8_open_loop",
+    "translationError": 0.009668177499277475,
+    "rotationError": 0.008823699785130645,
+    "goal": {
+      "position": {
+        "x": 0.46155238392645975,
+        "y": 0.024837923402140444
+      },
+      "rotation": {
+        "theta": -0.653416479322629
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.468053300908988,
+        "y": 0.2039284606610382
+      },
+      "rotation": {
+        "theta": -0.052543105494685036
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.4543743728705768,
+        "y": 0.031314790965952244
+      },
+      "rotation": {
+        "theta": -0.6445927795374984
+      }
+    }
+  },
+  {
+    "episodeId": "seed_8_segment_16_open_loop",
+    "translationError": 0.040251368505832066,
+    "rotationError": 0.23576317735879182,
+    "goal": {
+      "position": {
+        "x": 0.1609350582820534,
+        "y": 0.1423277638829176
+      },
+      "rotation": {
+        "theta": -1.0372147225151898
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.46435289516725087,
+        "y": 0.2077939683024762
+      },
+      "rotation": {
+        "theta": -0.07738768589266709
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.15647732761916266,
+        "y": 0.18233153000473934
+      },
+      "rotation": {
+        "theta": -1.2729778998739816
+      }
+    }
+  },
+  {
+    "episodeId": "seed_8_segment_19_open_loop",
+    "translationError": 0.01399747535076095,
+    "rotationError": 0.07248774710598538,
+    "goal": {
+      "position": {
+        "x": 0.6672469344501765,
+        "y": 0.26314725745399475
+      },
+      "rotation": {
+        "theta": 0.572654556417213
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.4685874692066251,
+        "y": 0.20146434853392448
+      },
+      "rotation": {
+        "theta": 0.01489963463761065
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6769039321079913,
+        "y": 0.2732799625435609
+      },
+      "rotation": {
+        "theta": 0.6451423035231983
+      }
+    }
+  },
+  {
+    "episodeId": "seed_16_segment_0_open_loop",
+    "translationError": 0.007634039873196386,
+    "rotationError": 0.014419010698768608,
+    "goal": {
+      "position": {
+        "x": 0.4049039038793188,
+        "y": 0.2297738740246675
+      },
+      "rotation": {
+        "theta": 0.3048416498907676
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5939239527524491,
+        "y": -0.02084217925133236
+      },
+      "rotation": {
+        "theta": -0.03157845145994235
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.39728896920517554,
+        "y": 0.23031362831513957
+      },
+      "rotation": {
+        "theta": 0.290422639191999
+      }
+    }
+  },
+  {
+    "episodeId": "seed_21_segment_16_open_loop",
+    "translationError": 0.010912714432107075,
+    "rotationError": 0.003814642626551748,
+    "goal": {
+      "position": {
+        "x": 0.7476452567114357,
+        "y": -0.21557892320850824
+      },
+      "rotation": {
+        "theta": -0.10860753868053476
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.7217285258671722,
+        "y": 0.04257091352287001
+      },
+      "rotation": {
+        "theta": -0.005033155544629288
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7573127649218285,
+        "y": -0.2206411975273006
+      },
+      "rotation": {
+        "theta": -0.1124221813070865
+      }
+    }
+  },
+  {
+    "episodeId": "seed_39_segment_9_open_loop",
+    "translationError": 0.13146264292935567,
+    "rotationError": 0.09181314219517026,
+    "goal": {
+      "position": {
+        "x": 0.34354175430415207,
+        "y": -0.2402193299378825
+      },
+      "rotation": {
+        "theta": 0.24682925974539396
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5649304550634986,
+        "y": 0.006709907525165093
+      },
+      "rotation": {
+        "theta": 0.03661658107953816
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.22825462779926023,
+        "y": -0.17704255455154028
+      },
+      "rotation": {
+        "theta": 0.1550161175502237
+      }
+    }
+  },
+  {
+    "episodeId": "seed_42_segment_7_open_loop",
+    "translationError": 0.015441577881901845,
+    "rotationError": 0.09443710353981116,
+    "goal": {
+      "position": {
+        "x": 0.6599830784635149,
+        "y": 0.23202154118287827
+      },
+      "rotation": {
+        "theta": -0.46885878304393014
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6868849486815506,
+        "y": -0.02127708098663017
+      },
+      "rotation": {
+        "theta": 0.035851415513365924
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6449482001972173,
+        "y": 0.23554216087271318
+      },
+      "rotation": {
+        "theta": -0.5632958865837413
+      }
+    }
+  },
+  {
+    "episodeId": "seed_42_segment_14_open_loop",
+    "translationError": 0.02292533424898662,
+    "rotationError": 0.06424883199420395,
+    "goal": {
+      "position": {
+        "x": 0.542112342940643,
+        "y": 0.33486063500962443
+      },
+      "rotation": {
+        "theta": -0.15533640875556431
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6776591334484673,
+        "y": -0.01971574342475957
+      },
+      "rotation": {
+        "theta": -0.05419251069829106
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5195312113808659,
+        "y": 0.33090292760409334
+      },
+      "rotation": {
+        "theta": -0.21958524074976826
+      }
+    }
+  },
+  {
+    "episodeId": "seed_43_segment_0_open_loop",
+    "translationError": 0.016512488312688214,
+    "rotationError": 5.716941194267022e-05,
+    "goal": {
+      "position": {
+        "x": 0.7377905374470313,
+        "y": 0.060317212051974656
+      },
+      "rotation": {
+        "theta": -0.6518364783450197
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6271837213443459,
+        "y": -0.18065349191138536
+      },
+      "rotation": {
+        "theta": 0.06534216317152015
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7234905529926836,
+        "y": 0.06857388903984818
+      },
+      "rotation": {
+        "theta": -0.6518936477569623
+      }
+    }
+  },
+  {
+    "episodeId": "seed_44_segment_11_open_loop",
+    "translationError": 0.016071608335046377,
+    "rotationError": 0.030546366781137313,
+    "goal": {
+      "position": {
+        "x": 0.3062464167808251,
+        "y": -0.10838703757964238
+      },
+      "rotation": {
+        "theta": 0.2950607529834678
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.3626464738009813,
+        "y": -0.09823533683344143
+      },
+      "rotation": {
+        "theta": 0.035378013889386516
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.32113515288762456,
+        "y": -0.10233541534942858
+      },
+      "rotation": {
+        "theta": 0.3256071197646051
+      }
+    }
+  },
+  {
+    "episodeId": "seed_44_segment_14_open_loop",
+    "translationError": 0.008346336280229918,
+    "rotationError": 0.01872687183829902,
+    "goal": {
+      "position": {
+        "x": 0.3397456791794195,
+        "y": -0.13123222933593026
+      },
+      "rotation": {
+        "theta": 0.16241532852490687
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.36025269859560805,
+        "y": -0.09832033691143294
+      },
+      "rotation": {
+        "theta": -0.011977690650432901
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.3458553219465325,
+        "y": -0.12554596566274856
+      },
+      "rotation": {
+        "theta": 0.18114220036320589
+      }
+    }
+  },
+  {
+    "episodeId": "seed_44_segment_15_open_loop",
+    "translationError": 0.012720600496659096,
+    "rotationError": 0.051852347342944416,
+    "goal": {
+      "position": {
+        "x": 0.40757121176081385,
+        "y": -0.00043366256679820746
+      },
+      "rotation": {
+        "theta": -0.6126338009835324
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.36574194014270484,
+        "y": -0.0977465564251786
+      },
+      "rotation": {
+        "theta": -0.011667587063253671
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.40218367993027715,
+        "y": -0.011957037843623897
+      },
+      "rotation": {
+        "theta": -0.6644861483264768
+      }
+    }
+  },
+  {
+    "episodeId": "seed_44_segment_17_open_loop",
+    "translationError": 0.009476759985101202,
+    "rotationError": 0.06900985050151302,
+    "goal": {
+      "position": {
+        "x": 0.37295115987817784,
+        "y": -0.13576028445661623
+      },
+      "rotation": {
+        "theta": -0.06699644237796062
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.3724785700270862,
+        "y": -0.09701461357666175
+      },
+      "rotation": {
+        "theta": 0.045022381443466736
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.3824242293806768,
+        "y": -0.13549583405287302
+      },
+      "rotation": {
+        "theta": 0.002013408123552396
+      }
+    }
+  },
+  {
+    "episodeId": "seed_44_segment_19_open_loop",
+    "translationError": 0.023640823712953573,
+    "rotationError": 0.04734709122680916,
+    "goal": {
+      "position": {
+        "x": 0.29061629738946637,
+        "y": -0.059722736519422906
+      },
+      "rotation": {
+        "theta": 0.15646255116616395
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.37905106168655706,
+        "y": -0.09620137932321471
+      },
+      "rotation": {
+        "theta": 0.008972064295519493
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.31298971453587776,
+        "y": -0.052086065057351694
+      },
+      "rotation": {
+        "theta": 0.2038096423929731
+      }
+    }
+  },
+  {
+    "episodeId": "seed_45_segment_5_open_loop",
+    "translationError": 0.004474674223394118,
+    "rotationError": 0.004346351440860596,
+    "goal": {
+      "position": {
+        "x": 0.40008729536254856,
+        "y": -0.029800170041207948
+      },
+      "rotation": {
+        "theta": 0.29281265510978355
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5938709045315134,
+        "y": 0.012718720868475364
+      },
+      "rotation": {
+        "theta": 0.006960768897412018
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.4013334961255828,
+        "y": -0.03409780812086527
+      },
+      "rotation": {
+        "theta": 0.29715900655064414
+      }
+    }
+  },
+  {
+    "episodeId": "seed_45_segment_15_open_loop",
+    "translationError": 0.010720731610004699,
+    "rotationError": 0.013768491126393723,
+    "goal": {
+      "position": {
+        "x": 0.5234955089674478,
+        "y": -0.3321609792050484
+      },
+      "rotation": {
+        "theta": 0.44447648943393897
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5934063971421656,
+        "y": 0.01384868570541431
+      },
+      "rotation": {
+        "theta": -0.02294242147861417
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5128030487376549,
+        "y": -0.33138291719720336
+      },
+      "rotation": {
+        "theta": 0.4582449805603327
+      }
+    }
+  },
+  {
+    "episodeId": "seed_45_segment_16_open_loop",
+    "translationError": 0.007758609827076507,
+    "rotationError": 0.015766901586113102,
+    "goal": {
+      "position": {
+        "x": 0.6864527465410825,
+        "y": 0.16177490889043972
+      },
+      "rotation": {
+        "theta": -0.24750908544258132
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5924358283808989,
+        "y": 0.012703752342553165
+      },
+      "rotation": {
+        "theta": -0.009978034091822272
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.69337754320748,
+        "y": 0.15827587794204023
+      },
+      "rotation": {
+        "theta": -0.2632759870286944
+      }
+    }
+  },
+  {
+    "episodeId": "seed_46_segment_18_open_loop",
+    "translationError": 0.01583022100427684,
+    "rotationError": 0.026802987715414228,
+    "goal": {
+      "position": {
+        "x": 0.6053738035360635,
+        "y": -0.2369766742443163
+      },
+      "rotation": {
+        "theta": -0.7020524832664982
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.7488226264148717,
+        "y": -0.15663180751093153
+      },
+      "rotation": {
+        "theta": -0.04414587162844695
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.604469526631626,
+        "y": -0.22117230205418015
+      },
+      "rotation": {
+        "theta": -0.7288554709819124
+      }
+    }
+  },
+  {
+    "episodeId": "seed_47_segment_2_open_loop",
+    "translationError": 0.004121684275708135,
+    "rotationError": 0.0030768325653453485,
+    "goal": {
+      "position": {
+        "x": 0.529913789408103,
+        "y": -0.021889667691764248
+      },
+      "rotation": {
+        "theta": -0.038130213251362434
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6709185243307527,
+        "y": 0.10822480301287496
+      },
+      "rotation": {
+        "theta": -0.017253634658858173
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.533799425750885,
+        "y": -0.020514854438892782
+      },
+      "rotation": {
+        "theta": -0.04120704581670778
+      }
+    }
+  },
+  {
+    "episodeId": "seed_47_segment_15_open_loop",
+    "translationError": 0.004867155602845681,
+    "rotationError": 0.03042754754000554,
+    "goal": {
+      "position": {
+        "x": 0.752621371553552,
+        "y": -0.11058644633781416
+      },
+      "rotation": {
+        "theta": 0.6570909864801484
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6706426221903037,
+        "y": 0.10338481983178738
+      },
+      "rotation": {
+        "theta": -0.03819435115070435
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7555412313095261,
+        "y": -0.1144804959866701
+      },
+      "rotation": {
+        "theta": 0.6266634389401429
+      }
+    }
+  },
+  {
+    "episodeId": "seed_47_segment_19_open_loop",
+    "translationError": 0.0006761418285789959,
+    "rotationError": 0.007979483787153858,
+    "goal": {
+      "position": {
+        "x": 0.48761937450518794,
+        "y": 0.07180082518428582
+      },
+      "rotation": {
+        "theta": -0.04372045028806266
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6696678388124839,
+        "y": 0.1043839092247727
+      },
+      "rotation": {
+        "theta": -0.040846659386006755
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.4882322002937411,
+        "y": 0.07208650389409521
+      },
+      "rotation": {
+        "theta": -0.0357409665009088
+      }
+    }
+  },
+  {
+    "episodeId": "seed_62_segment_18_open_loop",
+    "translationError": 0.006129263780251774,
+    "rotationError": 0.059202839817594444,
+    "goal": {
+      "position": {
+        "x": 0.6395556786213529,
+        "y": 0.21226640061704813
+      },
+      "rotation": {
+        "theta": 0.7464649502346165
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.610415663041971,
+        "y": 0.10252153316465729
+      },
+      "rotation": {
+        "theta": -0.03210701482581004
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6353813592139055,
+        "y": 0.21675448840278877
+      },
+      "rotation": {
+        "theta": 0.8056677900522109
+      }
+    }
+  },
+  {
+    "episodeId": "seed_72_segment_13_open_loop",
+    "translationError": 0.016250446922994793,
+    "rotationError": 0.051661553088410694,
+    "goal": {
+      "position": {
+        "x": 0.8067322900426727,
+        "y": 0.07238314754759355
+      },
+      "rotation": {
+        "theta": -0.5345811566250881
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.7221819357835697,
+        "y": -0.19715441927116234
+      },
+      "rotation": {
+        "theta": 0.014685214106282558
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7965173293291932,
+        "y": 0.08502164440517679
+      },
+      "rotation": {
+        "theta": -0.5862427097134988
+      }
+    }
+  },
+  {
+    "episodeId": "seed_78_segment_10_open_loop",
+    "translationError": 0.0022533328024154165,
+    "rotationError": 0.02814285512643211,
+    "goal": {
+      "position": {
+        "x": 0.4553397031813179,
+        "y": 0.334591616513298
+      },
+      "rotation": {
+        "theta": -0.5077119516508722
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5619124175931796,
+        "y": 0.16245386539654338
+      },
+      "rotation": {
+        "theta": -0.0019858696364417287
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.4532539447596763,
+        "y": 0.33544433013755437
+      },
+      "rotation": {
+        "theta": -0.5358548067773043
+      }
+    }
+  },
+  {
+    "episodeId": "seed_78_segment_12_open_loop",
+    "translationError": 0.05866666621893685,
+    "rotationError": 0.34424823562780493,
+    "goal": {
+      "position": {
+        "x": 0.32893232061282085,
+        "y": 0.48399904241484254
+      },
+      "rotation": {
+        "theta": -1.153991824564341
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5595104684823484,
+        "y": 0.16182685276301012
+      },
+      "rotation": {
+        "theta": -0.0290931517159779
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.2707417562587386,
+        "y": 0.4765400917247282
+      },
+      "rotation": {
+        "theta": -0.8097435889365361
+      }
+    }
+  },
+  {
+    "episodeId": "seed_78_segment_17_open_loop",
+    "translationError": 0.023683635874191738,
+    "rotationError": 0.14214259763304715,
+    "goal": {
+      "position": {
+        "x": 0.3493971068845359,
+        "y": 0.4606213401222494
+      },
+      "rotation": {
+        "theta": -0.9730594186384216
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5697526861290767,
+        "y": 0.16296354312810346
+      },
+      "rotation": {
+        "theta": -0.04391915372292917
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.32588314166067567,
+        "y": 0.45779149071417247
+      },
+      "rotation": {
+        "theta": -0.8309168210053745
+      }
+    }
+  },
+  {
+    "episodeId": "seed_78_segment_18_open_loop",
+    "translationError": 0.03165231024255421,
+    "rotationError": 0.1554623045692074,
+    "goal": {
+      "position": {
+        "x": 0.509248240643659,
+        "y": 0.33942737789601085
+      },
+      "rotation": {
+        "theta": -0.833096922046336
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5810546269521536,
+        "y": 0.16486312647247492
+      },
+      "rotation": {
+        "theta": -0.01415366961090177
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.47836408872237635,
+        "y": 0.3463583160571859
+      },
+      "rotation": {
+        "theta": -0.6776346174771286
+      }
+    }
+  },
+  {
+    "episodeId": "seed_84_segment_7_open_loop",
+    "translationError": 0.017718464689313155,
+    "rotationError": 0.11118376962561449,
+    "goal": {
+      "position": {
+        "x": 0.7071214955642378,
+        "y": -0.09758928820078981
+      },
+      "rotation": {
+        "theta": 0.7015363254694035
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.7038066064977997,
+        "y": 0.1506295634920225
+      },
+      "rotation": {
+        "theta": 0.023591675509429328
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7064341058402377,
+        "y": -0.11529441419056397
+      },
+      "rotation": {
+        "theta": 0.590352555843789
+      }
+    }
+  },
+  {
+    "episodeId": "seed_84_segment_18_open_loop",
+    "translationError": 0.0008019656647471096,
+    "rotationError": 0.029309300597631094,
+    "goal": {
+      "position": {
+        "x": 0.45896334404896416,
+        "y": 0.4347347783837359
+      },
+      "rotation": {
+        "theta": -0.24872322774318817
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.7207347499875976,
+        "y": 0.14585901005732316
+      },
+      "rotation": {
+        "theta": 0.040072454285983425
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.45966001338544654,
+        "y": 0.4343375369419924
+      },
+      "rotation": {
+        "theta": -0.27803252834081926
+      }
+    }
+  },
+  {
+    "episodeId": "seed_87_segment_18_open_loop",
+    "translationError": 0.010722334471826831,
+    "rotationError": 0.029914566708966306,
+    "goal": {
+      "position": {
+        "x": 0.4576702878146703,
+        "y": 0.2866704631604008
+      },
+      "rotation": {
+        "theta": -0.7937234430467071
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.5956684722833399,
+        "y": 0.11241557248238898
+      },
+      "rotation": {
+        "theta": -0.02464503490899294
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.4505646402567559,
+        "y": 0.29470029686406063
+      },
+      "rotation": {
+        "theta": -0.8236380097556734
+      }
+    }
+  },
+  {
+    "episodeId": "seed_92_segment_14_open_loop",
+    "translationError": 0.020714151564904512,
+    "rotationError": 0.0696030122175133,
+    "goal": {
+      "position": {
+        "x": 0.4919966748887143,
+        "y": -0.3713066789409526
+      },
+      "rotation": {
+        "theta": 0.7737298107087995
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6136016071576951,
+        "y": -0.16932342214918927
+      },
+      "rotation": {
+        "theta": 0.030951752272735694
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.5127030657127378,
+        "y": -0.3718736481611313
+      },
+      "rotation": {
+        "theta": 0.8433328229263128
+      }
+    }
+  },
+  {
+    "episodeId": "seed_93_segment_0_open_loop",
+    "translationError": 0.014185879389706415,
+    "rotationError": 0.055204129688145254,
+    "goal": {
+      "position": {
+        "x": 0.7918289535465414,
+        "y": -0.13922543405157162
+      },
+      "rotation": {
+        "theta": 0.8143118452001622
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.786996695577389,
+        "y": 0.01603413095919004
+      },
+      "rotation": {
+        "theta": -0.011635369260204387
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.7786154118212861,
+        "y": -0.14438697346673024
+      },
+      "rotation": {
+        "theta": 0.759107715512017
+      }
+    }
+  },
+  {
+    "episodeId": "seed_93_segment_15_open_loop",
+    "translationError": 0.010308626330122701,
+    "rotationError": 0.026964192363291617,
+    "goal": {
+      "position": {
+        "x": 0.6046385650514043,
+        "y": -0.3762554134252105
+      },
+      "rotation": {
+        "theta": 0.9397200539772105
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.7944949957797186,
+        "y": 0.01786738385616693
+      },
+      "rotation": {
+        "theta": -0.024377292926560983
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.6056499512014053,
+        "y": -0.38651430590294344
+      },
+      "rotation": {
+        "theta": 0.9666842463405021
+      }
+    }
+  },
+  {
+    "episodeId": "seed_93_segment_16_open_loop",
+    "translationError": 0.005585470333394834,
+    "rotationError": 0.057803844044486685,
+    "goal": {
+      "position": {
+        "x": 0.627683243432883,
+        "y": -0.3396762429168916
+      },
+      "rotation": {
+        "theta": 0.747483637235339
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.795596145952477,
+        "y": 0.01739452546699871
+      },
+      "rotation": {
+        "theta": 0.0005215862216925394
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.63294289765367,
+        "y": -0.34155600788171864
+      },
+      "rotation": {
+        "theta": 0.8052874812798256
+      }
+    }
+  },
+  {
+    "episodeId": "seed_97_segment_17_open_loop",
+    "translationError": 0.011669401717448418,
+    "rotationError": 0.025387189635777685,
+    "goal": {
+      "position": {
+        "x": 0.3835119933741885,
+        "y": 0.05474524735333456
+      },
+      "rotation": {
+        "theta": -0.6507645169769608
+      }
+    },
+    "initialPose": {
+      "position": {
+        "x": 0.6391349492760773,
+        "y": -0.030384644174446307
+      },
+      "rotation": {
+        "theta": -0.004134256861734787
+      }
+    },
+    "finalPose": {
+      "position": {
+        "x": 0.3724244679730566,
+        "y": 0.05110633035476986
+      },
+      "rotation": {
+        "theta": -0.6253773273411831
+      }
+    }
+  }
+]
