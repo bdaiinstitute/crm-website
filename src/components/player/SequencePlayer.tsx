@@ -2,82 +2,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { getTrackBackground, Range } from "react-range";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPause, faPlay, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
+import { PlayerIcon } from "./PlayerIcon";
+import { PlayerState } from "./PlayerState";
 
-// CSS-in-JS styles for the component
-const styles = {
-  container: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    padding: "10px",
-    width: "100%"
-  },
-  button: {
-    backgroundColor: "transparent",
-    border: "none",
-    cursor: "pointer",
-    fontSize: "1.5rem",
-    width: "1.5rem", // Set fixed width
-    height: "1.5rem", // Set fixed height
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  renderTrack: {
-    height: "2px",
-    backgroundColor: "#ccc",
-    width: "100%"
-  }
-};
-
-enum PlayerState {
-  InitialState,
-  Completed,
-  Paused,
-  Playing,
-  Disabled
-}
-
-/**
- * Props for the PlayerIcon component.
- * @param playerState The player state.
- */
-interface PlayerIconProps {
-  playerState: PlayerState;
-}
-
-/**
- * This is the icon to display on the player control button based on the
- * current player state.
- * @param props {@link PlayerIconProps}
- * @returns The icon to display on the control button.
- */
-const PlayerIcon = ({ playerState }: PlayerIconProps) => {
-  switch (playerState) {
-    case PlayerState.Completed:
-      return <FontAwesomeIcon icon={faRedoAlt} />;
-      break;
-    case PlayerState.InitialState:
-    case PlayerState.Paused:
-      return <FontAwesomeIcon icon={faPlay} />;
-      break;
-    case PlayerState.Playing:
-      return <FontAwesomeIcon icon={faPause} />;
-      break;
-    case PlayerState.Disabled:
-      return <FontAwesomeIcon icon={faPlay} color="#C0C0C0" />;
-      break;
-  }
-};
+import "./Player.css";
 
 /**
  * Props for the player component.
  * @param sequence A sequence of elements.
  * @param onFrameChanged A callback invoked when the frame changes.
  */
-export interface PlayerProps<T> {
+export interface SequencePlayerProps<T> {
   sequence: T[];
   onFrameChanged: (state: T) => void;
 }
@@ -85,10 +20,13 @@ export interface PlayerProps<T> {
 /**
  * This is a player component. The user can play and pause a sequence and
  * select the current frame using a control bar.
- * @param props {@link PlayerProps}
+ * @param props {@link SequencePlayerProps}
  * @returns A sequence player.
  */
-export const Player = <T,>({ sequence, onFrameChanged }: PlayerProps<T>) => {
+export const SequencePlayer = <T,>({
+  sequence,
+  onFrameChanged
+}: SequencePlayerProps<T>) => {
   // Used to check when the sequence changes.
   const prevSequenceRef = useRef<T[]>(sequence);
 
@@ -165,12 +103,12 @@ export const Player = <T,>({ sequence, onFrameChanged }: PlayerProps<T>) => {
   );
 
   return (
-    <div style={styles.container}>
+    <div className="player-container">
       {/* Button enabled when the sequence length is greater than 0. */}
       <button
+        className={"player-button"}
         onClick={handlePlayPause}
         disabled={sequence.length <= 1}
-        style={styles.button}
       >
         <PlayerIcon playerState={state} />
       </button>
@@ -184,28 +122,20 @@ export const Player = <T,>({ sequence, onFrameChanged }: PlayerProps<T>) => {
           onChange={(values) => handleProgressBarChange(values[0])}
           renderTrack={({ props, children }) => (
             <div
+              className="range-track-wrapper"
               onMouseDown={props.onMouseDown}
               onTouchStart={props.onTouchStart}
-              style={{
-                ...props.style,
-                height: "36px",
-                display: "flex",
-                width: "100%"
-              }}
             >
               <div
                 ref={props.ref}
+                className="range-track"
                 style={{
-                  height: "5px",
-                  width: "100%",
-                  borderRadius: "4px",
                   background: getTrackBackground({
                     values: [frame],
                     colors: ["#548BF4", "#C0C0C0"],
                     min: 0,
                     max: sequence.length - 1
-                  }),
-                  alignSelf: "center"
+                  })
                 }}
               >
                 {children}
@@ -213,28 +143,11 @@ export const Player = <T,>({ sequence, onFrameChanged }: PlayerProps<T>) => {
             </div>
           )}
           renderThumb={({ props }) => (
-            <div
-              {...props}
-              key={props.key}
-              style={{
-                height: "16px",
-                width: "16px",
-                borderRadius: "50%", // Inner circle
-                backgroundColor: "#548BF4"
-              }}
-            />
+            <div className="range-thumb" {...props} key={props.key} />
           )}
         />
       ) : (
-        <div
-          style={{
-            height: "5px",
-            width: "100%",
-            borderRadius: "4px",
-            background: "#C0C0C0",
-            alignSelf: "center"
-          }}
-        />
+        <div className="disabled-track" />
       )}
     </div>
   );

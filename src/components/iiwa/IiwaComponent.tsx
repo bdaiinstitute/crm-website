@@ -4,7 +4,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Player } from "../Player";
+import { SequencePlayer } from "../player/SequencePlayer";
 import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../util/http";
@@ -185,7 +185,7 @@ export const IiwaComponent = () => {
         </div>
       </div>
       <div>
-        <Player sequence={sceneSequence} onFrameChanged={onStateChanged} />
+        <SequencePlayer sequence={sceneSequence} onFrameChanged={onStateChanged} />
       </div>
     </>
   );

@@ -18,24 +18,34 @@ const getDataFolder = (controllerType: ControllerType, dataType: DataType) => {
 
 /**
  * Fetch a JSON file containing an Allegro hand episode.
- * @param id The file id.
+ * @param episodeId The file id.
  * @param controllerType Can be either "open_loop" or "close_loop".
  * @param dataType Can be either "hardware" or "simulation".
  * @returns An Allegro hand episode.
  */
 export const fetchAllegroEpisode = async (
-  id: string,
+  episodeId: string,
   controllerType: ControllerType,
   dataType: DataType
 ): Promise<AllegroEpisode> => {
   const dataFolder = getDataFolder(controllerType, dataType);
-  const url = `${dataFolder}/${id}.json`;
+  const url = `${dataFolder}/${episodeId}.json`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
   }
   const episode = await response.json();
   return episode;
+};
+
+export const getAllegroVideoUrl = (
+  controllerType: ControllerType,
+  episodeId: string
+): string => {
+  const controllerFolder =
+    controllerType === ControllerType.OpenLoop ? "open_loop" : "closed_loop";
+  const url = getAbsoluteUrl(`data/allegro/videos/${controllerFolder}/${episodeId}.mp4`);
+  return url;
 };
 
 /**

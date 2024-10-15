@@ -1,23 +1,25 @@
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback, useRef, useState } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Player } from "../Player";
 import { Menu } from "../menu/Menu";
 import { Scene } from "./AllegroScene";
 import { getAbsoluteUrl } from "../../util/http";
+import useMenuContext from "../../hooks/useMenuContext";
+import { SequencePlayer } from "../player/SequencePlayer";
 import { AllegroScatterPlot } from "./AllegroScatterPlot";
+import VideoPlayer, { VideoRef } from "../player/VideoPlayer";
 import { RobotContextProvider } from "../../context/RobotContext";
-import { fetchAllegroEpisode, fetchAllegroStats } from "./allegroApi";
+import { VideoPlayerController } from "../player/VideoPlayerController";
+import { fetchAllegroEpisode, fetchAllegroStats, getAllegroVideoUrl } from "./allegroApi";
 import {
   AllegroEpisodeInfo,
   AllegroSceneState,
   AllegroStats,
   CubeState
 } from "./AllegroSceneState";
-import useMenuContext from "../../hooks/useMenuContext";
 
 /**
  * This is a component that renders an Allegro hand and a target object and allows the
@@ -37,6 +39,12 @@ export const AllegroComponent = () => {
   const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
 
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
+
+  const [showVideo, setShowVideo] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const videoRef = useRef<VideoRef>(null);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
   // Load episode statistics.
   const { data: stats = [] } = useQuery<AllegroStats, Error>({
@@ -68,6 +76,7 @@ export const AllegroComponent = () => {
         setGoal(episode.goal);
         setSceneSequence(episode.points);
         setEpisodeInfo(episodeInfo);
+        setVideoUrl(getAllegroVideoUrl(controllerType, episodeInfo.episodeId));
       } catch (error) {
         throw new Error(`Error loading trajectory: ${(error as Error).message}`);
       }
@@ -145,7 +154,10 @@ export const AllegroComponent = () => {
         setControllerType={setControllerType}
         dataType={dataType}
         setDataType={setDataType}
+        showVideo={showVideo}
+        setShowVideo={setShowVideo}
         errorTypeEnabled={false}
+        showVideoEnabled={true}
       />
 
       <div className="container mx-auto px-2 py-2 max-w-3xl">
@@ -168,24 +180,42 @@ export const AllegroComponent = () => {
             <AllegroScatterPlot stats={stats} onPointSelected={handleSelectedPoint} />
           </div>
 
-          {/* Scene. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <ErrorBoundary fallback={<div>Something went wrong</div>}>
-              <Suspense fallback={<div>Loading robot...</div>}>
-                <RobotContextProvider url={urdf}>
-                  <Scene
-                    goal={goal}
-                    state={sceneState}
-                    cameraPosition={[0.4, 0.4, 0.4]}
-                  />
-                </RobotContextProvider>
-              </Suspense>
-            </ErrorBoundary>
+            <div className={showVideo ? "" : "hidden"}>
+              <VideoPlayer
+                ref={videoRef}
+                videoUrl={videoUrl}
+                onDurationChange={setDuration}
+                onTimeUpdate={setCurrentTime}
+              />
+            </div>
+            <div className={!showVideo ? "" : "hidden"}>
+              <ErrorBoundary fallback={<div>Something went wrong</div>}>
+                <Suspense fallback={<div>Loading robot...</div>}>
+                  <RobotContextProvider url={urdf}>
+                    <Scene
+                      goal={goal}
+                      state={sceneState}
+                      cameraPosition={[0.4, 0.4, 0.4]}
+                    />
+                  </RobotContextProvider>
+                </Suspense>
+              </ErrorBoundary>
+            </div>
           </div>
         </div>
       </div>
       <div>
-        <Player sequence={sceneSequence} onFrameChanged={onStateChanged} />
+        <div className={showVideo ? "" : "hidden"}>
+          <VideoPlayerController
+            videoRef={videoRef}
+            currentTime={currentTime}
+            duration={duration}
+          />
+        </div>
+        <div className={!showVideo ? "" : "hidden"}>
+          <SequencePlayer sequence={sceneSequence} onFrameChanged={onStateChanged} />
+        </div>
       </div>
     </>
   );

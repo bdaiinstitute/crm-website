@@ -9,6 +9,12 @@ import { ErrorType, ControllerType, DataType } from "../../types/DataTypes";
  * @property {(controllerType: ControllerType) => void} setControllerType Function to set the controller type.
  * @property {DataType} dataType The current data type.
  * @property {(dataType: DataType) => void} setDataType Function to set the data type.
+ * @property {boolean} showVideo Whether to show the video.
+ * @property {(showVideo: boolean) => void} setShowVideo Function to set whether to show the video.
+ * @property {boolean} errorTypeEnabled Whether to show the error type radio buttons.
+ * @property {boolean} controllerTypeEnabled Whether to show the controller type radio buttons.
+ * @property {boolean} dataTypeEnabled Whether to show the data type radio buttons.
+ * @property {boolean} showVideoEnabled Whether to show the video toggle.
  */
 export interface MenuProps {
   errorType: ErrorType;
@@ -17,9 +23,12 @@ export interface MenuProps {
   setControllerType: (controllerType: ControllerType) => void;
   dataType: DataType;
   setDataType: (dataType: DataType) => void;
+  showVideo?: boolean;
+  setShowVideo?: (showVideo: boolean) => void;
   errorTypeEnabled?: boolean;
   controllerTypeEnabled?: boolean;
   dataTypeEnabled?: boolean;
+  showVideoEnabled?: boolean;
 }
 
 /**
@@ -36,9 +45,12 @@ export const Menu = ({
   setControllerType,
   dataType,
   setDataType,
+  showVideo,
+  setShowVideo,
   errorTypeEnabled: isErrorTypeEnabled = true,
   controllerTypeEnabled: isControllerTypeEnabled = true,
-  dataTypeEnabled: isDataTypeEnabled = true
+  dataTypeEnabled: isDataTypeEnabled = true,
+  showVideoEnabled: isShowVideoEnabled = false
 }: MenuProps) => {
   // Generate a unique ID for this component instance
   const uniqueId = useId();
@@ -66,6 +78,17 @@ export const Menu = ({
    */
   const handleDataTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDataType(event.target.value as DataType);
+  };
+
+  /**
+   * Handles the change event for the show video selection.
+   * @param event The change event triggered by the input element.
+   */
+  const handleShowVideoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = event.target.checked;
+    if (setShowVideo) {
+      setShowVideo(isChecked);
+    }
   };
 
   return (
@@ -157,6 +180,22 @@ export const Menu = ({
                 onChange={handleDataTypeChange}
               />
               <span className="ml-1 whitespace-nowrap">hardware</span>
+            </label>
+          </div>
+        )}
+
+        {isShowVideoEnabled && isDataTypeEnabled && dataType === DataType.Hardware && (
+          <div className="flex items-center">
+            <span className="font-bold">Show video:</span>
+            <label className="flex items-center ml-2">
+              <input
+                type="checkbox"
+                name={`showVideo-${uniqueId}`}
+                className="form-checkbox h-4 w-4"
+                aria-label="ShowVideo"
+                checked={showVideo}
+                onChange={handleShowVideoChange}
+              />
             </label>
           </div>
         )}
