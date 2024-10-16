@@ -1,6 +1,6 @@
 [
   {
-    "episodeId": "seed_0_segment_2_open_loop",
+    "episodeId": "seed_0_segment_2",
     "translationError": 0.019533288341515576,
     "rotationError": 0.012361410299799092,
     "goal": {
@@ -32,7 +32,7 @@
     }
   },
   {
-    "episodeId": "seed_0_segment_6_open_loop",
+    "episodeId": "seed_0_segment_6",
     "translationError": 0.023288456037780375,
     "rotationError": 0.03306367747245553,
     "goal": {
@@ -64,7 +64,7 @@
     }
   },
   {
-    "episodeId": "seed_0_segment_15_open_loop",
+    "episodeId": "seed_0_segment_15",
     "translationError": 0.0075163301804704544,
     "rotationError": 0.020040872165664858,
     "goal": {
@@ -96,7 +96,7 @@
     }
   },
   {
-    "episodeId": "seed_0_segment_18_open_loop",
+    "episodeId": "seed_0_segment_18",
     "translationError": 0.003483193282700125,
     "rotationError": 0.0028631731898673962,
     "goal": {
@@ -128,7 +128,7 @@
     }
   },
   {
-    "episodeId": "seed_1_segment_4_open_loop",
+    "episodeId": "seed_1_segment_4",
     "translationError": 0.0061280854308321175,
     "rotationError": 0.009275702230480909,
     "goal": {
@@ -160,7 +160,7 @@
     }
   },
   {
-    "episodeId": "seed_1_segment_18_open_loop",
+    "episodeId": "seed_1_segment_18",
     "translationError": 0.007648351001413269,
     "rotationError": 0.014400601120020728,
     "goal": {
@@ -192,7 +192,7 @@
     }
   },
   {
-    "episodeId": "seed_1_segment_19_open_loop",
+    "episodeId": "seed_1_segment_19",
     "translationError": 0.011480613217146276,
     "rotationError": 0.09395892520066601,
     "goal": {
@@ -224,7 +224,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_2_open_loop",
+    "episodeId": "seed_2_segment_2",
     "translationError": 0.011668365159892127,
     "rotationError": 0.0695055617335868,
     "goal": {
@@ -256,7 +256,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_7_open_loop",
+    "episodeId": "seed_2_segment_7",
     "translationError": 0.01625028210760595,
     "rotationError": 0.016528115949809963,
     "goal": {
@@ -288,7 +288,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_11_open_loop",
+    "episodeId": "seed_2_segment_11",
     "translationError": 0.0218205141526303,
     "rotationError": 0.05941305137261238,
     "goal": {
@@ -320,7 +320,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_15_open_loop",
+    "episodeId": "seed_2_segment_15",
     "translationError": 0.014061982335948821,
     "rotationError": 0.005881682842931113,
     "goal": {
@@ -352,7 +352,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_16_open_loop",
+    "episodeId": "seed_2_segment_16",
     "translationError": 0.0034309471347551174,
     "rotationError": 0.20770197158176518,
     "goal": {
@@ -384,7 +384,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_17_open_loop",
+    "episodeId": "seed_2_segment_17",
     "translationError": 0.0057608475464235795,
     "rotationError": 0.08767976408274647,
     "goal": {
@@ -416,7 +416,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_18_open_loop",
+    "episodeId": "seed_2_segment_18",
     "translationError": 0.010667865118870959,
     "rotationError": 0.04159455489389041,
     "goal": {
@@ -448,7 +448,7 @@
     }
   },
   {
-    "episodeId": "seed_2_segment_19_open_loop",
+    "episodeId": "seed_2_segment_19",
     "translationError": 0.022001442519717074,
     "rotationError": 0.07462589589860807,
     "goal": {
@@ -480,7 +480,7 @@
     }
   },
   {
-    "episodeId": "seed_8_segment_7_open_loop",
+    "episodeId": "seed_8_segment_7",
     "translationError": 0.012129936686148732,
     "rotationError": 0.015881443695249964,
     "goal": {
@@ -512,7 +512,7 @@
     }
   },
   {
-    "episodeId": "seed_8_segment_8_open_loop",
+    "episodeId": "seed_8_segment_8",
     "translationError": 0.009668177499277475,
     "rotationError": 0.008823699785130645,
     "goal": {
@@ -544,7 +544,7 @@
     }
   },
   {
-    "episodeId": "seed_8_segment_16_open_loop",
+    "episodeId": "seed_8_segment_16",
     "translationError": 0.040251368505832066,
     "rotationError": 0.23576317735879182,
     "goal": {
@@ -576,7 +576,7 @@
     }
   },
   {
-    "episodeId": "seed_8_segment_19_open_loop",
+    "episodeId": "seed_8_segment_19",
     "translationError": 0.01399747535076095,
     "rotationError": 0.07248774710598538,
     "goal": {
@@ -608,7 +608,7 @@
     }
   },
   {
-    "episodeId": "seed_16_segment_0_open_loop",
+    "episodeId": "seed_16_segment_0",
     "translationError": 0.007634039873196386,
     "rotationError": 0.014419010698768608,
     "goal": {
@@ -640,7 +640,7 @@
     }
   },
   {
-    "episodeId": "seed_21_segment_16_open_loop",
+    "episodeId": "seed_21_segment_16",
     "translationError": 0.010912714432107075,
     "rotationError": 0.003814642626551748,
     "goal": {
@@ -672,7 +672,7 @@
     }
   },
   {
-    "episodeId": "seed_39_segment_9_open_loop",
+    "episodeId": "seed_39_segment_9",
     "translationError": 0.13146264292935567,
     "rotationError": 0.09181314219517026,
     "goal": {
@@ -704,7 +704,7 @@
     }
   },
   {
-    "episodeId": "seed_42_segment_7_open_loop",
+    "episodeId": "seed_42_segment_7",
     "translationError": 0.015441577881901845,
     "rotationError": 0.09443710353981116,
     "goal": {
@@ -736,7 +736,7 @@
     }
   },
   {
-    "episodeId": "seed_42_segment_14_open_loop",
+    "episodeId": "seed_42_segment_14",
     "translationError": 0.02292533424898662,
     "rotationError": 0.06424883199420395,
     "goal": {
@@ -768,7 +768,7 @@
     }
   },
   {
-    "episodeId": "seed_43_segment_0_open_loop",
+    "episodeId": "seed_43_segment_0",
     "translationError": 0.016512488312688214,
     "rotationError": 5.716941194267022e-05,
     "goal": {
@@ -800,7 +800,7 @@
     }
   },
   {
-    "episodeId": "seed_44_segment_11_open_loop",
+    "episodeId": "seed_44_segment_11",
     "translationError": 0.016071608335046377,
     "rotationError": 0.030546366781137313,
     "goal": {
@@ -832,7 +832,7 @@
     }
   },
   {
-    "episodeId": "seed_44_segment_14_open_loop",
+    "episodeId": "seed_44_segment_14",
     "translationError": 0.008346336280229918,
     "rotationError": 0.01872687183829902,
     "goal": {
@@ -864,7 +864,7 @@
     }
   },
   {
-    "episodeId": "seed_44_segment_15_open_loop",
+    "episodeId": "seed_44_segment_15",
     "translationError": 0.012720600496659096,
     "rotationError": 0.051852347342944416,
     "goal": {
@@ -896,7 +896,7 @@
     }
   },
   {
-    "episodeId": "seed_44_segment_17_open_loop",
+    "episodeId": "seed_44_segment_17",
     "translationError": 0.009476759985101202,
     "rotationError": 0.06900985050151302,
     "goal": {
@@ -928,7 +928,7 @@
     }
   },
   {
-    "episodeId": "seed_44_segment_19_open_loop",
+    "episodeId": "seed_44_segment_19",
     "translationError": 0.023640823712953573,
     "rotationError": 0.04734709122680916,
     "goal": {
@@ -960,7 +960,7 @@
     }
   },
   {
-    "episodeId": "seed_45_segment_5_open_loop",
+    "episodeId": "seed_45_segment_5",
     "translationError": 0.004474674223394118,
     "rotationError": 0.004346351440860596,
     "goal": {
@@ -992,7 +992,7 @@
     }
   },
   {
-    "episodeId": "seed_45_segment_15_open_loop",
+    "episodeId": "seed_45_segment_15",
     "translationError": 0.010720731610004699,
     "rotationError": 0.013768491126393723,
     "goal": {
@@ -1024,7 +1024,7 @@
     }
   },
   {
-    "episodeId": "seed_45_segment_16_open_loop",
+    "episodeId": "seed_45_segment_16",
     "translationError": 0.007758609827076507,
     "rotationError": 0.015766901586113102,
     "goal": {
@@ -1056,7 +1056,7 @@
     }
   },
   {
-    "episodeId": "seed_46_segment_18_open_loop",
+    "episodeId": "seed_46_segment_18",
     "translationError": 0.01583022100427684,
     "rotationError": 0.026802987715414228,
     "goal": {
@@ -1088,7 +1088,7 @@
     }
   },
   {
-    "episodeId": "seed_47_segment_2_open_loop",
+    "episodeId": "seed_47_segment_2",
     "translationError": 0.004121684275708135,
     "rotationError": 0.0030768325653453485,
     "goal": {
@@ -1120,7 +1120,7 @@
     }
   },
   {
-    "episodeId": "seed_47_segment_15_open_loop",
+    "episodeId": "seed_47_segment_15",
     "translationError": 0.004867155602845681,
     "rotationError": 0.03042754754000554,
     "goal": {
@@ -1152,7 +1152,7 @@
     }
   },
   {
-    "episodeId": "seed_47_segment_19_open_loop",
+    "episodeId": "seed_47_segment_19",
     "translationError": 0.0006761418285789959,
     "rotationError": 0.007979483787153858,
     "goal": {
@@ -1184,7 +1184,7 @@
     }
   },
   {
-    "episodeId": "seed_62_segment_18_open_loop",
+    "episodeId": "seed_62_segment_18",
     "translationError": 0.006129263780251774,
     "rotationError": 0.059202839817594444,
     "goal": {
@@ -1216,7 +1216,7 @@
     }
   },
   {
-    "episodeId": "seed_72_segment_13_open_loop",
+    "episodeId": "seed_72_segment_13",
     "translationError": 0.016250446922994793,
     "rotationError": 0.051661553088410694,
     "goal": {
@@ -1248,7 +1248,7 @@
     }
   },
   {
-    "episodeId": "seed_78_segment_10_open_loop",
+    "episodeId": "seed_78_segment_10",
     "translationError": 0.0022533328024154165,
     "rotationError": 0.02814285512643211,
     "goal": {
@@ -1280,7 +1280,7 @@
     }
   },
   {
-    "episodeId": "seed_78_segment_12_open_loop",
+    "episodeId": "seed_78_segment_12",
     "translationError": 0.05866666621893685,
     "rotationError": 0.34424823562780493,
     "goal": {
@@ -1312,7 +1312,7 @@
     }
   },
   {
-    "episodeId": "seed_78_segment_17_open_loop",
+    "episodeId": "seed_78_segment_17",
     "translationError": 0.023683635874191738,
     "rotationError": 0.14214259763304715,
     "goal": {
@@ -1344,7 +1344,7 @@
     }
   },
   {
-    "episodeId": "seed_78_segment_18_open_loop",
+    "episodeId": "seed_78_segment_18",
     "translationError": 0.03165231024255421,
     "rotationError": 0.1554623045692074,
     "goal": {
@@ -1376,7 +1376,7 @@
     }
   },
   {
-    "episodeId": "seed_84_segment_7_open_loop",
+    "episodeId": "seed_84_segment_7",
     "translationError": 0.017718464689313155,
     "rotationError": 0.11118376962561449,
     "goal": {
@@ -1408,7 +1408,7 @@
     }
   },
   {
-    "episodeId": "seed_84_segment_18_open_loop",
+    "episodeId": "seed_84_segment_18",
     "translationError": 0.0008019656647471096,
     "rotationError": 0.029309300597631094,
     "goal": {
@@ -1440,7 +1440,7 @@
     }
   },
   {
-    "episodeId": "seed_87_segment_18_open_loop",
+    "episodeId": "seed_87_segment_18",
     "translationError": 0.010722334471826831,
     "rotationError": 0.029914566708966306,
     "goal": {
@@ -1472,7 +1472,7 @@
     }
   },
   {
-    "episodeId": "seed_92_segment_14_open_loop",
+    "episodeId": "seed_92_segment_14",
     "translationError": 0.020714151564904512,
     "rotationError": 0.0696030122175133,
     "goal": {
@@ -1504,7 +1504,7 @@
     }
   },
   {
-    "episodeId": "seed_93_segment_0_open_loop",
+    "episodeId": "seed_93_segment_0",
     "translationError": 0.014185879389706415,
     "rotationError": 0.055204129688145254,
     "goal": {
@@ -1536,7 +1536,7 @@
     }
   },
   {
-    "episodeId": "seed_93_segment_15_open_loop",
+    "episodeId": "seed_93_segment_15",
     "translationError": 0.010308626330122701,
     "rotationError": 0.026964192363291617,
     "goal": {
@@ -1568,7 +1568,7 @@
     }
   },
   {
-    "episodeId": "seed_93_segment_16_open_loop",
+    "episodeId": "seed_93_segment_16",
     "translationError": 0.005585470333394834,
     "rotationError": 0.057803844044486685,
     "goal": {
@@ -1600,7 +1600,7 @@
     }
   },
   {
-    "episodeId": "seed_97_segment_17_open_loop",
+    "episodeId": "seed_97_segment_17",
     "translationError": 0.011669401717448418,
     "rotationError": 0.025387189635777685,
     "goal": {

@@ -196,16 +196,18 @@ export const AllegroComponent = () => {
                 />
 
                 {/* Overlay Image */}
-                <img
-                  src={episodeInfo ? getAllegroGoalUrl(episodeInfo.episodeId) : ""}
-                  alt="Overlay"
-                  className="absolute top-2 right-2 w-1/4 h-1/4 pointer-events-none"
-                  style={{
-                    zIndex: 10,
-                    opacity: 1,
-                    objectFit: "scale-down"
-                  }}
-                />
+                {episodeInfo && episodeInfo.episodeId && (
+                  <img
+                    src={getAllegroGoalUrl(episodeInfo.episodeId)}
+                    alt="Overlay"
+                    className="absolute top-2 right-2 w-1/4 h-1/4 pointer-events-none"
+                    style={{
+                      zIndex: 10,
+                      opacity: 1,
+                      objectFit: "scale-down"
+                    }}
+                  />
+                )}
               </div>
             </div>
 
