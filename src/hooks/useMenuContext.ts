@@ -1,27 +1,30 @@
 import { useState } from "react";
 import { ErrorType, ControllerType, DataType } from "../types/DataTypes";
 
-interface MenuInterface {
+interface MenuContextInterface {
   errorType: ErrorType;
   setErrorType: (type: ErrorType) => void;
   controllerType: ControllerType;
   setControllerType: (type: ControllerType) => void;
   dataType: DataType;
   setDataType: (type: DataType) => void;
+  showVideo: boolean;
+  setShowVideo: (showVideo: boolean) => void;
 }
 
 /**
  * Provides a hook that manages state for error type, controller type,
  * and data type options.
- * @returns {MenuInterface} An object containing the current state and
+ * @returns {MenuContextInterface} An object containing the current state and
  * updater functions for error type, controller type, and data type options.
  */
-export const useMenuContext = (): MenuInterface => {
+export const useMenuContext = (): MenuContextInterface => {
   const [errorType, setErrorType] = useState<ErrorType>(ErrorType.Rotation);
   const [controllerType, setControllerType] = useState<ControllerType>(
     ControllerType.OpenLoop
   );
   const [dataType, setDataType] = useState<DataType>(DataType.Simulation);
+  const [showVideo, setShowVideo] = useState<boolean>(false);
 
   return {
     errorType,
@@ -29,7 +32,9 @@ export const useMenuContext = (): MenuInterface => {
     controllerType,
     setControllerType,
     dataType,
-    setDataType
+    setDataType,
+    showVideo,
+    setShowVideo
   };
 };
 

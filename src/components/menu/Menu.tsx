@@ -25,10 +25,10 @@ export interface MenuProps {
   setDataType: (dataType: DataType) => void;
   showVideo?: boolean;
   setShowVideo?: (showVideo: boolean) => void;
-  errorTypeEnabled?: boolean;
-  controllerTypeEnabled?: boolean;
-  dataTypeEnabled?: boolean;
-  showVideoEnabled?: boolean;
+  errorTypeOptionEnabled?: boolean;
+  controllerTypeOptionEnabled?: boolean;
+  dataTypeOptionEnabled?: boolean;
+  videoOptionEnabled?: boolean;
 }
 
 /**
@@ -47,10 +47,10 @@ export const Menu = ({
   setDataType,
   showVideo,
   setShowVideo,
-  errorTypeEnabled: isErrorTypeEnabled = true,
-  controllerTypeEnabled: isControllerTypeEnabled = true,
-  dataTypeEnabled: isDataTypeEnabled = true,
-  showVideoEnabled: isShowVideoEnabled = false
+  errorTypeOptionEnabled = true,
+  controllerTypeOptionEnabled = true,
+  dataTypeOptionEnabled = true,
+  videoOptionEnabled = false
 }: MenuProps) => {
   // Generate a unique ID for this component instance
   const uniqueId = useId();
@@ -94,7 +94,7 @@ export const Menu = ({
   return (
     <nav className=" m-0 bg">
       <div className="container mx-auto px-2 py-3 gap-x-6 flex flex-col lg:flex-row items-start md:items-center md:justify-start">
-        {isErrorTypeEnabled /* Error Type Radio Buttons */ && (
+        {errorTypeOptionEnabled /* Error Type Radio Buttons */ && (
           <div className="flex items-center">
             <span className="font-bold">Error:</span>
             <label className="flex items-center ml-2">
@@ -124,7 +124,7 @@ export const Menu = ({
           </div>
         )}
 
-        {isControllerTypeEnabled /* Controller Type Radio Buttons */ && (
+        {controllerTypeOptionEnabled /* Controller Type Radio Buttons */ && (
           <div className="flex items-center">
             <span className="font-bold">Controller:</span>
             <label className="flex items-center ml-2">
@@ -154,7 +154,7 @@ export const Menu = ({
           </div>
         )}
 
-        {isDataTypeEnabled /* Data Type Radio Buttons */ && (
+        {dataTypeOptionEnabled /* Data Type Radio Buttons */ && (
           <div className="flex items-center">
             <span className="font-bold">Data:</span>
             <label className="flex items-center ml-2">
@@ -184,21 +184,23 @@ export const Menu = ({
           </div>
         )}
 
-        {isShowVideoEnabled && isDataTypeEnabled && dataType === DataType.Hardware && (
-          <div className="flex items-center">
-            <span className="font-bold whitespace-nowrap">Video:</span>
-            <label className="flex items-center ml-2">
-              <input
-                type="checkbox"
-                name={`showVideo-${uniqueId}`}
-                className="form-checkbox h-4 w-4"
-                aria-label="ShowVideo"
-                checked={showVideo}
-                onChange={handleShowVideoChange}
-              />
-            </label>
-          </div>
-        )}
+        {videoOptionEnabled &&
+          dataTypeOptionEnabled &&
+          dataType === DataType.Hardware && (
+            <div className="flex items-center">
+              <span className="font-bold whitespace-nowrap">Video:</span>
+              <label className="flex items-center ml-2">
+                <input
+                  type="checkbox"
+                  name={`showVideo-${uniqueId}`}
+                  className="form-checkbox h-4 w-4"
+                  aria-label="ShowVideo"
+                  checked={showVideo}
+                  onChange={handleShowVideoChange}
+                />
+              </label>
+            </div>
+          )}
       </div>
     </nav>
   );

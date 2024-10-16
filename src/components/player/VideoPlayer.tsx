@@ -61,10 +61,10 @@ const Video = forwardRef<VideoRef, VideoProps>(
               <video
                 ref={innerRef}
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  width: "110%",
+                  height: "110%",
                   objectFit: "cover",
-                  objectPosition: "38% 50%"
+                  objectPosition: "45% 50%"
                 }}
                 src={videoUrl}
                 controls={false}

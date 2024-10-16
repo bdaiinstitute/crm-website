@@ -11,6 +11,7 @@ import { ErrorType } from "../../types/DataTypes";
 import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
 import { SequencePlayer } from "../player/SequencePlayer";
+import useVideoContext from "../../hooks/useVideoContext";
 import VideoPlayer, { VideoRef } from "../player/VideoPlayer";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { VideoPlayerController } from "../player/VideoPlayerController";
@@ -33,25 +34,23 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const IiwaComponent = () => {
-  // State variables.
+  const videoRef = useRef<VideoRef>(null);
+  const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
+  const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo | null>(null);
+
   const {
     errorType,
     setErrorType,
     controllerType,
     setControllerType,
     dataType,
-    setDataType
+    setDataType,
+    showVideo,
+    setShowVideo
   } = useMenuContext();
 
-  const videoRef = useRef<VideoRef>(null);
-
-  const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
-
-  const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo | null>(null);
-  const [showVideo, setShowVideo] = useState<boolean>(false);
-  const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const { currentTime, setCurrentTime, duration, setDuration, videoUrl, setVideoUrl } =
+    useVideoContext();
 
   // Extract id and other properties.
   let seed = "";
@@ -93,7 +92,7 @@ export const IiwaComponent = () => {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
     },
-    [controllerType, dataType]
+    [controllerType, dataType, setVideoUrl]
   );
 
   const [goal, setGoal] = useState<CylinderState>({
@@ -156,8 +155,8 @@ export const IiwaComponent = () => {
         setDataType={setDataType}
         showVideo={showVideo}
         setShowVideo={setShowVideo}
-        errorTypeEnabled={true}
-        showVideoEnabled={true}
+        errorTypeOptionEnabled={true}
+        videoOptionEnabled={true}
       />
 
       <div className="container mx-auto px-2 py-2 max-w-3xl">

@@ -10,6 +10,7 @@ import { getAbsoluteUrl } from "../../util/http";
 import useMenuContext from "../../hooks/useMenuContext";
 import { SequencePlayer } from "../player/SequencePlayer";
 import { AllegroScatterPlot } from "./AllegroScatterPlot";
+import useVideoContext from "../../hooks/useVideoContext";
 import VideoPlayer, { VideoRef } from "../player/VideoPlayer";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { VideoPlayerController } from "../player/VideoPlayerController";
@@ -31,25 +32,23 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const AllegroComponent = () => {
-  // State variables.
+  const videoRef = useRef<VideoRef>(null);
+  const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
+  const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
+
   const {
     errorType,
     setErrorType,
     controllerType,
     setControllerType,
     dataType,
-    setDataType
+    setDataType,
+    showVideo,
+    setShowVideo
   } = useMenuContext();
 
-  const videoRef = useRef<VideoRef>(null);
-
-  const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
-
-  const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
-  const [showVideo, setShowVideo] = useState<boolean>(false);
-  const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const { currentTime, setCurrentTime, duration, setDuration, videoUrl, setVideoUrl } =
+    useVideoContext();
 
   // Load episode statistics.
   const { data: stats = [] } = useQuery<AllegroStats, Error>({
@@ -86,7 +85,7 @@ export const AllegroComponent = () => {
         throw new Error(`Error loading trajectory: ${(error as Error).message}`);
       }
     },
-    [controllerType, dataType]
+    [controllerType, dataType, setVideoUrl]
   );
 
   const [goal, setGoal] = useState<CubeState>({
@@ -161,8 +160,8 @@ export const AllegroComponent = () => {
         setDataType={setDataType}
         showVideo={showVideo}
         setShowVideo={setShowVideo}
-        errorTypeEnabled={false}
-        showVideoEnabled={true}
+        errorTypeOptionEnabled={false}
+        videoOptionEnabled={true}
       />
 
       <div className="container mx-auto px-2 py-2 max-w-3xl">
