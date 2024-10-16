@@ -13,13 +13,18 @@ import { AllegroScatterPlot } from "./AllegroScatterPlot";
 import VideoPlayer, { VideoRef } from "../player/VideoPlayer";
 import { RobotContextProvider } from "../../context/RobotContext";
 import { VideoPlayerController } from "../player/VideoPlayerController";
-import { fetchAllegroEpisode, fetchAllegroStats, getAllegroVideoUrl } from "./allegroApi";
 import {
   AllegroEpisodeInfo,
   AllegroSceneState,
   AllegroStats,
   CubeState
 } from "./AllegroSceneState";
+import {
+  fetchAllegroEpisode,
+  fetchAllegroStats,
+  getAllegroGoalUrl,
+  getAllegroVideoUrl
+} from "./allegroApi";
 
 /**
  * This is a component that renders an Allegro hand and a target object and allows the
@@ -36,14 +41,14 @@ export const AllegroComponent = () => {
     setDataType
   } = useMenuContext();
 
-  const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
+  const videoRef = useRef<VideoRef>(null);
 
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
 
+  const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
   const [showVideo, setShowVideo] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
-  const videoRef = useRef<VideoRef>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
   // Load episode statistics.
@@ -67,10 +72,10 @@ export const AllegroComponent = () => {
           controllerType,
           dataType
         );
-        const finalPose = episode.points[episode.points.length - 1].cube;
 
         // We are only interested in evaluating rotation errors.
         // For this reason, we use the last position of the cube as the position goal.
+        const finalPose = episode.points[episode.points.length - 1].cube;
         episode.goal.position = finalPose.position;
 
         setGoal(episode.goal);
@@ -182,13 +187,30 @@ export const AllegroComponent = () => {
 
           <div className="w-full md:w-1/2 px-1 mb-1">
             <div className={showVideo ? "" : "hidden"}>
-              <VideoPlayer
-                ref={videoRef}
-                videoUrl={videoUrl}
-                onDurationChange={setDuration}
-                onTimeUpdate={setCurrentTime}
-              />
+              <div className="relative">
+                {/* Video */}
+                <VideoPlayer
+                  ref={videoRef}
+                  videoUrl={videoUrl}
+                  onDurationChange={setDuration}
+                  onTimeUpdate={setCurrentTime}
+                />
+
+                {/* Overlay Image */}
+                <img
+                  src={episodeInfo ? getAllegroGoalUrl(episodeInfo.episodeId) : ""}
+                  alt="Overlay"
+                  className="absolute top-2 right-2 w-1/4 h-1/4 pointer-events-none"
+                  style={{
+                    zIndex: 10,
+                    opacity: 1,
+                    objectFit: "scale-down"
+                  }}
+                />
+              </div>
             </div>
+
+            {/* Scene */}
             <div className={!showVideo ? "" : "hidden"}>
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>

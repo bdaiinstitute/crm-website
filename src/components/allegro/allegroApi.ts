@@ -38,6 +38,13 @@ export const fetchAllegroEpisode = async (
   return episode;
 };
 
+/**
+ * Return the URL for an Allegro episode video.
+ * @param controllerType The type of controller used for the episode, either
+ * "open_loop" or "closed_loop".
+ * @param episodeId The ID of the Allegro episode.
+ * @returns The URL for the Allegro episode video.
+ */
 export const getAllegroVideoUrl = (
   controllerType: ControllerType,
   episodeId: string
@@ -45,6 +52,18 @@ export const getAllegroVideoUrl = (
   const controllerFolder =
     controllerType === ControllerType.OpenLoop ? "open_loop" : "closed_loop";
   const url = getAbsoluteUrl(`data/allegro/videos/${controllerFolder}/${episodeId}.mp4`);
+  return url;
+};
+
+/**
+ * Return the URL for an Allegro episode goal image.
+ * @param controllerType The type of controller used for the episode, either
+ * "open_loop" or "closed_loop".
+ * @param episodeId The ID of the IIWA episode.
+ * @returns The URL for the Allegro episode goal image.
+ */
+export const getAllegroGoalUrl = (episodeId: string): string => {
+  const url = getAbsoluteUrl(`data/allegro/goals/${episodeId}.png`);
   return url;
 };
 

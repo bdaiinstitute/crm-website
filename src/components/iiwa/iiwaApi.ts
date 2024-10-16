@@ -39,6 +39,35 @@ export const fetchIiwaEpisode = async (
 };
 
 /**
+ * Return the URL for an IIWA episode video.
+ * @param controllerType The type of controller used for the episode, either
+ * "open_loop" or "closed_loop".
+ * @param episodeId The ID of the IIWA episode.
+ * @returns The URL for the IIWA episode video.
+ */
+export const getIiwaVideoUrl = (
+  controllerType: ControllerType,
+  episodeId: string
+): string => {
+  const controllerFolder =
+    controllerType === ControllerType.OpenLoop ? "open_loop" : "closed_loop";
+  const url = getAbsoluteUrl(`data/iiwa/videos/${controllerFolder}/${episodeId}.mp4`);
+  return url;
+};
+
+/**
+ * Return the URL for an IIWA episode goal image.
+ * @param controllerType The type of controller used for the episode, either
+ * "open_loop" or "closed_loop".
+ * @param episodeId The ID of the IIWA episode.
+ * @returns The URL for the IIWA episode goal image.
+ */
+export const getIiwaGoalUrl = (episodeId: string): string => {
+  const url = getAbsoluteUrl(`data/iiwa/goals/${episodeId}.png`);
+  return url;
+};
+
+/**
  * Fetch a JSON file containing IIWA episodes stats.
  * @param controllerType Can be either "open_loop" or "close_loop".
  * @param dataType Can be either "hardware" or "simulation".

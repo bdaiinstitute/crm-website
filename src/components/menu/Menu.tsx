@@ -186,7 +186,7 @@ export const Menu = ({
 
         {isShowVideoEnabled && isDataTypeEnabled && dataType === DataType.Hardware && (
           <div className="flex items-center">
-            <span className="font-bold">Show video:</span>
+            <span className="font-bold whitespace-nowrap">Video:</span>
             <label className="flex items-center ml-2">
               <input
                 type="checkbox"

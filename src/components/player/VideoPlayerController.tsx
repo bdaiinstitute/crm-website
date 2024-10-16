@@ -34,10 +34,10 @@ export const VideoPlayerController = ({
   const [state, setState] = useState<PlayerState>(PlayerState.Playing);
 
   useEffect(() => {
-    if (currentTime === duration) {
-      setState(PlayerState.Completed);
-    } else if (currentTime === 0) {
+    if (currentTime === 0) {
       setState(PlayerState.Playing);
+    } else if (currentTime === duration) {
+      setState(PlayerState.Completed);
     }
   }, [currentTime, duration]);
 

@@ -1,17 +1,25 @@
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback, useRef, useState } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { SequencePlayer } from "../player/SequencePlayer";
 import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../util/http";
+import { ErrorType } from "../../types/DataTypes";
 import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
-import { fetchIiwaEpisode, fetchIiwaStats } from "./iiwaApi";
+import { SequencePlayer } from "../player/SequencePlayer";
+import VideoPlayer, { VideoRef } from "../player/VideoPlayer";
 import { RobotContextProvider } from "../../context/RobotContext";
+import { VideoPlayerController } from "../player/VideoPlayerController";
+import {
+  fetchIiwaEpisode,
+  fetchIiwaStats,
+  getIiwaGoalUrl,
+  getIiwaVideoUrl
+} from "./iiwaApi";
 import {
   CylinderState,
   IiwaEpisode,
@@ -19,7 +27,6 @@ import {
   IiwaSceneState,
   IiwaStats
 } from "./IiwaSceneState";
-import { ErrorType } from "../../types/DataTypes";
 
 /**
  * This is a component that renders two IIWA arms and a target object and allows the
@@ -36,9 +43,15 @@ export const IiwaComponent = () => {
     setDataType
   } = useMenuContext();
 
+  const videoRef = useRef<VideoRef>(null);
+
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
 
   const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo | null>(null);
+  const [showVideo, setShowVideo] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
   // Extract id and other properties.
   let seed = "";
@@ -75,6 +88,7 @@ export const IiwaComponent = () => {
         setGoal(episode.goal);
         setSceneSequence(episode.points);
         setEpisodeInfo(episodeInfo);
+        setVideoUrl(getIiwaVideoUrl(controllerType, episodeInfo.episodeId));
       } catch (error) {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
@@ -140,6 +154,10 @@ export const IiwaComponent = () => {
         setControllerType={setControllerType}
         dataType={dataType}
         setDataType={setDataType}
+        showVideo={showVideo}
+        setShowVideo={setShowVideo}
+        errorTypeEnabled={true}
+        showVideoEnabled={true}
       />
 
       <div className="container mx-auto px-2 py-2 max-w-3xl">
@@ -159,6 +177,7 @@ export const IiwaComponent = () => {
               </label>
             </div>
           )}
+
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
             <IiwaScatterPlot
@@ -168,23 +187,56 @@ export const IiwaComponent = () => {
             />
           </div>
 
-          {/* Scene. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <ErrorBoundary fallback={<div>Something went wrong</div>}>
-              <Suspense fallback={<div>Loading robot...</div>}>
-                <RobotContextProvider url={urdf}>
-                  <Scene
-                    goal={goal}
-                    state={sceneState}
-                    cameraPosition={[2.5, 2.5, 2.5]}
-                  />
-                </RobotContextProvider>
-              </Suspense>
-            </ErrorBoundary>
+            <div className={showVideo ? "" : "hidden"}>
+              <div className="relative">
+                {/* Video */}
+                <VideoPlayer
+                  ref={videoRef}
+                  videoUrl={videoUrl}
+                  onDurationChange={setDuration}
+                  onTimeUpdate={setCurrentTime}
+                />
+
+                {/* Overlay Image */}
+                <img
+                  src={episodeInfo ? getIiwaGoalUrl(episodeInfo.episodeId) : ""}
+                  alt="Overlay"
+                  className="absolute top-2 right-2 w-1/4 h-1/4 pointer-events-none"
+                  style={{
+                    zIndex: 10,
+                    opacity: 1,
+                    objectFit: "scale-down"
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Scene. */}
+            <div className={!showVideo ? "" : "hidden"}>
+              <ErrorBoundary fallback={<div>Something went wrong</div>}>
+                <Suspense fallback={<div>Loading robot...</div>}>
+                  <RobotContextProvider url={urdf}>
+                    <Scene
+                      goal={goal}
+                      state={sceneState}
+                      cameraPosition={[2.5, 2.5, 2.5]}
+                    />
+                  </RobotContextProvider>
+                </Suspense>
+              </ErrorBoundary>
+            </div>
           </div>
         </div>
       </div>
-      <div>
+      <div className={showVideo ? "" : "hidden"}>
+        <VideoPlayerController
+          videoRef={videoRef}
+          currentTime={currentTime}
+          duration={duration}
+        />
+      </div>
+      <div className={!showVideo ? "" : "hidden"}>
         <SequencePlayer sequence={sceneSequence} onFrameChanged={onStateChanged} />
       </div>
     </>
