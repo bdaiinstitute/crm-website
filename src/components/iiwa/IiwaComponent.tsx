@@ -195,19 +195,43 @@ export const IiwaComponent = () => {
                   videoUrl={videoUrl}
                   onDurationChange={setDuration}
                   onTimeUpdate={setCurrentTime}
+                  scaleFactor={1.0}
                 />
 
+                {/* Circle Overlay */}
+                {/* {episodeInfo && episodeInfo.episodeId && (
+                  <div
+                    className="absolute"
+                    style={{
+                      top: `${11 + 69 * episodeInfo.goal.position.x}%`,
+                      left: `${50 + 69 * episodeInfo.goal.position.y}%`,
+                      width: "20%",
+                      height: "20%",
+                      border: "2px solid red", // Circle border color and thickness
+                      borderRadius: "50%",
+                      transform: "translate(-50%, -50%)", // Center the circle
+                      pointerEvents: "none" // Ensure the circle doesn't block interactions
+                    }}
+                  />
+                )} */}
+
                 {/* Overlay Image */}
-                <img
-                  src={episodeInfo ? getIiwaGoalUrl(episodeInfo.episodeId) : ""}
-                  alt="Overlay"
-                  className="absolute top-2 right-2 w-1/4 h-1/4 pointer-events-none"
-                  style={{
-                    zIndex: 10,
-                    opacity: 1,
-                    objectFit: "scale-down"
-                  }}
-                />
+                {episodeInfo && episodeInfo.episodeId && (
+                  <img
+                    src={getIiwaGoalUrl(episodeInfo.episodeId)}
+                    alt="Overlay"
+                    className="absolute pointer-events-none"
+                    style={{
+                      bottom: "2%",
+                      right: "2%",
+                      zIndex: 10,
+                      width: "30%",
+                      height: "30%",
+                      opacity: 1,
+                      objectFit: "scale-down"
+                    }}
+                  />
+                )}
               </div>
             </div>
 

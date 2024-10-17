@@ -193,6 +193,8 @@ export const AllegroComponent = () => {
                   videoUrl={videoUrl}
                   onDurationChange={setDuration}
                   onTimeUpdate={setCurrentTime}
+                  scaleFactor={1.1}
+                  horizontalShift={0.01}
                 />
 
                 {/* Overlay Image */}
@@ -200,11 +202,15 @@ export const AllegroComponent = () => {
                   <img
                     src={getAllegroGoalUrl(episodeInfo.episodeId)}
                     alt="Overlay"
-                    className="absolute top-2 right-2 w-1/4 h-1/4 pointer-events-none"
+                    className="absolute pointer-events-none"
                     style={{
+                      top: "-1%",
+                      right: "-1%",
                       zIndex: 10,
                       opacity: 1,
-                      objectFit: "scale-down"
+                      objectFit: "scale-down",
+                      width: "38%",
+                      height: "38%"
                     }}
                   />
                 )}
