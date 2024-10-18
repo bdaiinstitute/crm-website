@@ -208,23 +208,6 @@ export const IiwaComponent = () => {
                   scaleFactor={1.0}
                 />
 
-                {/* Circle Overlay */}
-                {/* {episodeInfo && episodeInfo.episodeId && (
-                  <div
-                    className="absolute"
-                    style={{
-                      top: `${11 + 69 * episodeInfo.goal.position.x}%`,
-                      left: `${50 + 69 * episodeInfo.goal.position.y}%`,
-                      width: "20%",
-                      height: "20%",
-                      border: "2px solid red", // Circle border color and thickness
-                      borderRadius: "50%",
-                      transform: "translate(-50%, -50%)", // Center the circle
-                      pointerEvents: "none" // Ensure the circle doesn't block interactions
-                    }}
-                  />
-                )} */}
-
                 {/* Overlay Image */}
                 {episodeInfo && episodeInfo.episodeId && (
                   <img

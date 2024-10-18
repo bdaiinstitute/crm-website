@@ -158,7 +158,7 @@ export const AllegroScatterPlotComponent = ({
     title: "<br><br>Goals",
     scene: {
       xaxis: {
-        title: "roll (rad)",
+        title: "Δroll (rad)",
         range: [-1, 1],
         fixedrange: true,
         showgrid: true,
@@ -170,7 +170,7 @@ export const AllegroScatterPlotComponent = ({
         zerolinewidth: 1
       },
       yaxis: {
-        title: "pitch (rad)",
+        title: "Δpitch (rad)",
         range: [-1, 1],
         fixedrange: true,
         showgrid: true,
@@ -182,7 +182,7 @@ export const AllegroScatterPlotComponent = ({
         zerolinewidth: 1
       },
       zaxis: {
-        title: "yaw (rad)",
+        title: "Δyaw (rad)",
         range: [-1, 1],
         fixedrange: true,
         showgrid: true,
