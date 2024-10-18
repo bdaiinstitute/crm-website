@@ -103,18 +103,24 @@ const App = () => {
               <h2 className="title is-3">Abstract</h2>
               <div className="content has-text-justified">
                 <p>
-                  Vision-based robot policy learning, which maps visual inputs to actions,
-                  necessitates a holistic understanding of diverse visual tasks beyond
-                  single-task needs like classification or segmentation. Inspired by this,
-                  we introduce Theia, a vision foundation model for robot learning that
-                  distills multiple off-the-shelf vision foundation models trained on
-                  varied vision tasks. Theia's rich visual representations encode diverse
-                  visual knowledge, enhancing downstream robot learning. Extensive
-                  experiments demonstrate that Theia outperforms its teacher models and
-                  prior robot learning models using less training data and smaller model
-                  sizes. Additionally, we quantify the quality of pre-trained visual
-                  representations and hypothesize that higher entropy in feature norm
-                  distributions leads to improved robot learning performance.
+                  Athenae cum florerent aequis legibus, procax libertas civitatem miscuit,
+                  frenumque solvit pristinum licentia. Hic conspiratis factionum partibus
+                  arcem tyrannus occupat Pisistratus. Cum tristem servitutem flerent
+                  Attici, non quia crudelis ille, sed quoniam grave omne insuetis onus, et
+                  coepissent queri, Aesopus talem tum fabellam rettulit. 'Ranae, vagantes
+                  liberis paludibus, clamore magno regem petiere ab Iove, qui dissolutos
+                  mores vi compesceret. Pater deorum risit atque illis dedit parvum
+                  tigillum, missum quod subito vadi motu sonoque terruit pavidum genus.
+                  Hoc mersum limo cum iaceret diutius, forte una tacite profert e stagno
+                  caput, et explorato rege cunctas evocat. Illae timore posito certatim
+                  adnatant, lignumque supra turba petulans insilit. Quod cum inquinassent
+                  omni contumelia, alium rogantes regem misere ad Iovem, inutilis quoniam
+                  esset qui fuerat datus. Tum misit illis hydrum, qui dente aspero
+                  corripere coepit singulas. Frustra necem fugitant inertes; vocem
+                  praecludit metus. Furtim igitur dant Mercurio mandata ad Iovem,
+                  adflictis ut succurrat. Tunc contra Tonans "Quia noluistis vestrum
+                  ferre" inquit "bonum, malum perferte". Vos quoque, o cives,' ait 'hoc
+                  sustinete, maius ne veniat, malum'.
                 </p>
               </div>
             </div>
