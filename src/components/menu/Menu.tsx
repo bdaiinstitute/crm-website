@@ -11,25 +11,10 @@ import { ErrorType, ControllerType, DataType } from "../../types/DataTypes";
  * @property {(dataType: DataType) => void} setDataType Function to set the data type.
  * @property {boolean} showVideo Whether to show the video.
  * @property {(showVideo: boolean) => void} setShowVideo Function to set whether to show the video.
- * @property {boolean} errorTypeEnabled Whether to show the error type radio buttons.
- * @property {boolean} controllerTypeEnabled Whether to show the controller type radio buttons.
- * @property {boolean} dataTypeEnabled Whether to show the data type radio buttons.
- * @property {boolean} showVideoEnabled Whether to show the video toggle.
- */
-/**
- * Defines the props for the Menu component.
- * @param errorType The current error type.
- * @param setErrorType Function to set the error type.
- * @param controllerType The current controller type.
- * @param setControllerType Function to set the controller type.
- * @param dataType The current data type.
- * @param setDataType Function to set the data type.
- * @param showVideo Whether to show the video.
- * @param setShowVideo Function to set whether to show the video.
- * @param errorTypeOptionEnabled Whether to show the error type radio buttons.
- * @param controllerTypeOptionEnabled Whether to show the controller type radio buttons.
- * @param dataTypeOptionEnabled Whether to show the data type radio buttons.
- * @param videoOptionEnabled Whether to show the video toggle.
+ * @property {boolean} errorTypeEnabled Whether to enable the error type radio buttons.
+ * @property {boolean} controllerTypeEnabled Whether to enable the controller type radio buttons.
+ * @property {boolean} dataTypeEnabled Whether to enable the data type radio buttons.
+ * @property {boolean} showVideoEnabled Whether to enable the video toggle.
  */
 export interface MenuProps {
   errorType: ErrorType;
@@ -109,95 +94,113 @@ export const Menu = ({
   return (
     <nav className=" m-0 bg">
       <div className="container mx-auto px-2 py-3 gap-x-6 flex flex-col lg:flex-row items-start md:items-center md:justify-start">
-        {errorTypeOptionEnabled /* Error Type Radio Buttons */ && (
-          <div className="flex items-center">
-            <span className="font-bold">Error:</span>
-            <label className="flex items-center ml-2">
-              <input
-                type="radio"
-                name={`errorType-${uniqueId}`}
-                value={ErrorType.Position}
-                className="form-radio h-4 w-4"
-                aria-label="PositionError"
-                checked={errorType === ErrorType.Position}
-                onChange={handleErrorTypeChange}
-              />
-              <span className="ml-1 whitespace-nowrap">position</span>
-            </label>
-            <label className="flex items-center ml-2">
-              <input
-                type="radio"
-                name={`errorType-${uniqueId}`}
-                value={ErrorType.Rotation}
-                className="form-radio h-4 w-4"
-                aria-label="RotationError"
-                checked={errorType === ErrorType.Rotation}
-                onChange={handleErrorTypeChange}
-              />
-              <span className="ml-1 whitespace-nowrap">rotation</span>
-            </label>
-          </div>
-        )}
+        <div className="flex items-center">
+          <span className="font-bold">Error:</span>
+          {errorTypeOptionEnabled /* Error Type Radio Buttons */ ? (
+            <>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`errorType-${uniqueId}`}
+                  value={ErrorType.Position}
+                  className="form-radio h-4 w-4"
+                  aria-label="PositionError"
+                  checked={errorType === ErrorType.Position}
+                  onChange={handleErrorTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">position</span>
+              </label>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`errorType-${uniqueId}`}
+                  value={ErrorType.Rotation}
+                  className="form-radio h-4 w-4"
+                  aria-label="RotationError"
+                  checked={errorType === ErrorType.Rotation}
+                  onChange={handleErrorTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">rotation</span>
+              </label>
+            </>
+          ) : errorType === ErrorType.Position ? (
+            <span className="ml-1 whitespace-nowrap">position</span>
+          ) : (
+            <span className="ml-1 whitespace-nowrap">rotation</span>
+          )}
+        </div>
 
-        {controllerTypeOptionEnabled /* Controller Type Radio Buttons */ && (
-          <div className="flex items-center">
-            <span className="font-bold">Controller:</span>
-            <label className="flex items-center ml-2">
-              <input
-                type="radio"
-                name={`controllerType-${uniqueId}`}
-                value={ControllerType.OpenLoop}
-                className="form-radio h-4 w-4"
-                aria-label="OpenLoop"
-                checked={controllerType === ControllerType.OpenLoop}
-                onChange={handleControllerTypeChange}
-              />
-              <span className="ml-1 whitespace-nowrap">open-loop</span>
-            </label>
-            <label className="flex items-center ml-2">
-              <input
-                type="radio"
-                name={`controllerType-${uniqueId}`}
-                value={ControllerType.ClosedLoop}
-                className="form-radio h-4 w-4"
-                aria-label="ClosedLoop"
-                checked={controllerType === ControllerType.ClosedLoop}
-                onChange={handleControllerTypeChange}
-              />
-              <span className="ml-1 whitespace-nowrap">closed-loop</span>
-            </label>
-          </div>
-        )}
+        <div className="flex items-center">
+          <span className="font-bold">Controller:</span>
+          {controllerTypeOptionEnabled /* Controller Type Radio Buttons */ ? (
+            <>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`controllerType-${uniqueId}`}
+                  value={ControllerType.OpenLoop}
+                  className="form-radio h-4 w-4"
+                  aria-label="OpenLoop"
+                  checked={controllerType === ControllerType.OpenLoop}
+                  onChange={handleControllerTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">open-loop</span>
+              </label>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`controllerType-${uniqueId}`}
+                  value={ControllerType.ClosedLoop}
+                  className="form-radio h-4 w-4"
+                  aria-label="ClosedLoop"
+                  checked={controllerType === ControllerType.ClosedLoop}
+                  onChange={handleControllerTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">closed-loop</span>
+              </label>
+            </>
+          ) : controllerType === ControllerType.OpenLoop ? (
+            <span className="ml-1 whitespace-nowrap">open-loop</span>
+          ) : (
+            <span className="ml-1 whitespace-nowrap">closed-loop</span>
+          )}
+        </div>
 
-        {dataTypeOptionEnabled /* Data Type Radio Buttons */ && (
-          <div className="flex items-center">
-            <span className="font-bold">Data:</span>
-            <label className="flex items-center ml-2">
-              <input
-                type="radio"
-                name={`dataType-${uniqueId}`}
-                value={DataType.Simulation}
-                className="form-radio h-4 w-4"
-                aria-label="Simulation"
-                checked={dataType === DataType.Simulation}
-                onChange={handleDataTypeChange}
-              />
-              <span className="ml-1 whitespace-nowrap">simulation</span>
-            </label>
-            <label className="flex items-center ml-2">
-              <input
-                type="radio"
-                name={`dataType-${uniqueId}`}
-                value={DataType.Hardware}
-                className="form-radio h-4 w-4"
-                aria-label="Hardware"
-                checked={dataType === DataType.Hardware}
-                onChange={handleDataTypeChange}
-              />
-              <span className="ml-1 whitespace-nowrap">hardware</span>
-            </label>
-          </div>
-        )}
+        <div className="flex items-center">
+          <span className="font-bold">Data:</span>
+          {dataTypeOptionEnabled /* Data Type Radio Buttons */ ? (
+            <>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`dataType-${uniqueId}`}
+                  value={DataType.Simulation}
+                  className="form-radio h-4 w-4"
+                  aria-label="Simulation"
+                  checked={dataType === DataType.Simulation}
+                  onChange={handleDataTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">simulation</span>
+              </label>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`dataType-${uniqueId}`}
+                  value={DataType.Hardware}
+                  className="form-radio h-4 w-4"
+                  aria-label="Hardware"
+                  checked={dataType === DataType.Hardware}
+                  onChange={handleDataTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">hardware</span>
+              </label>
+            </>
+          ) : dataType === DataType.Simulation ? (
+            <span className="ml-1 whitespace-nowrap">simulation</span>
+          ) : (
+            <span className="ml-1 whitespace-nowrap">hardware</span>
+          )}
+        </div>
 
         {videoOptionEnabled &&
           dataTypeOptionEnabled &&

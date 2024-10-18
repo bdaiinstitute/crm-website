@@ -38,7 +38,7 @@ const App = () => {
                   <span className="author-block">
                     <a href="#" target="_blank">
                       Tong Zhao
-                      <sup>2</sup>,&nbsp;
+                      <sup>2</sup>&nbsp;
                     </a>
                   </span>
                 </div>

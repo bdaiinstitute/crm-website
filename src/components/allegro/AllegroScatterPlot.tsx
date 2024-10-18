@@ -198,7 +198,7 @@ export const AllegroScatterPlotComponent = ({
         center: { x: 0.1, y: -0.15, z: -0.05 }
       }
     },
-    margin: { l: 0, r: 0, t: 0, b: 0 }, // Removes all margins
+    margin: { l: 0, r: 115, t: 0, b: 0 }, // Removes all margins
     showlegend: false,
     plot_bgcolor: "#F0F0F0",
     paper_bgcolor: "#F0F0F0"
