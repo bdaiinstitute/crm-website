@@ -181,8 +181,8 @@ export const IiwaComponent = () => {
               <label className="flex items-center">
                 Error:{" "}
                 {errorType === ErrorType.Rotation
-                  ? episodeInfo.rotationError.toFixed(4)
-                  : episodeInfo.translationError.toFixed(4)}
+                  ? episodeInfo.rotationError.toFixed(4) + " rad"
+                  : episodeInfo.translationError.toFixed(4) + " m"}
               </label>
             </div>
           )}

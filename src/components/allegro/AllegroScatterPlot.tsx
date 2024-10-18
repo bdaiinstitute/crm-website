@@ -13,6 +13,16 @@ interface CustomData {
   error: number;
 }
 
+// In the dataset, there are few datapoints with large errors. Coloring nodes
+// using the max error would push most points near the very dark side of the
+// spectrum. The plot would have a few bright points (outliers) and many dark
+// points.
+// Additionally, max errors for hardware and sim data are different. Coloring
+// nodes based on truncated error will make the color between different
+// datasets comparable.
+// Fo this reason we use a recommended rotation threshold of 0.6rad.
+const MAX_ROTATION_ERROR = 1.4; // rad
+
 /**
  * Props for the ScatterPlotComponent component.
  * @param stats All Allegro episodes info.
@@ -104,8 +114,8 @@ export const AllegroScatterPlotComponent = ({
     }
   });
 
-  const minError = Math.min(...errors);
-  const maxError = Math.max(...errors);
+  const minError = 0;
+  const maxError = MAX_ROTATION_ERROR;
 
   // Main plot data.
   const data: Data[] = [
@@ -122,6 +132,8 @@ export const AllegroScatterPlotComponent = ({
         cmin: minError, // Minimum of the error range.
         cmax: maxError, // Maximum of the error range.
         colorbar: {
+          title: "Error (rad)",
+          titleside: "bottom",
           tickformat: ".3f", // Format ticks to three decimal places.
           thickness: 10,
           len: 0.8,
@@ -130,15 +142,23 @@ export const AllegroScatterPlotComponent = ({
         }
       },
       customdata: ids as unknown as Datum[],
-      hovertemplate: `<b>ID:</b> (segment %{customdata.segment})<br><b>roll:</b> %{x:.4f}<br><b>pitch:</b> %{y:.4f}<br><b>yaw:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
+      hovertemplate: `${
+        "<b>ID:</b> (segment %{customdata.segment})<br>" +
+        "<b>roll:</b> %{x:.4f} rad<br>" +
+        "<b>pitch:</b> %{y:.4f} rad<br>" +
+        "<b>yaw:</b> %{z:.4f} rad<br>" +
+        "<b>Error:</b> %{customdata.error:.4f} rad" +
+        "<extra></extra>"
+      }`
     }
   ];
 
   // Prepare the plot layout.
   const layout: Partial<Layout> = {
+    title: "<br><br>Goals",
     scene: {
       xaxis: {
-        title: "roll",
+        title: "roll (rad)",
         range: [-1, 1],
         fixedrange: true,
         showgrid: true,
@@ -150,7 +170,7 @@ export const AllegroScatterPlotComponent = ({
         zerolinewidth: 1
       },
       yaxis: {
-        title: "pitch",
+        title: "pitch (rad)",
         range: [-1, 1],
         fixedrange: true,
         showgrid: true,
@@ -162,7 +182,7 @@ export const AllegroScatterPlotComponent = ({
         zerolinewidth: 1
       },
       zaxis: {
-        title: "yaw",
+        title: "yaw (rad)",
         range: [-1, 1],
         fixedrange: true,
         showgrid: true,

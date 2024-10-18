@@ -184,7 +184,7 @@ export const AllegroComponent = () => {
                 Id: {episodeInfo.episodeId}
               </label>
               <label className="flex items-center">
-                Error: {episodeInfo.rotationError.toFixed(4)}
+                Error: {episodeInfo.rotationError.toFixed(4)} rad
               </label>
             </div>
           )}

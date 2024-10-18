@@ -33,7 +33,7 @@ interface MenuContextInterface {
 export const useMenuContext = (): MenuContextInterface => {
   const [errorType, setErrorType] = useState<ErrorType>(ErrorType.Rotation);
   const [controllerType, setControllerType] = useState<ControllerType>(
-    ControllerType.OpenLoop
+    ControllerType.ClosedLoop
   );
   const [dataType, setDataType] = useState<DataType>(DataType.Simulation);
   const [showVideo, setShowVideo] = useState<boolean>(false);

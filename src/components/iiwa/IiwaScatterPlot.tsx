@@ -127,7 +127,7 @@ export const IiwaScatterPlotComponent = ({
   const goalMaxThetaPosition = Math.max(...goalThetaPositions);
   const goalMinThetaPosition = Math.min(...goalThetaPositions);
 
-  const minError = Math.min(...errors);
+  const minError = 0;
   const maxError =
     errorType === ErrorType.Position ? MAX_DISTANCE_ERROR : MAX_ROTATION_ERROR;
 
@@ -146,6 +146,8 @@ export const IiwaScatterPlotComponent = ({
         cmin: minError, // Minimum of the error range.
         cmax: maxError, // Maximum of the error range.
         colorbar: {
+          title: `Error (${errorType == ErrorType.Rotation ? "rad" : "m"})`,
+          titleside: "bottom",
           tickformat: ".3f", // Format ticks to three decimal places.
           thickness: 10,
           len: 0.8,
@@ -154,15 +156,24 @@ export const IiwaScatterPlotComponent = ({
         }
       },
       customdata: ids as unknown as Datum[],
-      hovertemplate: `<b>ID:</b> (seed %{customdata.seed}, segment %{customdata.segment})<br><b>Δx:</b> %{x:.4f}<br><b>Δy:</b> %{y:.4f}<br><b>Δθ:</b> %{z:.4f}<br><b>Error:</b> %{customdata.error:.4f}<extra></extra>`
+      hovertemplate: `${
+        "<b>ID:</b> (seed %{customdata.seed}, segment %{customdata.segment})<br>" +
+        "<b>Δx:</b> %{x:.4f} m<br>" +
+        "<b>Δy:</b> %{y:.4f} m<br>" +
+        "<b>Δθ:</b> %{z:.4f} rad<br>" +
+        "<b>Error:</b> %{customdata.error:.4f}" +
+        (errorType == ErrorType.Rotation ? " rad" : " m") +
+        "<extra></extra>"
+      }`
     }
   ];
 
   // Prepare the plot layout.
   const layout: Partial<Layout> = {
+    title: "<br><br>Goals",
     scene: {
       xaxis: {
-        title: "Δx",
+        title: "Δx (m)",
         range: [goalMinXPosition, goalMaxXPosition],
         fixedrange: true,
         showgrid: true,
@@ -174,7 +185,7 @@ export const IiwaScatterPlotComponent = ({
         zerolinewidth: 1
       },
       yaxis: {
-        title: "Δy",
+        title: "Δy (m)",
         range: [goalMinYPosition, goalMaxYPosition],
         fixedrange: true,
         showgrid: true,
@@ -186,7 +197,7 @@ export const IiwaScatterPlotComponent = ({
         zerolinewidth: 1
       },
       zaxis: {
-        title: "Δθ",
+        title: "Δθ (rad)",
         range: [goalMinThetaPosition, goalMaxThetaPosition],
         fixedrange: true,
         showgrid: true,
