@@ -1,4 +1,4 @@
-# GitHub pages example <!-- omit from toc -->
+# Contact Rich Manipulation Website <!-- omit from toc -->
 
 [![ProjectPage](https://img.shields.io/badge/Project-Page-Green)](https://effective-funicular-2kqy14r.pages.github.io/)
 [![CI](https://github.com/bdaiinstitute/crm-website/actions/workflows/gh-pages.yaml/badge.svg)](https://github.com/bdaiinstitute/crm-website/actions/workflows/gh-pages.yaml)
