@@ -23,12 +23,12 @@ export const Cube = ({ size, opacity = 1 }: CubeProps) => {
   const BASE_URL = `${window.location.origin}${import.meta.env.BASE_URL}`;
 
   const texture: Texture[] = useLoader(TextureLoader, [
-    `${BASE_URL}models/allegro/textures/1.jpg`,
-    `${BASE_URL}models/allegro/textures/2.jpg`,
-    `${BASE_URL}models/allegro/textures/3.jpg`,
-    `${BASE_URL}models/allegro/textures/4.jpg`,
-    `${BASE_URL}models/allegro/textures/5.jpg`,
-    `${BASE_URL}models/allegro/textures/6.jpg`
+    `${BASE_URL}models/allegro/textures/1.png`,
+    `${BASE_URL}models/allegro/textures/2.png`,
+    `${BASE_URL}models/allegro/textures/3.png`,
+    `${BASE_URL}models/allegro/textures/4.png`,
+    `${BASE_URL}models/allegro/textures/5.png`,
+    `${BASE_URL}models/allegro/textures/6.png`
   ]) as Texture[];
 
   return (
