@@ -16,7 +16,8 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="hero">
+      {/* Header. */}
+      <section className="hero">
         <div className="hero-body">
           <div className="container is-max-desktop">
             <div className="columns is-centered">
@@ -43,63 +44,133 @@ const App = () => {
                 </div>
 
                 {/* Publication links. */}
-                <div className="publication-links">
-                  {/* arxiv Link. */}
-                  <span className="link-block">
-                    <a
-                      href="https://arxiv.org/abs/2407.20179"
-                      target="_blank"
-                      className="external-link button is-normal is-rounded is-dark"
-                    >
-                      <span className="icon">
-                        <i className="ai ai-arxiv"></i>
-                      </span>
-                      <span>arXiv</span>
-                    </a>
-                  </span>
+                <div className="column has-text-centered">
+                  <div className="publication-links">
+                    {/* arxiv Link. */}
+                    <span className="link-block">
+                      <a
+                        href="https://arxiv.org/abs/2407.20179"
+                        target="_blank"
+                        className="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span className="icon">
+                          <i className="ai ai-arxiv"></i>
+                        </span>
+                        <span>arXiv</span>
+                      </a>
+                    </span>
 
-                  {/* Code Link. */}
-                  <span className="link-block">
-                    <a
-                      href="https://github.com/bdaiinstitute/#"
-                      target="_blank"
-                      className="external-link button is-normal is-rounded is-dark"
-                    >
-                      <span className="icon">
-                        <FontAwesomeIcon icon={faGithub} />
-                      </span>
-                      <span>Code</span>
-                    </a>
-                  </span>
+                    {/* Code Link. */}
+                    <span className="link-block">
+                      <a
+                        href="https://github.com/bdaiinstitute/#"
+                        target="_blank"
+                        className="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span className="icon">
+                          <FontAwesomeIcon icon={faGithub} />
+                        </span>
+                        <span>Code</span>
+                      </a>
+                    </span>
 
-                  {/* Datasets. */}
-                  <span className="link-block">
-                    <a
-                      href="https://github.com/bdaiinstitute/#"
-                      target="_blank"
-                      className="external-link button is-normal is-rounded is-dark"
-                    >
-                      <span className="icon">
-                        <FontAwesomeIcon icon={faGithub} />
-                      </span>
-                      <span>Datasets</span>
-                    </a>
-                  </span>
+                    {/* Datasets. */}
+                    <span className="link-block">
+                      <a
+                        href="https://github.com/bdaiinstitute/#"
+                        target="_blank"
+                        className="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span className="icon">
+                          <FontAwesomeIcon icon={faGithub} />
+                        </span>
+                        <span>Datasets</span>
+                      </a>
+                    </span>
+                  </div>
                 </div>
-
-                <IiwaComponent />
-                <AllegroComponent />
-
-                {/* column has-text-centered */}
               </div>
-              {/* columns is-centered */}
             </div>
-            {/* container is-max-desktop */}
           </div>
-          {/* hero-body */}
         </div>
-        {/* hero */}
-      </div>
+      </section>
+
+      {/* Abstract. */}
+      <section className="section">
+        <div className="container is-max-desktop">
+          <div className="columns is-centered has-text-centered">
+            <div className="column is-four-fifths">
+              <h2 className="title is-3">Abstract</h2>
+              <div className="content has-text-justified">
+                <p>
+                  Vision-based robot policy learning, which maps visual inputs to actions,
+                  necessitates a holistic understanding of diverse visual tasks beyond
+                  single-task needs like classification or segmentation. Inspired by this,
+                  we introduce Theia, a vision foundation model for robot learning that
+                  distills multiple off-the-shelf vision foundation models trained on
+                  varied vision tasks. Theia's rich visual representations encode diverse
+                  visual knowledge, enhancing downstream robot learning. Extensive
+                  experiments demonstrate that Theia outperforms its teacher models and
+                  prior robot learning models using less training data and smaller model
+                  sizes. Additionally, we quantify the quality of pre-trained visual
+                  representations and hypothesize that higher entropy in feature norm
+                  distributions leads to improved robot learning performance.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* IIWA section. */}
+      <section>
+        <div className="columns is-centered">
+          <div className="column is-full-width">
+            <h2 className="title is-3">Lupus et Agnus</h2>
+            <div className="content has-text-justified">
+              <p>
+                Ad rivum eundem lupus et agnus venerant, siti compulsi. Superior stabat
+                lupus, longeque inferior agnus. Tunc fauce improba latro incitatus iurgii
+                causam intulit; 'Cur' inquit 'turbulentam fecisti mihi aquam bibenti?'
+                Laniger contra timens 'Qui possum, quaeso, facere quod quereris, lupe? A
+                te decurrit ad meos haustus liquor'. Repulsus ille veritatis viribus 'Ante
+                hos sex menses male' ait 'dixisti mihi'. Respondit agnus 'Equidem natus
+                non eram'. 'Pater hercle tuus' ille inquit 'male dixit mihi'; atque ita
+                correptum lacerat iniusta nece. Haec propter illos scripta est homines
+                fabula qui fictis causis innocentes opprimunt.
+              </p>
+            </div>
+            <br />
+            <IiwaComponent />
+            <br />
+          </div>
+        </div>
+      </section>
+
+      {/* Allegro section. */}
+      <section>
+        <div className="columns is-centered">
+          <div className="column is-full-width">
+            <h2 className="title is-3">Asinus et Leo Venantes</h2>
+            <div className="content has-text-justified">
+              <p>
+                Virtutis expers, verbis iactans gloriam, ignotos fallit, notis est
+                derisui. Venari asello comite cum vellet leo, contexit illum frutice et
+                admonuit simul ut insueta voce terreret feras, fugientes ipse exciperet.
+                Hic auritulus clamorem subito totis tollit viribus, novoque turbat bestias
+                miraculo: quae, dum paventes exitus notos petunt, leonis adfliguntur
+                horrendo impetu. Qui postquam caede fessus est, asinum evocat, iubetque
+                vocem premere. Tunc ille insolens 'Qualis videtur opera tibi vocis meae?'
+                'Insignis' inquit 'sic ut, nisi nossem tuum animum genusque, simili
+                fugissem metu'.
+              </p>
+            </div>
+            <br />
+            <AllegroComponent />
+            <br />
+          </div>
+        </div>
+      </section>
     </QueryClientProvider>
   );
 };
