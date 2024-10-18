@@ -16,6 +16,21 @@ import { ErrorType, ControllerType, DataType } from "../../types/DataTypes";
  * @property {boolean} dataTypeEnabled Whether to show the data type radio buttons.
  * @property {boolean} showVideoEnabled Whether to show the video toggle.
  */
+/**
+ * Defines the props for the Menu component.
+ * @param errorType The current error type.
+ * @param setErrorType Function to set the error type.
+ * @param controllerType The current controller type.
+ * @param setControllerType Function to set the controller type.
+ * @param dataType The current data type.
+ * @param setDataType Function to set the data type.
+ * @param showVideo Whether to show the video.
+ * @param setShowVideo Function to set whether to show the video.
+ * @param errorTypeOptionEnabled Whether to show the error type radio buttons.
+ * @param controllerTypeOptionEnabled Whether to show the controller type radio buttons.
+ * @param dataTypeOptionEnabled Whether to show the data type radio buttons.
+ * @param videoOptionEnabled Whether to show the video toggle.
+ */
 export interface MenuProps {
   errorType: ErrorType;
   setErrorType: (errorType: ErrorType) => void;

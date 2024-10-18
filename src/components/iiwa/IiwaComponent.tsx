@@ -34,10 +34,16 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const IiwaComponent = () => {
-  const videoRef = useRef<VideoRef>(null);
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
+
+  // The selected episode.
   const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo | null>(null);
 
+  /**
+   * These values are used to manage the state of the component, including the
+   * type of error, controller, and data being displayed, as well as whether
+   * the video should be shown.
+   */
   const {
     errorType,
     setErrorType,
@@ -49,6 +55,10 @@ export const IiwaComponent = () => {
     setShowVideo
   } = useMenuContext();
 
+  /**
+   * These values are used to manage the state of the video playback.
+   */
+  const videoRef = useRef<VideoRef>(null);
   const { currentTime, setCurrentTime, duration, setDuration, videoUrl, setVideoUrl } =
     useVideoContext();
 

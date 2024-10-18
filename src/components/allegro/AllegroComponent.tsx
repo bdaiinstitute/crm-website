@@ -32,10 +32,16 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const AllegroComponent = () => {
-  const videoRef = useRef<VideoRef>(null);
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
+
+  // The selected episode.
   const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
 
+  /**
+   * These values are used to manage the state of the component, including the
+   * type of error, controller, and data being displayed, as well as whether
+   * the video should be shown.
+   */
   const {
     errorType,
     setErrorType,
@@ -47,6 +53,10 @@ export const AllegroComponent = () => {
     setShowVideo
   } = useMenuContext();
 
+  /**
+   * These values are used to manage the state of the video playback.
+   */
+  const videoRef = useRef<VideoRef>(null);
   const { currentTime, setCurrentTime, duration, setDuration, videoUrl, setVideoUrl } =
     useVideoContext();
 

@@ -17,6 +17,13 @@ import { CubeState, AllegroSceneState } from "./AllegroSceneState";
 import { useRobotContext } from "../../hooks/useRobotContext";
 import { CubeOutline } from "../geometry/CubeOutline";
 
+/**
+ * Props for the SceneComponent component.
+ * @param goal The goal state of the cube.
+ * @param state The current state of the Allegro scene.
+ * @param cameraPosition The position of the camera in the scene.
+ * @param controlsEnabled Whether the camera controls should be enabled.
+ */
 interface SceneProps {
   goal: CubeState;
   state: AllegroSceneState;
@@ -34,6 +41,8 @@ interface SceneProps {
  * Unfortunately, the GizmoHelper only works with the default y-up frame.
  * For this reason, we decided to apply some rotations to the whole scene to
  * make it z-up and change labels and colors in the GizmoHelper, instead.
+ *
+ * @param {SceneProps} The props for the component.
  */
 const SceneComponent = ({
   goal,
