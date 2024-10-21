@@ -99,44 +99,51 @@ const SceneComponent = ({
           <group
             rotation-x={-Math.PI / 2}
             rotation-z={-Math.PI / 2}
-            position={[0.0, -0.05, -0.067]}
+            position={[0, -0.1, 0]}
           >
-            <Robot
-              robot={hand}
-              position={[0, 0, 0]}
-              rotation={[Math.PI, Math.PI / 2, 0]}
-            />
-
-            {/* The moving cube. */}
+            {/* We rotate the robot hand and the cube to match the video. */}
             <group
-              ref={cubeRef}
-              position={[
-                state.cube.position.x,
-                state.cube.position.y,
-                state.cube.position.z
-              ]}
-              quaternion={[
-                state.cube.rotation.x,
-                state.cube.rotation.y,
-                state.cube.rotation.z,
-                state.cube.rotation.w
-              ]}
+              rotation-x={-0.7}
+              rotation-z={Math.PI / 2}
+              position={[0.0, -0.08, 0.11]}
             >
-              <Cube size={0.06} opacity={1.0} />
-              <Frame size={0.1} thickness={0.001} />
-            </group>
+              <Robot
+                robot={hand}
+                position={[0, 0, 0]}
+                rotation={[Math.PI, Math.PI / 2, 0]}
+              />
 
-            {/* The goal. */}
-            <group
-              position={[goal.position.x, goal.position.y, goal.position.z]}
-              quaternion={[
-                goal.rotation.x,
-                goal.rotation.y,
-                goal.rotation.z,
-                goal.rotation.w
-              ]}
-            >
-              <CubeOutline size={0.06} thickness={0.0015} color={"#FFFFFF"} />
+              {/* The moving cube. */}
+              <group
+                ref={cubeRef}
+                position={[
+                  state.cube.position.x,
+                  state.cube.position.y,
+                  state.cube.position.z
+                ]}
+                quaternion={[
+                  state.cube.rotation.x,
+                  state.cube.rotation.y,
+                  state.cube.rotation.z,
+                  state.cube.rotation.w
+                ]}
+              >
+                <Cube size={0.06} opacity={1.0} />
+                <Frame size={0.1} thickness={0.001} />
+              </group>
+
+              {/* The goal. */}
+              <group
+                position={[goal.position.x, goal.position.y, goal.position.z]}
+                quaternion={[
+                  goal.rotation.x,
+                  goal.rotation.y,
+                  goal.rotation.z,
+                  goal.rotation.w
+                ]}
+              >
+                <CubeOutline size={0.06} thickness={0.0015} color={"#FFFFFF"} />
+              </group>
             </group>
 
             {/* Floor. */}

@@ -235,7 +235,7 @@ export const AllegroComponent = () => {
                     <Scene
                       goal={goal}
                       state={sceneState}
-                      cameraPosition={[0.4, 0.4, 0.4]}
+                      cameraPosition={[0.5, 0.5, 0.3]}
                     />
                   </RobotContextProvider>
                 </Suspense>
