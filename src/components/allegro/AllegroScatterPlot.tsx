@@ -21,7 +21,7 @@ interface CustomData {
 // nodes based on truncated error will make the color between different
 // datasets comparable.
 // Fo this reason we use a recommended rotation threshold of 0.6rad.
-const MAX_ROTATION_ERROR = 1.4; // rad
+const MAX_ROTATION_ERROR = 0.4; // rad
 
 /**
  * Props for the ScatterPlotComponent component.
