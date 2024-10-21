@@ -35,8 +35,8 @@ export const useMenuContext = (): MenuContextInterface => {
   const [controllerType, setControllerType] = useState<ControllerType>(
     ControllerType.ClosedLoop
   );
-  const [dataType, setDataType] = useState<DataType>(DataType.Simulation);
-  const [showVideo, setShowVideo] = useState<boolean>(false);
+  const [dataType, setDataType] = useState<DataType>(DataType.Hardware);
+  const [showVideo, setShowVideo] = useState<boolean>(true);
 
   return {
     errorType,

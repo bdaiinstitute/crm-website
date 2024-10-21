@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -36,8 +36,17 @@ import {
 export const IiwaComponent = () => {
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
 
-  // The selected episode.
-  const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo | null>(null);
+  // The selected episode summary: goal, start and end state but not trajectory.
+  const [episodeInfo, setEpisodeInfo] = useState<IiwaEpisodeInfo>();
+
+  // The episode goal.
+  const [goal, setGoal] = useState<CylinderState>();
+
+  // The current sequence.
+  const [sceneSequence, setSceneSequence] = useState<IiwaSceneState[]>([]);
+
+  // The episode current state.
+  const [sceneState, setSceneState] = useState<IiwaSceneState>();
 
   /**
    * These values are used to manage the state of the component, including the
@@ -54,6 +63,13 @@ export const IiwaComponent = () => {
     showVideo,
     setShowVideo
   } = useMenuContext();
+
+  // Load all episodes metadata.
+  const { data: stats = [] } = useQuery<IiwaStats, Error>({
+    queryKey: ["iiwaStats", controllerType, dataType],
+    queryFn: () => fetchIiwaStats(controllerType, dataType),
+    placeholderData: []
+  });
 
   /**
    * These values are used to manage the state of the video playback.
@@ -73,20 +89,14 @@ export const IiwaComponent = () => {
     }
   }
 
-  // Load episode statistics.
-  const { data: stats = [] } = useQuery<IiwaStats, Error>({
-    queryKey: ["iiwaStats", controllerType, dataType],
-    queryFn: () => fetchIiwaStats(controllerType, dataType),
-    placeholderData: []
-  });
-
   /**
-   * Handles the selection of a point in the scatter plot.
-   * @param id The ID of the selected point.
+   * Invoked when an episode is selected, programmatically or from the scatter
+   * plot.
+   * @param episodeInfo The episode summary
    * @returns A Promise that resolves when the episode data has been fetched
    * and the scene state has been updated.
    */
-  const handleSelectedPoint = useCallback(
+  const loadEpisode = useCallback(
     async (episodeInfo: IiwaEpisodeInfo) => {
       try {
         const episode: IiwaEpisode = await fetchIiwaEpisode(
@@ -105,45 +115,12 @@ export const IiwaComponent = () => {
     [controllerType, dataType, setVideoUrl]
   );
 
-  const [goal, setGoal] = useState<CylinderState>({
-    position: {
-      x: 0.5,
-      y: 0
-    },
-    rotation: { theta: 0 }
-  });
-
-  const [sceneState, setSceneState] = useState<IiwaSceneState>({
-    timeFromStart: 0,
-    leftArm: {
-      joint0: 0,
-      joint1: Math.PI / 2,
-      joint2: -Math.PI / 2,
-      joint3: 0.6,
-      joint4: 0,
-      joint5: -Math.PI / 2,
-      joint6: 0
-    },
-    rightArm: {
-      joint0: 0,
-      joint1: Math.PI / 2,
-      joint2: -Math.PI / 2,
-      joint3: -0.6,
-      joint4: 0,
-      joint5: Math.PI / 2,
-      joint6: 0
-    },
-    cylinder: {
-      position: {
-        x: 0.5,
-        y: 0
-      },
-      rotation: { theta: 0 }
+  // This is called when all episodes information are loaded.
+  useEffect(() => {
+    if (stats && stats.length > 0) {
+      loadEpisode(stats[0]);
     }
-  });
-
-  // State to hold the sequence of SceneStates.
-  const [sceneSequence, setSceneSequence] = useState<IiwaSceneState[]>([sceneState]);
+  }, [loadEpisode, stats]);
 
   /**
    * Player callback function that updates the scene state.
@@ -192,7 +169,7 @@ export const IiwaComponent = () => {
             <IiwaScatterPlot
               stats={stats}
               errorType={errorType}
-              onPointSelected={handleSelectedPoint}
+              onPointSelected={loadEpisode}
             />
           </div>
 
@@ -233,11 +210,13 @@ export const IiwaComponent = () => {
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>
                   <RobotContextProvider url={urdf}>
-                    <Scene
-                      goal={goal}
-                      state={sceneState}
-                      cameraPosition={[2.5, 2.5, 2.5]}
-                    />
+                    {goal && sceneState && (
+                      <Scene
+                        goal={goal}
+                        state={sceneState}
+                        cameraPosition={[2.5, 2.5, 2.5]}
+                      />
+                    )}
                   </RobotContextProvider>
                 </Suspense>
               </ErrorBoundary>

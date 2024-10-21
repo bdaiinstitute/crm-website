@@ -10,8 +10,6 @@ import "./Player.css";
 
 /**
  * Props for the player component.
- * @param sequence A sequence of elements.
- * @param onFrameChanged A callback invoked when the frame changes.
  */
 export interface VideoPlayerControllerProps {
   videoRef: React.RefObject<VideoRef>;

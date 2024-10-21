@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -34,8 +34,17 @@ import {
 export const AllegroComponent = () => {
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
 
-  // The selected episode.
+  // The selected summary metadata: goal, start and end state but not trajectory.
   const [episodeInfo, setEpisodeInfo] = useState<AllegroEpisodeInfo | null>(null);
+
+  // The episode goal.
+  const [goal, setGoal] = useState<CubeState>();
+
+  // The episode sequence.
+  const [sceneSequence, setSceneSequence] = useState<AllegroSceneState[]>([]);
+
+  // The episode current state.
+  const [sceneState, setSceneState] = useState<AllegroSceneState>();
 
   /**
    * These values are used to manage the state of the component, including the
@@ -53,13 +62,6 @@ export const AllegroComponent = () => {
     setShowVideo
   } = useMenuContext();
 
-  /**
-   * These values are used to manage the state of the video playback.
-   */
-  const videoRef = useRef<VideoRef>(null);
-  const { currentTime, setCurrentTime, duration, setDuration, videoUrl, setVideoUrl } =
-    useVideoContext();
-
   // Load episode statistics.
   const { data: stats = [] } = useQuery<AllegroStats, Error>({
     queryKey: ["allegroStats", controllerType, dataType],
@@ -68,12 +70,20 @@ export const AllegroComponent = () => {
   });
 
   /**
-   * Handles the selection of a point in the scatter plot.
-   * @param id The ID of the selected point.
+   * These values are used to manage the state of the video playback.
+   */
+  const videoRef = useRef<VideoRef>(null);
+  const { currentTime, setCurrentTime, duration, setDuration, videoUrl, setVideoUrl } =
+    useVideoContext();
+
+  /**
+   * Invoked when an episode is selected, programmatically or from the scatter
+   * plot.
+   * @param episodeInfo The episode summary
    * @returns A Promise that resolves when the episode data has been fetched
    * and the scene state has been updated.
    */
-  const handleSelectedPoint = useCallback(
+  const loadEpisode = useCallback(
     async (episodeInfo: AllegroEpisodeInfo) => {
       try {
         const episode = await fetchAllegroEpisode(
@@ -98,57 +108,12 @@ export const AllegroComponent = () => {
     [controllerType, dataType, setVideoUrl]
   );
 
-  const [goal, setGoal] = useState<CubeState>({
-    position: {
-      x: 0.065,
-      y: 0.0,
-      z: 0.042
-    },
-    rotation: {
-      w: 1.0,
-      x: 0.0,
-      y: 0.0,
-      z: 0.0
+  // This is called when all episodes information are loaded.
+  useEffect(() => {
+    if (stats && stats.length > 0) {
+      loadEpisode(stats[0]);
     }
-  });
-
-  const [sceneState, setSceneState] = useState<AllegroSceneState>({
-    timeFromStart: 0,
-    hand: {
-      joint0: 0.01,
-      joint1: 1.24,
-      joint2: 1.31,
-      joint3: 1.13,
-      joint4: -0.01,
-      joint5: 0.77,
-      joint6: 1.31,
-      joint7: 1.39,
-      joint8: 0.0,
-      joint9: 1.24,
-      joint10: 1.31,
-      joint11: 1.13,
-      joint12: 0.49,
-      joint13: 1.58,
-      joint14: 1.4,
-      joint15: 1.36
-    },
-    cube: {
-      position: {
-        x: 0.065,
-        y: 0.0,
-        z: 0.042
-      },
-      rotation: {
-        w: 1.0,
-        x: 0.0,
-        y: 0.0,
-        z: 0.0
-      }
-    }
-  });
-
-  // State to hold the sequence of SceneStates.
-  const [sceneSequence, setSceneSequence] = useState<AllegroSceneState[]>([sceneState]);
+  }, [loadEpisode, stats]);
 
   /**
    * Player callback function that updates the scene state.
@@ -191,7 +156,7 @@ export const AllegroComponent = () => {
 
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <AllegroScatterPlot stats={stats} onPointSelected={handleSelectedPoint} />
+            <AllegroScatterPlot stats={stats} onPointSelected={loadEpisode} />
           </div>
 
           <div className="w-full md:w-1/2 px-1 mb-1">
@@ -232,11 +197,13 @@ export const AllegroComponent = () => {
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>
                   <RobotContextProvider url={urdf}>
-                    <Scene
-                      goal={goal}
-                      state={sceneState}
-                      cameraPosition={[0.5, 0.5, 0.3]}
-                    />
+                    {goal && sceneState && (
+                      <Scene
+                        goal={goal}
+                        state={sceneState}
+                        cameraPosition={[0.5, 0.5, 0.3]}
+                      />
+                    )}
                   </RobotContextProvider>
                 </Suspense>
               </ErrorBoundary>

@@ -48,7 +48,11 @@ const Video = forwardRef<VideoRef, VideoProps>(
 
     // Auto play the video.
     useEffect(() => {
-      innerRef.current?.play();
+      if (!innerRef.current) {
+        return;
+      }
+      innerRef.current.muted = true; // This is required for autoplay to work.
+      innerRef.current.play();
     }, [videoUrl]);
 
     useImperativeHandle(ref, () => {
