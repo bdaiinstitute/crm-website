@@ -32,6 +32,9 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const AllegroComponent = () => {
+  // Whether the video and the sequence should start playing automatically.
+  const [autoPlay, setAutoPlay] = useState<boolean>(false);
+
   const urdf = getAbsoluteUrl("models/allegro/urdf/allegro_right_hand.urdf");
 
   // The selected summary metadata: goal, start and end state but not trajectory.
@@ -79,12 +82,13 @@ export const AllegroComponent = () => {
   /**
    * Invoked when an episode is selected, programmatically or from the scatter
    * plot.
-   * @param episodeInfo The episode summary
+   * @param episodeInfo The episode summary.
+   * @param autoPlay Whether to play the episode automatically.
    * @returns A Promise that resolves when the episode data has been fetched
    * and the scene state has been updated.
    */
   const loadEpisode = useCallback(
-    async (episodeInfo: AllegroEpisodeInfo) => {
+    async (episodeInfo: AllegroEpisodeInfo, autoPlay: boolean) => {
       try {
         const episode = await fetchAllegroEpisode(
           episodeInfo.episodeId,
@@ -97,6 +101,7 @@ export const AllegroComponent = () => {
         const finalPose = episode.points[episode.points.length - 1].cube;
         episode.goal.position = finalPose.position;
 
+        setAutoPlay(autoPlay);
         setGoal(episode.goal);
         setSceneSequence(episode.points);
         setEpisodeInfo(episodeInfo);
@@ -108,10 +113,18 @@ export const AllegroComponent = () => {
     [controllerType, dataType, setVideoUrl]
   );
 
+  // This is called when an episode info is selected.
+  const handlePointSelected = useCallback(
+    async (episodeInfo: AllegroEpisodeInfo) => {
+      await loadEpisode(episodeInfo, true); // Autoplay on click.
+    },
+    [loadEpisode]
+  );
+
   // This is called when all episodes information are loaded.
   useEffect(() => {
     if (stats && stats.length > 0) {
-      loadEpisode(stats[0]);
+      loadEpisode(stats[0], false); // Disable autoplay on page load.
     }
   }, [loadEpisode, stats]);
 
@@ -156,7 +169,7 @@ export const AllegroComponent = () => {
 
           {/* Scatter Plot. */}
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <AllegroScatterPlot stats={stats} onPointSelected={loadEpisode} />
+            <AllegroScatterPlot stats={stats} onPointSelected={handlePointSelected} />
           </div>
 
           <div className="w-full md:w-1/2 px-1 mb-1">
@@ -170,6 +183,7 @@ export const AllegroComponent = () => {
                   onTimeUpdate={setCurrentTime}
                   scaleFactor={1.1}
                   horizontalShift={0.01}
+                  autoPlay={autoPlay}
                 />
 
                 {/* Overlay Image */}
@@ -217,10 +231,15 @@ export const AllegroComponent = () => {
             videoRef={videoRef}
             currentTime={currentTime}
             duration={duration}
+            autoPlay={autoPlay}
           />
         </div>
         <div className={!showVideo ? "" : "hidden"}>
-          <SequencePlayer sequence={sceneSequence} onFrameChanged={onStateChanged} />
+          <SequencePlayer
+            sequence={sceneSequence}
+            onFrameChanged={onStateChanged}
+            autoPlay={autoPlay}
+          />
         </div>
       </div>
     </>

@@ -9,6 +9,7 @@ import { forwardRef, useRef, useImperativeHandle, useEffect } from "react";
  * @param onDurationChange An optional callback function that is called whenever.
  * @param scaleFactor An optional scale factor to apply to the video.
  * @param horizontalShift An optional horizontal shift to apply to the video.
+ * @param autoPlay Whether the video should start playing automatically.
  */
 interface VideoProps {
   videoUrl: string | null;
@@ -16,6 +17,7 @@ interface VideoProps {
   onDurationChange?: (duration: number) => void;
   scaleFactor?: number;
   horizontalShift?: number;
+  autoPlay?: boolean;
 }
 
 /**
@@ -40,7 +42,8 @@ const Video = forwardRef<VideoRef, VideoProps>(
       onTimeUpdate,
       onDurationChange,
       scaleFactor = 1.0,
-      horizontalShift = 0.0
+      horizontalShift = 0.0,
+      autoPlay = true
     }: VideoProps,
     ref
   ) => {
@@ -52,8 +55,10 @@ const Video = forwardRef<VideoRef, VideoProps>(
         return;
       }
       innerRef.current.muted = true; // This is required for autoplay to work.
-      innerRef.current.play();
-    }, [videoUrl]);
+      if (autoPlay) {
+        innerRef.current.play();
+      }
+    }, [autoPlay, videoUrl]);
 
     useImperativeHandle(ref, () => {
       return {

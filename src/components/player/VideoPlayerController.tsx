@@ -9,12 +9,17 @@ import { PlayerState } from "./PlayerState";
 import "./Player.css";
 
 /**
- * Props for the player component.
+ * Props for the VideoPlayerController component.
+ * @param videoRef A ref to the video player component.
+ * @param currentTime The current playback time of the video.
+ * @param duration The total duration of the video.
+ * @param autoPlay Whether the video should start playing automatically.
  */
 export interface VideoPlayerControllerProps {
   videoRef: React.RefObject<VideoRef>;
   currentTime: number;
   duration: number;
+  autoPlay?: boolean;
 }
 
 /**
@@ -26,18 +31,23 @@ export interface VideoPlayerControllerProps {
 export const VideoPlayerController = ({
   videoRef,
   currentTime,
-  duration
+  duration,
+  autoPlay = true
 }: VideoPlayerControllerProps) => {
   // The player state.
   const [state, setState] = useState<PlayerState>(PlayerState.Playing);
 
   useEffect(() => {
     if (currentTime === 0) {
-      setState(PlayerState.Playing);
+      if (autoPlay) {
+        setState(PlayerState.Playing);
+      } else {
+        setState(PlayerState.InitialState);
+      }
     } else if (currentTime === duration) {
       setState(PlayerState.Completed);
     }
-  }, [currentTime, duration]);
+  }, [autoPlay, currentTime, duration]);
 
   // Playback control, only available when sequence length > 0.
   const handlePlayPause = useCallback(() => {

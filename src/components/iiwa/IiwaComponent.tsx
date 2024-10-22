@@ -34,6 +34,9 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const IiwaComponent = () => {
+  // Whether the video and the sequence should start playing automatically.
+  const [autoPlay, setAutoPlay] = useState<boolean>(false);
+
   const urdf = getAbsoluteUrl("/models/iiwa/urdf/iiwa7.urdf");
 
   // The selected episode summary: goal, start and end state but not trajectory.
@@ -92,18 +95,20 @@ export const IiwaComponent = () => {
   /**
    * Invoked when an episode is selected, programmatically or from the scatter
    * plot.
-   * @param episodeInfo The episode summary
+   * @param episodeInfo The episode summary.
+   * @param autoPlay Whether to play the episode automatically.
    * @returns A Promise that resolves when the episode data has been fetched
    * and the scene state has been updated.
    */
   const loadEpisode = useCallback(
-    async (episodeInfo: IiwaEpisodeInfo) => {
+    async (episodeInfo: IiwaEpisodeInfo, autoPlayEnabled: boolean) => {
       try {
         const episode: IiwaEpisode = await fetchIiwaEpisode(
           episodeInfo.episodeId,
           controllerType,
           dataType
         );
+        setAutoPlay(autoPlayEnabled);
         setGoal(episode.goal);
         setSceneSequence(episode.points);
         setEpisodeInfo(episodeInfo);
@@ -115,10 +120,19 @@ export const IiwaComponent = () => {
     [controllerType, dataType, setVideoUrl]
   );
 
+  // This is called when an episode info is selected.
+  const handlePointSelected = useCallback(
+    async (episodeInfo: IiwaEpisodeInfo) => {
+      await loadEpisode(episodeInfo, true); // Autoplay on click.
+    },
+    [loadEpisode]
+  );
+
   // This is called when all episodes information are loaded.
   useEffect(() => {
     if (stats && stats.length > 0) {
-      loadEpisode(stats[0]);
+      setAutoPlay(false);
+      loadEpisode(stats[0], false); // Disable autoplay on page load.
     }
   }, [loadEpisode, stats]);
 
@@ -169,7 +183,7 @@ export const IiwaComponent = () => {
             <IiwaScatterPlot
               stats={stats}
               errorType={errorType}
-              onPointSelected={loadEpisode}
+              onPointSelected={handlePointSelected}
             />
           </div>
 
@@ -183,6 +197,7 @@ export const IiwaComponent = () => {
                   onDurationChange={setDuration}
                   onTimeUpdate={setCurrentTime}
                   scaleFactor={1.0}
+                  autoPlay={autoPlay}
                 />
 
                 {/* Overlay Image */}
@@ -214,7 +229,7 @@ export const IiwaComponent = () => {
                       <Scene
                         goal={goal}
                         state={sceneState}
-                        cameraPosition={[2.5, 2.5, 2.5]}
+                        cameraPosition={[0, 0, 4.5]}
                       />
                     )}
                   </RobotContextProvider>
@@ -229,10 +244,15 @@ export const IiwaComponent = () => {
           videoRef={videoRef}
           currentTime={currentTime}
           duration={duration}
+          autoPlay={autoPlay}
         />
       </div>
       <div className={!showVideo ? "" : "hidden"}>
-        <SequencePlayer sequence={sceneSequence} onFrameChanged={onStateChanged} />
+        <SequencePlayer
+          sequence={sceneSequence}
+          onFrameChanged={onStateChanged}
+          autoPlay={autoPlay}
+        />
       </div>
     </>
   );
