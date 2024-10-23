@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../util/http";
-import { ErrorType } from "../../types/DataTypes";
+import { DataType, ErrorType } from "../../types/DataTypes";
 import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
 import { SequencePlayer } from "../player/SequencePlayer";
@@ -188,7 +188,7 @@ export const IiwaComponent = () => {
           </div>
 
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <div className={showVideo ? "" : "hidden"}>
+            <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
               <div className="relative">
                 {/* Video */}
                 <VideoPlayer
@@ -221,7 +221,9 @@ export const IiwaComponent = () => {
             </div>
 
             {/* Scene. */}
-            <div className={!showVideo ? "" : "hidden"}>
+            <div
+              className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}
+            >
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>
                   <RobotContextProvider url={urdf}>
@@ -239,7 +241,7 @@ export const IiwaComponent = () => {
           </div>
         </div>
       </div>
-      <div className={showVideo ? "" : "hidden"}>
+      <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
         <VideoPlayerController
           videoRef={videoRef}
           currentTime={currentTime}
@@ -247,7 +249,7 @@ export const IiwaComponent = () => {
           autoPlay={autoPlay}
         />
       </div>
-      <div className={!showVideo ? "" : "hidden"}>
+      <div className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}>
         <SequencePlayer
           sequence={sceneSequence}
           onFrameChanged={onStateChanged}

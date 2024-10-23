@@ -26,6 +26,7 @@ import {
   getAllegroGoalUrl,
   getAllegroVideoUrl
 } from "./allegroApi";
+import { DataType } from "../../types/DataTypes";
 
 /**
  * This is a component that renders an Allegro hand and a target object and allows the
@@ -173,7 +174,7 @@ export const AllegroComponent = () => {
           </div>
 
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <div className={showVideo ? "" : "hidden"}>
+            <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
               <div className="relative">
                 {/* Video */}
                 <VideoPlayer
@@ -207,7 +208,9 @@ export const AllegroComponent = () => {
             </div>
 
             {/* Scene */}
-            <div className={!showVideo ? "" : "hidden"}>
+            <div
+              className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}
+            >
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>
                   <RobotContextProvider url={urdf}>
@@ -226,7 +229,7 @@ export const AllegroComponent = () => {
         </div>
       </div>
       <div>
-        <div className={showVideo ? "" : "hidden"}>
+        <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
           <VideoPlayerController
             videoRef={videoRef}
             currentTime={currentTime}
@@ -234,7 +237,7 @@ export const AllegroComponent = () => {
             autoPlay={autoPlay}
           />
         </div>
-        <div className={!showVideo ? "" : "hidden"}>
+        <div className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}>
           <SequencePlayer
             sequence={sceneSequence}
             onFrameChanged={onStateChanged}
