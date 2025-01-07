@@ -30,16 +30,16 @@ const App = () => {
                 <div className="is-size-5 publication-authors">
                   <span className="author-block">
                     <a href="https://hjrobotics.net/" target="_blank">
-                      H.J. Terry Suh
-                      <sup>*, 1</sup>
+                      H.J. Terry Suh*
                     </a>
+                    <sup>1</sup>
                   </span>
                   ,&nbsp;
                   <span className="author-block">
                     <a href="https://pangtao.xyz/" target="_blank">
-                      Tao Pang
-                      <sup>*, 2</sup>
+                      Tao Pang*
                     </a>
+                    <sup>2</sup>
                   </span>
                   ,&nbsp;
                   <span className="author-block">
@@ -48,17 +48,34 @@ const App = () => {
                       target="_blank"
                     >
                       Tong Zhao
-                      <sup>2</sup>&nbsp;
                     </a>
+                    <sup>2</sup>
                   </span>
                   &nbsp;and&nbsp;
                   <span className="author-block">
                     <a href="https://locomotion.csail.mit.edu/russt.html" target="_blank">
                       Russ Tedrake
-                      <sup>1</sup>&nbsp;
                     </a>
+                    <sup>1</sup>
                   </span>
                 </div>
+
+                {/* Contributions. */}
+                <div className="is-size-6 publication-authors">
+                  <span className="author-block">* Equal contribution</span>
+                </div>
+
+                {/* Affiliations. */}
+                <div className="is-size-5 publication-authors">
+                  <span className="author-block">
+                    <sup>1</sup>Placeholder
+                  </span>
+                  ,&nbsp;
+                  <span className="author-block">
+                    <sup>2</sup>The AI Institute
+                  </span>
+                </div>
+
                 {/* Publication links. */}
                 <div className="column has-text-centered">
                   <div className="publication-links">
