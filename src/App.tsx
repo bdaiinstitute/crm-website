@@ -111,6 +111,32 @@ const App = () => {
         </div>
       </section>
 
+      {/* Teaser. */}
+      <section className="hero teaser">
+        <div className="container is-max-desktop">
+          <div className="hero-body">
+            <video
+              id="teaser"
+              style={{
+                width: `100%`,
+                height: `100%`,
+                borderColor: `lightgray`,
+                borderWidth: `1px`
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              src="./contact_trust_region.mp4"
+              controls
+              preload="auto"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* Abstract. */}
       <section className="section">
         <div className="container is-max-desktop">
@@ -149,7 +175,7 @@ const App = () => {
       <section>
         <div className="columns is-centered">
           <div className="column is-full-width">
-            <h2 className="title is-3">Lupus et Agnus</h2>
+            <h2 className="title is-3">IIWA</h2>
             <div className="content has-text-justified">
               <p>
                 Ad rivum eundem lupus et agnus venerant, siti compulsi. Superior stabat
@@ -174,7 +200,7 @@ const App = () => {
       <section>
         <div className="columns is-centered">
           <div className="column is-full-width">
-            <h2 className="title is-3">Asinus et Leo Venantes</h2>
+            <h2 className="title is-3">Allegro</h2>
             <div className="content has-text-justified">
               <p>
                 Virtutis expers, verbis iactans gloriam, ignotos fallit, notis est
