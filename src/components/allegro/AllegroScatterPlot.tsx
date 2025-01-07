@@ -128,7 +128,19 @@ export const AllegroScatterPlotComponent = ({
       type: "scatter3d",
       marker: {
         color: errors, // Use the error values for coloring.
-        colorscale: "Plasma",
+        colorscale: [
+          // Plasma palette
+          [0.0, "#0d0887"],
+          [0.111, "#46039f"],
+          [0.222, "#7201a8"],
+          [0.333, "#9c179e"],
+          [0.444, "#bd3786"],
+          [0.556, "#d8576b"],
+          [0.667, "#ed7953"],
+          [0.778, "#fb9f3a"],
+          [0.889, "#fdca26"],
+          [1.0, "#f0f921"]
+        ],
         cmin: minError, // Minimum of the error range.
         cmax: maxError, // Maximum of the error range.
         colorbar: {
