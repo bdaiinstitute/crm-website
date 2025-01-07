@@ -24,25 +24,41 @@ const App = () => {
               <div className="column has-text-centered">
                 {/* Title. */}
                 <h1 className="title is-1 publication-title">
-                  Contact Rich Manipulation
+                  Dexterous Contact-Rich Manipulation via the Contact Trust Region
                 </h1>
-
                 {/* Authors. */}
                 <div className="is-size-5 publication-authors">
                   <span className="author-block">
-                    <a href="#" target="_blank">
-                      Tao Pang
-                      <sup>1</sup>,&nbsp;
+                    <a href="https://hjrobotics.net/" target="_blank">
+                      H.J. Terry Suh
+                      <sup>*, 1</sup>
                     </a>
                   </span>
+                  ,&nbsp;
                   <span className="author-block">
-                    <a href="#" target="_blank">
+                    <a href="https://pangtao.xyz/" target="_blank">
+                      Tao Pang
+                      <sup>*, 2</sup>
+                    </a>
+                  </span>
+                  ,&nbsp;
+                  <span className="author-block">
+                    <a
+                      href="https://scholar.google.com/citations?hl=en&user=0y5qiEUAAAAJ&view_op=list_works&sortby=pubdate"
+                      target="_blank"
+                    >
                       Tong Zhao
                       <sup>2</sup>&nbsp;
                     </a>
                   </span>
+                  &nbsp;and&nbsp;
+                  <span className="author-block">
+                    <a href="https://locomotion.csail.mit.edu/russt.html" target="_blank">
+                      Russ Tedrake
+                      <sup>1</sup>&nbsp;
+                    </a>
+                  </span>
                 </div>
-
                 {/* Publication links. */}
                 <div className="column has-text-centered">
                   <div className="publication-links">
@@ -103,24 +119,25 @@ const App = () => {
               <h2 className="title is-3">Abstract</h2>
               <div className="content has-text-justified">
                 <p>
-                  Athenae cum florerent aequis legibus, procax libertas civitatem miscuit,
-                  frenumque solvit pristinum licentia. Hic conspiratis factionum partibus
-                  arcem tyrannus occupat Pisistratus. Cum tristem servitutem flerent
-                  Attici, non quia crudelis ille, sed quoniam grave omne insuetis onus, et
-                  coepissent queri, Aesopus talem tum fabellam rettulit. 'Ranae, vagantes
-                  liberis paludibus, clamore magno regem petiere ab Iove, qui dissolutos
-                  mores vi compesceret. Pater deorum risit atque illis dedit parvum
-                  tigillum, missum quod subito vadi motu sonoque terruit pavidum genus.
-                  Hoc mersum limo cum iaceret diutius, forte una tacite profert e stagno
-                  caput, et explorato rege cunctas evocat. Illae timore posito certatim
-                  adnatant, lignumque supra turba petulans insilit. Quod cum inquinassent
-                  omni contumelia, alium rogantes regem misere ad Iovem, inutilis quoniam
-                  esset qui fuerat datus. Tum misit illis hydrum, qui dente aspero
-                  corripere coepit singulas. Frustra necem fugitant inertes; vocem
-                  praecludit metus. Furtim igitur dant Mercurio mandata ad Iovem,
-                  adflictis ut succurrat. Tunc contra Tonans "Quia noluistis vestrum
-                  ferre" inquit "bonum, malum perferte". Vos quoque, o cives,' ait 'hoc
-                  sustinete, maius ne veniat, malum'.
+                  What is a good local description of contact dynamics for contact-rich
+                  manipulation, and where can we trust this local description? While many
+                  approaches often rely on the Taylor approximation of dynamics with an
+                  ellipsoidal trust region, we argue that such approaches are
+                  fundamentally inconsistent with the unilateral nature of contact. As a
+                  remedy, we present the Contact Trust Region (CTR), which captures the
+                  unilateral nature of contact while remaining efficient for computation.
+                  With CTR, we first develop a Model-Predictive Control (MPC) algorithm
+                  capable of synthesizing local contact-rich plans. Then, we extend this
+                  capability to plan globally by stitching together local MPC plans,
+                  enabling efficient and dexterous contact-rich manipulation. To verify
+                  the performance of our method, we perform comprehensive evaluations,
+                  both in high-fidelity simulation and on hardware, on two contact-rich
+                  systems: a planar IiwaBimanual system and a 3D AllegroHand system. On
+                  both systems, our method offers a significantly lower-compute
+                  alternative to existing RL-based approaches to contact-rich
+                  manipulation. In particular, our Allegro in-hand manipulation policy, in
+                  the form of a roadmap, takes less than 10 minutes to build offline on a
+                  standard laptop, and online inference takes a few seconds.
                 </p>
               </div>
             </div>
