@@ -62,17 +62,19 @@ const App = () => {
 
                 {/* Contributions. */}
                 <div className="is-size-6 publication-authors">
-                  <span className="author-block">* Equal contribution</span>
+                  <span className="author-block">*Equal contribution</span>
                 </div>
 
                 {/* Affiliations. */}
-                <div className="is-size-5 publication-authors">
+                <div className="is-size-6 publication-authors">
                   <span className="author-block">
-                    <sup>1</sup>Placeholder
+                    <sup>1</sup>Computer Science and Artificial Intelligence Laboratory
+                    (CSAIL), Massachusetts Institute of Technology
                   </span>
-                  ,&nbsp;
+                </div>
+                <div className="is-size-6 publication-authors">
                   <span className="author-block">
-                    <sup>2</sup>The AI Institute
+                    <sup>2</sup>Boston Dynamics AI Institute.
                   </span>
                 </div>
 
