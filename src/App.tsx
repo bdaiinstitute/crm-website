@@ -165,25 +165,28 @@ const App = () => {
       </section>
 
       {/* Teaser. */}
-      <section className="hero teaser">
+      <section className="section">
         <div className="container is-max-desktop">
-          <div className="hero-body">
-            <h2 className="title is-3">Video</h2>
-            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
-              <iframe
-                src="https://www.youtube.com/embed/ps4tbflAPSI?autoplay=1&mute=1&loop=1&playlist=ps4tbflAPSI&vq=hd1080"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  border: "none"
-                }}
-                allow="autoplay; encrypted-media; clipboard-write;"
-                allowFullScreen
-                title="Teaser Video"
-              ></iframe>
+          <div className="columns is-centered has-text-centered">
+            <div className="column is-four-fifths">
+              <h2 className="title is-3">Video</h2>
+              <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+                <iframe
+                  src="https://www.youtube.com/embed/ps4tbflAPSI?autoplay=1&mute=1&loop=1&playlist=ps4tbflAPSI&vq=hd1080"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none"
+                  }}
+                  allow="autoplay; encrypted-media; clipboard-write;"
+                  allowFullScreen
+                  title="Teaser Video"
+                ></iframe>
+              </div>
+              <br />
             </div>
           </div>
         </div>
