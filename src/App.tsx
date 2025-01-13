@@ -130,32 +130,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* Teaser. */}
-      <section className="hero teaser">
-        <div className="container is-max-desktop">
-          <div className="hero-body">
-            <video
-              id="teaser"
-              style={{
-                width: `100%`,
-                height: `100%`,
-                borderColor: `lightgray`,
-                borderWidth: `1px`
-              }}
-              autoPlay
-              muted
-              loop
-              playsInline
-              src="./contact_trust_region.mp4"
-              controls
-              preload="auto"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </section>
-
       {/* Abstract. */}
       <section className="section">
         <div className="container is-max-desktop">
@@ -190,24 +164,36 @@ const App = () => {
         </div>
       </section>
 
+      {/* Teaser. */}
+      <section className="hero teaser">
+        <div className="container is-max-desktop">
+          <div className="hero-body">
+            <h2 className="title is-3">Video</h2>
+            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+              <iframe
+                src="https://www.youtube.com/embed/ps4tbflAPSI?autoplay=1&mute=1&loop=1&playlist=ps4tbflAPSI&vq=hd1080"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: "none"
+                }}
+                allow="autoplay; encrypted-media; clipboard-write;"
+                allowFullScreen
+                title="Teaser Video"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* IIWA section. */}
       <section>
         <div className="columns is-centered">
           <div className="column is-full-width">
             <h2 className="title is-3">IIWA</h2>
-            <div className="content has-text-justified">
-              <p>
-                Ad rivum eundem lupus et agnus venerant, siti compulsi. Superior stabat
-                lupus, longeque inferior agnus. Tunc fauce improba latro incitatus iurgii
-                causam intulit; 'Cur' inquit 'turbulentam fecisti mihi aquam bibenti?'
-                Laniger contra timens 'Qui possum, quaeso, facere quod quereris, lupe? A
-                te decurrit ad meos haustus liquor'. Repulsus ille veritatis viribus 'Ante
-                hos sex menses male' ait 'dixisti mihi'. Respondit agnus 'Equidem natus
-                non eram'. 'Pater hercle tuus' ille inquit 'male dixit mihi'; atque ita
-                correptum lacerat iniusta nece. Haec propter illos scripta est homines
-                fabula qui fictis causis innocentes opprimunt.
-              </p>
-            </div>
             <br />
             <IiwaComponent />
             <br />
@@ -220,19 +206,6 @@ const App = () => {
         <div className="columns is-centered">
           <div className="column is-full-width">
             <h2 className="title is-3">Allegro</h2>
-            <div className="content has-text-justified">
-              <p>
-                Virtutis expers, verbis iactans gloriam, ignotos fallit, notis est
-                derisui. Venari asello comite cum vellet leo, contexit illum frutice et
-                admonuit simul ut insueta voce terreret feras, fugientes ipse exciperet.
-                Hic auritulus clamorem subito totis tollit viribus, novoque turbat bestias
-                miraculo: quae, dum paventes exitus notos petunt, leonis adfliguntur
-                horrendo impetu. Qui postquam caede fessus est, asinum evocat, iubetque
-                vocem premere. Tunc ille insolens 'Qualis videtur opera tibi vocis meae?'
-                'Insignis' inquit 'sic ut, nisi nossem tuum animum genusque, simili
-                fugissem metu'.
-              </p>
-            </div>
             <br />
             <AllegroComponent />
             <br />
