@@ -207,9 +207,17 @@ const App = () => {
           <div className="columns is-centered has-text-centered">
             <div className="column is-four-fifths">
               <h2 className="title is-3">Video</h2>
-              <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+              <div
+                style={{
+                  position: "relative",
+                  paddingBottom: "56.25%",
+                  height: 0,
+                  borderColor: "light-grey",
+                  borderWidth: 1
+                }}
+              >
                 <iframe
-                  src="https://www.youtube.com/embed/ps4tbflAPSI?autoplay=1&mute=1&loop=1&playlist=ps4tbflAPSI&vq=hd1080"
+                  src="https://www.youtube.com/embed/ps4tbflAPSI?mute=1&loop=1&playlist=ps4tbflAPSI&vq=hd1080"
                   style={{
                     position: "absolute",
                     top: 0,

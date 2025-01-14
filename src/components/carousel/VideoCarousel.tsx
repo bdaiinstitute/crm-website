@@ -45,7 +45,13 @@ export const VideoCarousel = ({ videos }: VideoCarouselProps) => {
         {videos.map((video) => (
           <div key={video.id} className="px-2">
             <div className="flex flex-col items-center">
-              <video src={video.src} controls className="w-full h-auto rounded-md" />
+              <video
+                autoPlay
+                muted
+                src={video.src}
+                controls
+                className="w-full h-auto rounded-md"
+              />
               {video.title && <p className="mt-2 text-center text-lg">{video.title}</p>}
             </div>
           </div>
