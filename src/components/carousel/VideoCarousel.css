@@ -1,0 +1,23 @@
+/* Left and right arrows. */
+.slick-prev:before,
+.slick-next:before {
+  @apply text-gray-500;
+}
+
+/* Left and right arrows hover. */
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  @apply bg-opacity-75;
+}
+
+/* Unselected dots. */
+.slick-dots li button:before {
+  @apply text-gray-500;
+  transform: scale(2);
+  @apply opacity-25;
+}
+
+/* Selected dot. */
+.slick-dots li.slick-active button:before {
+  @apply text-gray-500;
+}

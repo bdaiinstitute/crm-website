@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { IiwaComponent } from "./components/iiwa/IiwaComponent";
 import { AllegroComponent } from "./components/allegro/AllegroComponent";
+import { VideoCarousel } from "./components/carousel/VideoCarousel";
 
 import "academicons/css/academicons.min.css";
 
@@ -13,6 +14,24 @@ import "./index.css";
 const App = () => {
   // Create a new QueryClient instance
   const queryClient = new QueryClient();
+
+  const videoData = [
+    {
+      id: 1,
+      src: "https://www.w3schools.com/html/mov_bbb.mp4",
+      title: "Big Buck Bunny"
+    },
+    {
+      id: 2,
+      src: "https://www.w3schools.com/html/movie.mp4",
+      title: "Bear"
+    },
+    {
+      id: 3,
+      src: "https://www.w3schools.com/html/mov_bbb.mp4",
+      title: "Big Buck Bunny Duplicate"
+    }
+  ];
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -125,6 +144,17 @@ const App = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Carousel. */}
+      <section className="section">
+        <div className="container is-max-desktop">
+          <div className="columns is-centered">
+            <div className="column is-full-width">
+              <VideoCarousel videos={videoData} />
             </div>
           </div>
         </div>
