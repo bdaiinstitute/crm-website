@@ -202,20 +202,49 @@ export const IiwaComponent = () => {
 
                 {/* Overlay Image */}
                 {episodeInfo && episodeInfo.episodeId && (
-                  <img
-                    src={getIiwaGoalUrl(episodeInfo.episodeId)}
-                    alt="Overlay"
-                    className="absolute pointer-events-none"
-                    style={{
-                      bottom: "2%",
-                      right: "2%",
-                      zIndex: 10,
-                      width: "30%",
-                      height: "30%",
-                      opacity: 1,
-                      objectFit: "scale-down"
-                    }}
-                  />
+                  <div>
+                    <div
+                      className="absolute"
+                      style={{
+                        bottom: "1%",
+                        right: "13%",
+                        zIndex: 11,
+                        opacity: 1,
+                        color: "white",
+                        fontSize: "1.2rem",
+                        textAlign: "center"
+                      }}
+                    >
+                      Goal
+                    </div>
+                    <div
+                      className="absolute"
+                      style={{
+                        bottom: "1%",
+                        left: "5%",
+                        zIndex: 11,
+                        opacity: 1,
+                        color: "white",
+                        fontSize: "1.2rem"
+                      }}
+                    >
+                      1x
+                    </div>
+                    <img
+                      src={getIiwaGoalUrl(episodeInfo.episodeId)}
+                      alt="Overlay"
+                      className="absolute pointer-events-none"
+                      style={{
+                        bottom: "4%",
+                        right: "2%",
+                        zIndex: 10,
+                        width: "30%",
+                        height: "30%",
+                        opacity: 1,
+                        objectFit: "scale-down"
+                      }}
+                    />
+                  </div>
                 )}
               </div>
             </div>

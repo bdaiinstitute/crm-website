@@ -189,20 +189,49 @@ export const AllegroComponent = () => {
 
                 {/* Overlay Image */}
                 {episodeInfo && episodeInfo.episodeId && (
-                  <img
-                    src={getAllegroGoalUrl(episodeInfo.episodeId)}
-                    alt="Overlay"
-                    className="absolute pointer-events-none"
-                    style={{
-                      top: "-1%",
-                      right: "-1%",
-                      zIndex: 10,
-                      opacity: 1,
-                      objectFit: "scale-down",
-                      width: "38%",
-                      height: "38%"
-                    }}
-                  />
+                  <div>
+                    <div
+                      className="absolute"
+                      style={{
+                        top: "1%",
+                        right: "13%",
+                        zIndex: 11,
+                        opacity: 1,
+                        color: "white",
+                        fontSize: "1.2rem",
+                        textAlign: "right"
+                      }}
+                    >
+                      Goal
+                    </div>
+                    <div
+                      className="absolute"
+                      style={{
+                        top: "1%",
+                        left: "5%",
+                        zIndex: 11,
+                        opacity: 1,
+                        color: "white",
+                        fontSize: "1.2rem"
+                      }}
+                    >
+                      1x
+                    </div>
+                    <img
+                      src={getAllegroGoalUrl(episodeInfo.episodeId)}
+                      alt="Overlay"
+                      className="absolute pointer-events-none"
+                      style={{
+                        top: "3%",
+                        right: "-1%",
+                        zIndex: 10,
+                        opacity: 1,
+                        objectFit: "scale-down",
+                        width: "38%",
+                        height: "38%"
+                      }}
+                    />
+                  </div>
                 )}
               </div>
             </div>
