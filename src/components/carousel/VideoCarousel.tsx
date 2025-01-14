@@ -52,7 +52,7 @@ export const VideoCarousel = ({ videos }: VideoCarouselProps) => {
                 controls
                 className="w-full h-auto rounded-md"
               />
-              {video.title && <p className="mt-2 text-center text-lg">{video.title}</p>}
+              {video.title && <p className="mt-2 text-center text-sm">{video.title}</p>}
             </div>
           </div>
         ))}
