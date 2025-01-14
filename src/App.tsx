@@ -18,18 +18,23 @@ const App = () => {
   const videoData = [
     {
       id: 1,
-      src: "https://www.w3schools.com/html/mov_bbb.mp4",
-      title: "Big Buck Bunny"
+      src: "./carousel/experiments_collage_allegro.mp4",
+      title: "Allegro experiments"
     },
     {
       id: 2,
-      src: "https://www.w3schools.com/html/movie.mp4",
-      title: "Bear"
+      src: "./carousel/experiments_collage_iiwa.mp4",
+      title: "Iiwa experiments"
     },
     {
       id: 3,
-      src: "https://www.w3schools.com/html/mov_bbb.mp4",
-      title: "Big Buck Bunny Duplicate"
+      src: "./carousel/random_walk_on_graph.mp4",
+      title: "Random walk on graph"
+    },
+    {
+      id: 4,
+      src: "./carousel/reaching_random_global_goals.mp4",
+      title: "Reaching random global goals"
     }
   ];
 
@@ -150,11 +155,13 @@ const App = () => {
       </section>
 
       {/* Carousel. */}
-      <section className="section">
-        <div className="container is-max-desktop">
-          <div className="columns is-centered">
-            <div className="column is-full-width">
-              <VideoCarousel videos={videoData} />
+      <section className="hero">
+        <div className="hero-body">
+          <div className="container is-max-desktop">
+            <div className="columns is-centered">
+              <div className="column has-text-centered">
+                <VideoCarousel videos={videoData} />
+              </div>
             </div>
           </div>
         </div>

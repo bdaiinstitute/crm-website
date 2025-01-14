@@ -40,10 +40,10 @@ export const VideoCarousel = ({ videos }: VideoCarouselProps) => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
       <Slider {...settings}>
         {videos.map((video) => (
-          <div key={video.id} className="p-2">
+          <div key={video.id} className="px-2">
             <div className="flex flex-col items-center">
               <video src={video.src} controls className="w-full h-auto rounded-md" />
               {video.title && <p className="mt-2 text-center text-lg">{video.title}</p>}
