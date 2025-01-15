@@ -34,6 +34,9 @@ import {
  * user to play episodes selecting data from a scatter plot.
  */
 export const IiwaComponent = () => {
+  const FRAME_TIME_10_MILLIS = 10;
+  const FRAME_TIME_100_MILLIS = 100;
+
   // Whether the video and the sequence should start playing automatically.
   const [autoPlay, setAutoPlay] = useState<boolean>(false);
 
@@ -284,7 +287,15 @@ export const IiwaComponent = () => {
           </div>
         </div>
       </div>
-      <div className={showVideo && dataOrigin === DataOrigin.Hardware ? "" : "hidden"}>
+      <div
+        className={
+          showVideo &&
+          trajectoryType != TrajectoryType.NominalPlan &&
+          dataOrigin === DataOrigin.Hardware
+            ? ""
+            : "hidden"
+        }
+      >
         <VideoPlayerController
           videoRef={videoRef}
           currentTime={currentTime}
@@ -292,9 +303,22 @@ export const IiwaComponent = () => {
           autoPlay={autoPlay}
         />
       </div>
-      <div className={!showVideo || dataOrigin === DataOrigin.Simulation ? "" : "hidden"}>
+      <div
+        className={
+          !showVideo ||
+          trajectoryType === TrajectoryType.NominalPlan ||
+          dataOrigin === DataOrigin.Simulation
+            ? ""
+            : "hidden"
+        }
+      >
         <SequencePlayer
           sequence={sceneSequence}
+          frameInterval={
+            trajectoryType === TrajectoryType.NominalPlan
+              ? FRAME_TIME_100_MILLIS
+              : FRAME_TIME_10_MILLIS
+          }
           onFrameChanged={onStateChanged}
           autoPlay={autoPlay}
         />

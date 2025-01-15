@@ -10,11 +10,13 @@ import "./Player.css";
 /**
  * Props for the player component.
  * @param sequence A sequence of elements.
+ * @param frameInterval Time between frames in milliseconds.
  * @param onFrameChanged A callback invoked when the frame changes.
  * @param autoPlay Whether the video should start playing automatically.
  */
 export interface SequencePlayerProps<T> {
   sequence: T[];
+  frameInterval: number;
   onFrameChanged: (state: T) => void;
   autoPlay?: boolean;
 }
@@ -27,6 +29,7 @@ export interface SequencePlayerProps<T> {
  */
 export const SequencePlayer = <T,>({
   sequence,
+  frameInterval,
   onFrameChanged,
   autoPlay = false
 }: SequencePlayerProps<T>) => {
@@ -59,7 +62,7 @@ export const SequencePlayer = <T,>({
           // Start the timer.
           intervalRef.current = setInterval(() => {
             setFrame((prev) => prev + 1);
-          }, 10);
+          }, frameInterval);
         } else if (frame === sequence.length - 1) {
           setState(PlayerState.Completed);
         }
@@ -77,7 +80,7 @@ export const SequencePlayer = <T,>({
         clearInterval(intervalRef.current);
       }
     };
-  }, [sequence, frame, state, onFrameChanged, autoPlay]);
+  }, [sequence, frame, state, onFrameChanged, autoPlay, frameInterval]);
 
   // Playback control, only available when sequence length > 0.
   const handlePlayPause = useCallback(() => {
