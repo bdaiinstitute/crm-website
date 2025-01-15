@@ -11,7 +11,8 @@ export enum ErrorType {
  * Enum representing the different types of controllers that can be used.
  * Each type corresponds to a different 3D plot.
  */
-export enum ControllerType {
+export enum TrajectoryType {
+  NominalPlan = "NominalPlan",
   OpenLoop = "OpenLoop",
   ClosedLoop = "ClosedLoop"
 }

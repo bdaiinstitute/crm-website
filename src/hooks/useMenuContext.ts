@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { ErrorType, ControllerType, DataType } from "../types/DataTypes";
+import { ErrorType, TrajectoryType, DataType } from "../types/DataTypes";
 
 /**
  * Defines the interface for the menu context, which includes state and updater
  * functions for error type, controller type, data type, and video visibility.
  * @param errorType The current error type.
  * @param setErrorType A function to update the error type.
- * @param controllerType The current controller type.
- * @param setControllerType A function to update the controller type.
+ * @param trajectoryType The trajectory type.
+ * @param setTrajectoryType A function to update the trajectory type.
  * @param dataType The current data type.
  * @param setDataType A function to update the data type.
  * @param showVideo Whether the video is visible.
@@ -16,8 +16,8 @@ import { ErrorType, ControllerType, DataType } from "../types/DataTypes";
 interface MenuContextInterface {
   errorType: ErrorType;
   setErrorType: (type: ErrorType) => void;
-  controllerType: ControllerType;
-  setControllerType: (type: ControllerType) => void;
+  trajectoryType: TrajectoryType;
+  setTrajectoryType: (type: TrajectoryType) => void;
   dataType: DataType;
   setDataType: (type: DataType) => void;
   showVideo: boolean;
@@ -32,8 +32,8 @@ interface MenuContextInterface {
  */
 export const useMenuContext = (): MenuContextInterface => {
   const [errorType, setErrorType] = useState<ErrorType>(ErrorType.Rotation);
-  const [controllerType, setControllerType] = useState<ControllerType>(
-    ControllerType.ClosedLoop
+  const [trajectoryType, setTrajectoryType] = useState<TrajectoryType>(
+    TrajectoryType.ClosedLoop
   );
   const [dataType, setDataType] = useState<DataType>(DataType.Hardware);
   const [showVideo, setShowVideo] = useState<boolean>(true);
@@ -41,8 +41,8 @@ export const useMenuContext = (): MenuContextInterface => {
   return {
     errorType,
     setErrorType,
-    controllerType,
-    setControllerType,
+    trajectoryType,
+    setTrajectoryType,
     dataType,
     setDataType,
     showVideo,

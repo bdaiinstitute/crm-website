@@ -108,7 +108,7 @@ const App = () => {
                     {/* arxiv Link. */}
                     <span className="link-block">
                       <a
-                        href="https://arxiv.org/abs/2407.20179"
+                        href="#"
                         target="_blank"
                         className="external-link button is-normal is-rounded is-dark"
                       >
@@ -122,21 +122,21 @@ const App = () => {
                     {/* Code Link. */}
                     <span className="link-block">
                       <a
-                        href="https://github.com/bdaiinstitute/#"
+                        href="#"
                         target="_blank"
                         className="external-link button is-normal is-rounded is-dark"
                       >
                         <span className="icon">
                           <FontAwesomeIcon icon={faGithub} />
                         </span>
-                        <span>Code</span>
+                        <span>Code (coming soon)</span>
                       </a>
                     </span>
 
                     {/* Datasets. */}
                     <span className="link-block">
                       <a
-                        href="https://github.com/bdaiinstitute/#"
+                        href="#"
                         target="_blank"
                         className="external-link button is-normal is-rounded is-dark"
                       >

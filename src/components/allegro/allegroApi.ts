@@ -1,5 +1,5 @@
 import { getAbsoluteUrl } from "../../util/http";
-import { ControllerType, DataType } from "../../types/DataTypes";
+import { TrajectoryType, DataType } from "../../types/DataTypes";
 import { AllegroEpisode, AllegroStats } from "./AllegroSceneState";
 
 /**
@@ -8,10 +8,10 @@ import { AllegroEpisode, AllegroStats } from "./AllegroSceneState";
  * @param dataType Can be either "hardware" or "simulation".
  * @returns The folder containing the IIWA episodes and stats.
  */
-const getDataFolder = (controllerType: ControllerType, dataType: DataType) => {
+const getDataFolder = (controllerType: TrajectoryType, dataType: DataType) => {
   const dataFolder = dataType === DataType.Hardware ? "hardware" : "simulation";
   const controllerFolder =
-    controllerType === ControllerType.OpenLoop ? "open_loop" : "closed_loop";
+    controllerType === TrajectoryType.OpenLoop ? "open_loop" : "closed_loop";
   const url = getAbsoluteUrl(`data/allegro/${dataFolder}/${controllerFolder}`);
   return url;
 };
@@ -19,16 +19,16 @@ const getDataFolder = (controllerType: ControllerType, dataType: DataType) => {
 /**
  * Fetch a JSON file containing an Allegro hand episode.
  * @param episodeId The file id.
- * @param controllerType Can be either "open_loop" or "close_loop".
+ * @param trajectoryType Can be either "open_loop" or "close_loop".
  * @param dataType Can be either "hardware" or "simulation".
  * @returns An Allegro hand episode.
  */
 export const fetchAllegroEpisode = async (
   episodeId: string,
-  controllerType: ControllerType,
+  trajectoryType: TrajectoryType,
   dataType: DataType
 ): Promise<AllegroEpisode> => {
-  const dataFolder = getDataFolder(controllerType, dataType);
+  const dataFolder = getDataFolder(trajectoryType, dataType);
   const url = `${dataFolder}/${episodeId}.json`;
   const response = await fetch(url);
   if (!response.ok) {
@@ -46,11 +46,11 @@ export const fetchAllegroEpisode = async (
  * @returns The URL for the Allegro episode video.
  */
 export const getAllegroVideoUrl = (
-  controllerType: ControllerType,
+  controllerType: TrajectoryType,
   episodeId: string
 ): string => {
   const controllerFolder =
-    controllerType === ControllerType.OpenLoop ? "open_loop" : "closed_loop";
+    controllerType === TrajectoryType.OpenLoop ? "open_loop" : "closed_loop";
   const url = getAbsoluteUrl(`data/allegro/videos/${controllerFolder}/${episodeId}.mp4`);
   return url;
 };
@@ -74,7 +74,7 @@ export const getAllegroGoalUrl = (episodeId: string): string => {
  * @returns Allegro episodes stats.
  */
 export const fetchAllegroStats = async (
-  controllerType: ControllerType,
+  controllerType: TrajectoryType,
   dataType: DataType
 ): Promise<AllegroStats> => {
   const dataFolder = getDataFolder(controllerType, dataType);

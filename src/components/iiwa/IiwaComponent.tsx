@@ -53,14 +53,14 @@ export const IiwaComponent = () => {
 
   /**
    * These values are used to manage the state of the component, including the
-   * type of error, controller, and data being displayed, as well as whether
+   * type of error, trajectory, and data being displayed, as well as whether
    * the video should be shown.
    */
   const {
     errorType,
     setErrorType,
-    controllerType,
-    setControllerType,
+    trajectoryType,
+    setTrajectoryType,
     dataType,
     setDataType,
     showVideo,
@@ -69,8 +69,8 @@ export const IiwaComponent = () => {
 
   // Load all episodes metadata.
   const { data: stats = [] } = useQuery<IiwaStats, Error>({
-    queryKey: ["iiwaStats", controllerType, dataType],
-    queryFn: () => fetchIiwaStats(controllerType, dataType),
+    queryKey: ["iiwaStats", trajectoryType, dataType],
+    queryFn: () => fetchIiwaStats(trajectoryType, dataType),
     placeholderData: []
   });
 
@@ -105,19 +105,19 @@ export const IiwaComponent = () => {
       try {
         const episode: IiwaEpisode = await fetchIiwaEpisode(
           episodeInfo.episodeId,
-          controllerType,
+          trajectoryType,
           dataType
         );
         setAutoPlay(autoPlayEnabled);
         setGoal(episode.goal);
         setSceneSequence(episode.points);
         setEpisodeInfo(episodeInfo);
-        setVideoUrl(getIiwaVideoUrl(controllerType, episodeInfo.episodeId));
+        setVideoUrl(getIiwaVideoUrl(trajectoryType, episodeInfo.episodeId));
       } catch (error) {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
     },
-    [controllerType, dataType, setVideoUrl]
+    [trajectoryType, dataType, setVideoUrl]
   );
 
   // This is called when an episode info is selected.
@@ -150,8 +150,8 @@ export const IiwaComponent = () => {
       <Menu
         errorType={errorType}
         setErrorType={setErrorType}
-        controllerType={controllerType}
-        setControllerType={setControllerType}
+        trajectoryType={trajectoryType}
+        setTrajectoryType={setTrajectoryType}
         dataType={dataType}
         setDataType={setDataType}
         showVideo={showVideo}

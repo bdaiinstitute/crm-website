@@ -1,39 +1,39 @@
 import { useId } from "react";
-import { ErrorType, ControllerType, DataType } from "../../types/DataTypes";
+import { ErrorType, TrajectoryType, DataType } from "../../types/DataTypes";
 
 /**
  * Defines the props for the Menu component.
  * @property {ErrorType} errorType The current error type.
  * @property {(errorType: ErrorType) => void} setErrorType Function to set the error type.
- * @property {ControllerType} controllerType The current controller type.
- * @property {(controllerType: ControllerType) => void} setControllerType Function to set the controller type.
+ * @property {TrajectoryType} trajectoryType The current trajectory type.
+ * @property {(trajectoryType: TrajectoryType) => void} setTrajectoryType Function to set the trajectory type.
  * @property {DataType} dataType The current data type.
  * @property {(dataType: DataType) => void} setDataType Function to set the data type.
  * @property {boolean} showVideo Whether to show the video.
  * @property {(showVideo: boolean) => void} setShowVideo Function to set whether to show the video.
  * @property {boolean} errorTypeEnabled Whether to enable the error type radio buttons.
- * @property {boolean} controllerTypeEnabled Whether to enable the controller type radio buttons.
+ * @property {boolean} trajectoryTypeEnabled Whether to enable the trajectory type radio buttons.
  * @property {boolean} dataTypeEnabled Whether to enable the data type radio buttons.
  * @property {boolean} showVideoEnabled Whether to enable the video toggle.
  */
 export interface MenuProps {
   errorType: ErrorType;
   setErrorType: (errorType: ErrorType) => void;
-  controllerType: ControllerType;
-  setControllerType: (controllerType: ControllerType) => void;
+  trajectoryType: TrajectoryType;
+  setTrajectoryType: (trajectoryType: TrajectoryType) => void;
   dataType: DataType;
   setDataType: (dataType: DataType) => void;
   showVideo?: boolean;
   setShowVideo?: (showVideo: boolean) => void;
   errorTypeOptionEnabled?: boolean;
-  controllerTypeOptionEnabled?: boolean;
+  trajectoryTypeOptionEnabled?: boolean;
   dataTypeOptionEnabled?: boolean;
   videoOptionEnabled?: boolean;
 }
 
 /**
  * Renders a navigation menu component that allows the user to select the error
- * type, controller type, and data type. The component updates the
+ * type, trajectory type, and data type. The component updates the
  * corresponding state variables when the user makes a selection.
  * @param props {@link MenuProps}
  * @returns The rendered navigation menu component.
@@ -41,14 +41,14 @@ export interface MenuProps {
 export const Menu = ({
   errorType,
   setErrorType,
-  controllerType,
-  setControllerType,
+  trajectoryType,
+  setTrajectoryType,
   dataType,
   setDataType,
   showVideo,
   setShowVideo,
   errorTypeOptionEnabled = true,
-  controllerTypeOptionEnabled = true,
+  trajectoryTypeOptionEnabled = true,
   dataTypeOptionEnabled = true,
   videoOptionEnabled = false
 }: MenuProps) => {
@@ -65,11 +65,11 @@ export const Menu = ({
   };
 
   /**
-   * Handles the change event for the controller type selection.
+   * Handles the change event for the trajectory type selection.
    * @param event The change event triggered by the input element.
    */
-  const handleControllerTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setControllerType(event.target.value as ControllerType);
+  const handleTrajectoryTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTrajectoryType(event.target.value as TrajectoryType);
   };
 
   /**
@@ -131,35 +131,47 @@ export const Menu = ({
         </div>
 
         <div className="flex items-center">
-          <span className="font-bold">Controller:</span>
-          {controllerTypeOptionEnabled /* Controller Type Radio Buttons */ ? (
+          <span className="font-bold">Trajectories:</span>
+          {trajectoryTypeOptionEnabled /* Trajectory Type Radio Buttons */ ? (
             <>
               <label className="flex items-center ml-2">
                 <input
                   type="radio"
-                  name={`controllerType-${uniqueId}`}
-                  value={ControllerType.OpenLoop}
+                  name={`trajectoryType-${uniqueId}`}
+                  value={TrajectoryType.NominalPlan}
+                  className="form-radio h-4 w-4"
+                  aria-label="NominalPlan"
+                  checked={trajectoryType === TrajectoryType.NominalPlan}
+                  onChange={handleTrajectoryTypeChange}
+                />
+                <span className="ml-1 whitespace-nowrap">nominal plan</span>
+              </label>
+              <label className="flex items-center ml-2">
+                <input
+                  type="radio"
+                  name={`trajectoryType-${uniqueId}`}
+                  value={TrajectoryType.OpenLoop}
                   className="form-radio h-4 w-4"
                   aria-label="OpenLoop"
-                  checked={controllerType === ControllerType.OpenLoop}
-                  onChange={handleControllerTypeChange}
+                  checked={trajectoryType === TrajectoryType.OpenLoop}
+                  onChange={handleTrajectoryTypeChange}
                 />
                 <span className="ml-1 whitespace-nowrap">open-loop</span>
               </label>
               <label className="flex items-center ml-2">
                 <input
                   type="radio"
-                  name={`controllerType-${uniqueId}`}
-                  value={ControllerType.ClosedLoop}
+                  name={`trajectoryType-${uniqueId}`}
+                  value={TrajectoryType.ClosedLoop}
                   className="form-radio h-4 w-4"
                   aria-label="ClosedLoop"
-                  checked={controllerType === ControllerType.ClosedLoop}
-                  onChange={handleControllerTypeChange}
+                  checked={trajectoryType === TrajectoryType.ClosedLoop}
+                  onChange={handleTrajectoryTypeChange}
                 />
                 <span className="ml-1 whitespace-nowrap">closed-loop</span>
               </label>
             </>
-          ) : controllerType === ControllerType.OpenLoop ? (
+          ) : trajectoryType === TrajectoryType.OpenLoop ? (
             <span className="ml-1 whitespace-nowrap">open-loop</span>
           ) : (
             <span className="ml-1 whitespace-nowrap">closed-loop</span>
