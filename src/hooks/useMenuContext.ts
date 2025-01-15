@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ErrorType, TrajectoryType, DataType } from "../types/DataTypes";
+import { ErrorType, TrajectoryType, DataOrigin } from "../types/DataTypes";
 
 /**
  * Defines the interface for the menu context, which includes state and updater
@@ -8,8 +8,8 @@ import { ErrorType, TrajectoryType, DataType } from "../types/DataTypes";
  * @param setErrorType A function to update the error type.
  * @param trajectoryType The trajectory type.
  * @param setTrajectoryType A function to update the trajectory type.
- * @param dataType The current data type.
- * @param setDataType A function to update the data type.
+ * @param dataOrigin The current data toriginype.
+ * @param setDataOrigin A function to update the data origin.
  * @param showVideo Whether the video is visible.
  * @param setShowVideo A function to update the video visibility.
  */
@@ -18,8 +18,8 @@ interface MenuContextInterface {
   setErrorType: (type: ErrorType) => void;
   trajectoryType: TrajectoryType;
   setTrajectoryType: (type: TrajectoryType) => void;
-  dataType: DataType;
-  setDataType: (type: DataType) => void;
+  dataOrigin: DataOrigin;
+  setDataOrigin: (type: DataOrigin) => void;
   showVideo: boolean;
   setShowVideo: (showVideo: boolean) => void;
 }
@@ -35,7 +35,7 @@ export const useMenuContext = (): MenuContextInterface => {
   const [trajectoryType, setTrajectoryType] = useState<TrajectoryType>(
     TrajectoryType.ClosedLoop
   );
-  const [dataType, setDataType] = useState<DataType>(DataType.Hardware);
+  const [dataOrigin, setDataOrigin] = useState<DataOrigin>(DataOrigin.Hardware);
   const [showVideo, setShowVideo] = useState<boolean>(true);
 
   return {
@@ -43,8 +43,8 @@ export const useMenuContext = (): MenuContextInterface => {
     setErrorType,
     trajectoryType,
     setTrajectoryType,
-    dataType,
-    setDataType,
+    dataOrigin,
+    setDataOrigin,
     showVideo,
     setShowVideo
   };

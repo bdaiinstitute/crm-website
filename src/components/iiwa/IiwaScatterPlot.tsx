@@ -105,6 +105,7 @@ export const IiwaScatterPlotComponent = ({
       errorType === ErrorType.Position ? episode.translationError : episode.rotationError;
     errors.push(error);
     // Extract id and other properties.
+
     const match = episode.episodeId.match(/seed_(\d+)_segment_(\d+)/);
     if (match) {
       ids.push({

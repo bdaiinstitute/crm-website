@@ -18,11 +18,12 @@ export enum TrajectoryType {
 }
 
 /**
- * Enum representing the different types of data that can be processed:
- * simulation or hardware.
+ * Enum representing the origin of the data:
+ * simulation, hardware or either.
  * Each type corresponds to a different 3D plot.
  */
-export enum DataType {
+export enum DataOrigin {
   Simulation = "Simulation",
-  Hardware = "Hardware"
+  Hardware = "Hardware",
+  Either = "Either"
 }

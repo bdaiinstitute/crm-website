@@ -1,32 +1,38 @@
 import { getAbsoluteUrl } from "../../util/http";
-import { TrajectoryType, DataType } from "../../types/DataTypes";
+import { TrajectoryType, DataOrigin } from "../../types/DataTypes";
 import { IiwaEpisode, IiwaStats } from "./IiwaSceneState";
 
 /**
  * Return the folder containing the IIWA episodes and stats.
- * @param controllerType Can be either "open_loop" or "close_loop".
- * @param dataType Can be either "hardware" or "simulation".
+ * @param trajectoryType Can be "NominalPLan", "OpenLoop" or "CloseLoop".
+ * @param dataOrigin Can be "Hardware", "Simulation" or "Either".
  * @returns The folder containing the IIWA episodes and stats.
  */
-const getDataFolder = (controllerType: TrajectoryType, dataType: DataType) => {
-  const dataFolder = dataType === DataType.Hardware ? "hardware" : "simulation";
-  const controllerFolder =
-    controllerType === TrajectoryType.OpenLoop ? "open_loop" : "closed_loop";
-  const url = getAbsoluteUrl(`data/iiwa/${dataFolder}/${controllerFolder}`);
+const getDataFolder = (trajectoryType: TrajectoryType, dataOrigin: DataOrigin) => {
+  let url = "";
+  if (trajectoryType === TrajectoryType.NominalPlan) {
+    url = getAbsoluteUrl(`data/iiwa/nominal/`);
+  } else {
+    const dataOriginFolder =
+      dataOrigin === DataOrigin.Hardware ? "hardware" : "simulation";
+    const trajectoryTypeFolder =
+      trajectoryType === TrajectoryType.OpenLoop ? "open_loop" : "closed_loop";
+    url = getAbsoluteUrl(`data/iiwa/${trajectoryTypeFolder}/${dataOriginFolder}`);
+  }
   return url;
 };
 
 /**
  * Fetch a JSON file containing an IIWA episode.
  * @param id The file id.
- * @param trajectoryType Can be either "open_loop" or "close_loop".
- * @param dataType Can be either "hardware" or "simulation".
+ * @param trajectoryType Can be "NominalPLan", "OpenLoop" or "CloseLoop".
+ * @param dataOrigin Can be "Hardware", "Simulation" or "Either".
  * @returns An IIWA episode.
  */
 export const fetchIiwaEpisode = async (
   id: string,
   trajectoryType: TrajectoryType,
-  dataType: DataType
+  dataType: DataOrigin
 ): Promise<IiwaEpisode> => {
   const dataFolder = getDataFolder(trajectoryType, dataType);
   const url = `${dataFolder}/${id}.json`;
@@ -40,25 +46,25 @@ export const fetchIiwaEpisode = async (
 
 /**
  * Return the URL for an IIWA episode video.
- * @param controllerType The type of controller used for the episode, either
- * "open_loop" or "closed_loop".
+ * @param trajectoryType Can be "NominalPLan", "OpenLoop" or "CloseLoop".
  * @param episodeId The ID of the IIWA episode.
  * @returns The URL for the IIWA episode video.
  */
 export const getIiwaVideoUrl = (
-  controllerType: TrajectoryType,
+  trajectoryType: TrajectoryType,
   episodeId: string
 ): string => {
-  const controllerFolder =
-    controllerType === TrajectoryType.OpenLoop ? "open_loop" : "closed_loop";
-  const url = getAbsoluteUrl(`data/iiwa/videos/${controllerFolder}/${episodeId}.mp4`);
+  let url = "";
+  if (trajectoryType !== TrajectoryType.NominalPlan) {
+    const trajectoryTypeFolder =
+      trajectoryType === TrajectoryType.OpenLoop ? "open_loop" : "closed_loop";
+    url = getAbsoluteUrl(`data/iiwa/${trajectoryTypeFolder}/videos/${episodeId}.mp4`);
+  }
   return url;
 };
 
 /**
  * Return the URL for an IIWA episode goal image.
- * @param controllerType The type of controller used for the episode, either
- * "open_loop" or "closed_loop".
  * @param episodeId The ID of the IIWA episode.
  * @returns The URL for the IIWA episode goal image.
  */
@@ -69,15 +75,15 @@ export const getIiwaGoalUrl = (episodeId: string): string => {
 
 /**
  * Fetch a JSON file containing IIWA episodes stats.
- * @param controllerType Can be either "open_loop" or "close_loop".
- * @param dataType Can be either "hardware" or "simulation".
+ * @param trajectoryType Can be "NominalPLan", "OpenLoop" or "CloseLoop".
+ * @param dataOrigin Can be "Hardware", "Simulation" or "Either".
  * @returns IIWA episodes stats.
  */
 export const fetchIiwaStats = async (
-  controllerType: TrajectoryType,
-  dataType: DataType
+  trajectoryType: TrajectoryType,
+  dataOrigin: DataOrigin
 ): Promise<IiwaStats> => {
-  const dataFolder = getDataFolder(controllerType, dataType);
+  const dataFolder = getDataFolder(trajectoryType, dataOrigin);
   const url = `${dataFolder}/stats.json`;
   const response = await fetch(url);
   if (!response.ok) {

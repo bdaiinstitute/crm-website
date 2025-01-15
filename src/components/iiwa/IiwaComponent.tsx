@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Scene } from "./IiwaScene";
 import { Menu } from "../menu/Menu";
 import { getAbsoluteUrl } from "../../util/http";
-import { DataType, ErrorType } from "../../types/DataTypes";
+import { DataOrigin, ErrorType, TrajectoryType } from "../../types/DataTypes";
 import { IiwaScatterPlot } from "./IiwaScatterPlot";
 import useMenuContext from "../../hooks/useMenuContext";
 import { SequencePlayer } from "../player/SequencePlayer";
@@ -61,16 +61,16 @@ export const IiwaComponent = () => {
     setErrorType,
     trajectoryType,
     setTrajectoryType,
-    dataType,
-    setDataType,
+    dataOrigin,
+    setDataOrigin,
     showVideo,
     setShowVideo
   } = useMenuContext();
 
   // Load all episodes metadata.
   const { data: stats = [] } = useQuery<IiwaStats, Error>({
-    queryKey: ["iiwaStats", trajectoryType, dataType],
-    queryFn: () => fetchIiwaStats(trajectoryType, dataType),
+    queryKey: ["iiwaStats", trajectoryType, dataOrigin],
+    queryFn: () => fetchIiwaStats(trajectoryType, dataOrigin),
     placeholderData: []
   });
 
@@ -106,7 +106,7 @@ export const IiwaComponent = () => {
         const episode: IiwaEpisode = await fetchIiwaEpisode(
           episodeInfo.episodeId,
           trajectoryType,
-          dataType
+          dataOrigin
         );
         setAutoPlay(autoPlayEnabled);
         setGoal(episode.goal);
@@ -117,7 +117,7 @@ export const IiwaComponent = () => {
         throw new Error(`Error loading episode: ${(error as Error).message}`);
       }
     },
-    [trajectoryType, dataType, setVideoUrl]
+    [trajectoryType, dataOrigin, setVideoUrl]
   );
 
   // This is called when an episode info is selected.
@@ -152,8 +152,8 @@ export const IiwaComponent = () => {
         setErrorType={setErrorType}
         trajectoryType={trajectoryType}
         setTrajectoryType={setTrajectoryType}
-        dataType={dataType}
-        setDataType={setDataType}
+        dataOrigin={dataOrigin}
+        setDataOrigin={setDataOrigin}
         showVideo={showVideo}
         setShowVideo={setShowVideo}
         errorTypeOptionEnabled={true}
@@ -188,7 +188,15 @@ export const IiwaComponent = () => {
           </div>
 
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
+            <div
+              className={
+                showVideo &&
+                trajectoryType != TrajectoryType.NominalPlan &&
+                dataOrigin === DataOrigin.Hardware
+                  ? ""
+                  : "hidden"
+              }
+            >
               <div className="relative">
                 {/* Video */}
                 <VideoPlayer
@@ -251,7 +259,13 @@ export const IiwaComponent = () => {
 
             {/* Scene. */}
             <div
-              className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}
+              className={
+                !showVideo ||
+                trajectoryType === TrajectoryType.NominalPlan ||
+                dataOrigin === DataOrigin.Simulation
+                  ? ""
+                  : "hidden"
+              }
             >
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>
@@ -270,7 +284,7 @@ export const IiwaComponent = () => {
           </div>
         </div>
       </div>
-      <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
+      <div className={showVideo && dataOrigin === DataOrigin.Hardware ? "" : "hidden"}>
         <VideoPlayerController
           videoRef={videoRef}
           currentTime={currentTime}
@@ -278,7 +292,7 @@ export const IiwaComponent = () => {
           autoPlay={autoPlay}
         />
       </div>
-      <div className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}>
+      <div className={!showVideo || dataOrigin === DataOrigin.Simulation ? "" : "hidden"}>
         <SequencePlayer
           sequence={sceneSequence}
           onFrameChanged={onStateChanged}

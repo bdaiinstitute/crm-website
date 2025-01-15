@@ -26,7 +26,7 @@ import {
   getAllegroGoalUrl,
   getAllegroVideoUrl
 } from "./allegroApi";
-import { DataType } from "../../types/DataTypes";
+import { DataOrigin, TrajectoryType } from "../../types/DataTypes";
 
 /**
  * This is a component that renders an Allegro hand and a target object and allows the
@@ -60,16 +60,16 @@ export const AllegroComponent = () => {
     setErrorType,
     trajectoryType,
     setTrajectoryType,
-    dataType,
-    setDataType,
+    dataOrigin,
+    setDataOrigin,
     showVideo,
     setShowVideo
   } = useMenuContext();
 
   // Load episode statistics.
   const { data: stats = [] } = useQuery<AllegroStats, Error>({
-    queryKey: ["allegroStats", trajectoryType, dataType],
-    queryFn: () => fetchAllegroStats(trajectoryType, dataType),
+    queryKey: ["allegroStats", trajectoryType, dataOrigin],
+    queryFn: () => fetchAllegroStats(trajectoryType, dataOrigin),
     placeholderData: []
   });
 
@@ -94,7 +94,7 @@ export const AllegroComponent = () => {
         const episode = await fetchAllegroEpisode(
           episodeInfo.episodeId,
           trajectoryType,
-          dataType
+          dataOrigin
         );
 
         // We are only interested in evaluating rotation errors.
@@ -111,7 +111,7 @@ export const AllegroComponent = () => {
         throw new Error(`Error loading trajectory: ${(error as Error).message}`);
       }
     },
-    [trajectoryType, dataType, setVideoUrl]
+    [trajectoryType, dataOrigin, setVideoUrl]
   );
 
   // This is called when an episode info is selected.
@@ -145,8 +145,8 @@ export const AllegroComponent = () => {
         setErrorType={setErrorType}
         trajectoryType={trajectoryType}
         setTrajectoryType={setTrajectoryType}
-        dataType={dataType}
-        setDataType={setDataType}
+        dataOrigin={dataOrigin}
+        setDataOrigin={setDataOrigin}
         showVideo={showVideo}
         setShowVideo={setShowVideo}
         errorTypeOptionEnabled={false}
@@ -174,7 +174,15 @@ export const AllegroComponent = () => {
           </div>
 
           <div className="w-full md:w-1/2 px-1 mb-1">
-            <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
+            <div
+              className={
+                showVideo &&
+                trajectoryType != TrajectoryType.NominalPlan &&
+                dataOrigin === DataOrigin.Hardware
+                  ? ""
+                  : "hidden"
+              }
+            >
               <div className="relative">
                 {/* Video */}
                 <VideoPlayer
@@ -238,7 +246,13 @@ export const AllegroComponent = () => {
 
             {/* Scene */}
             <div
-              className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}
+              className={
+                !showVideo ||
+                trajectoryType === TrajectoryType.NominalPlan ||
+                dataOrigin === DataOrigin.Simulation
+                  ? ""
+                  : "hidden"
+              }
             >
               <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <Suspense fallback={<div>Loading robot...</div>}>
@@ -258,7 +272,7 @@ export const AllegroComponent = () => {
         </div>
       </div>
       <div>
-        <div className={showVideo && dataType === DataType.Hardware ? "" : "hidden"}>
+        <div className={showVideo && dataOrigin === DataOrigin.Hardware ? "" : "hidden"}>
           <VideoPlayerController
             videoRef={videoRef}
             currentTime={currentTime}
@@ -266,7 +280,9 @@ export const AllegroComponent = () => {
             autoPlay={autoPlay}
           />
         </div>
-        <div className={!showVideo || dataType === DataType.Simulation ? "" : "hidden"}>
+        <div
+          className={!showVideo || dataOrigin === DataOrigin.Simulation ? "" : "hidden"}
+        >
           <SequencePlayer
             sequence={sceneSequence}
             onFrameChanged={onStateChanged}

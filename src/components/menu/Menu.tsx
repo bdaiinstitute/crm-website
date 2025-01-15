@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { ErrorType, TrajectoryType, DataType } from "../../types/DataTypes";
+import { ErrorType, TrajectoryType, DataOrigin } from "../../types/DataTypes";
 
 /**
  * Defines the props for the Menu component.
@@ -7,13 +7,13 @@ import { ErrorType, TrajectoryType, DataType } from "../../types/DataTypes";
  * @property {(errorType: ErrorType) => void} setErrorType Function to set the error type.
  * @property {TrajectoryType} trajectoryType The current trajectory type.
  * @property {(trajectoryType: TrajectoryType) => void} setTrajectoryType Function to set the trajectory type.
- * @property {DataType} dataType The current data type.
- * @property {(dataType: DataType) => void} setDataType Function to set the data type.
+ * @property {DataOrigin} dataOrigin The current data origin.
+ * @property {(dataOrigin: DataOrigin) => void} setDataOrigin Function to set the data origin.
  * @property {boolean} showVideo Whether to show the video.
  * @property {(showVideo: boolean) => void} setShowVideo Function to set whether to show the video.
  * @property {boolean} errorTypeEnabled Whether to enable the error type radio buttons.
  * @property {boolean} trajectoryTypeEnabled Whether to enable the trajectory type radio buttons.
- * @property {boolean} dataTypeEnabled Whether to enable the data type radio buttons.
+ * @property {boolean} dataOriginEnabled Whether to enable the data type radio buttons.
  * @property {boolean} showVideoEnabled Whether to enable the video toggle.
  */
 export interface MenuProps {
@@ -21,13 +21,11 @@ export interface MenuProps {
   setErrorType: (errorType: ErrorType) => void;
   trajectoryType: TrajectoryType;
   setTrajectoryType: (trajectoryType: TrajectoryType) => void;
-  dataType: DataType;
-  setDataType: (dataType: DataType) => void;
+  dataOrigin: DataOrigin;
+  setDataOrigin: (dataOrigin: DataOrigin) => void;
   showVideo?: boolean;
   setShowVideo?: (showVideo: boolean) => void;
   errorTypeOptionEnabled?: boolean;
-  trajectoryTypeOptionEnabled?: boolean;
-  dataTypeOptionEnabled?: boolean;
   videoOptionEnabled?: boolean;
 }
 
@@ -43,13 +41,11 @@ export const Menu = ({
   setErrorType,
   trajectoryType,
   setTrajectoryType,
-  dataType,
-  setDataType,
+  dataOrigin,
+  setDataOrigin,
   showVideo,
   setShowVideo,
   errorTypeOptionEnabled = true,
-  trajectoryTypeOptionEnabled = true,
-  dataTypeOptionEnabled = true,
   videoOptionEnabled = false
 }: MenuProps) => {
   // Generate a unique ID for this component instance
@@ -76,8 +72,8 @@ export const Menu = ({
    * Handles the change event for the data type selection.
    * @param event The change event triggered by the input element.
    */
-  const handleDataTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDataType(event.target.value as DataType);
+  const handleDataOriginChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDataOrigin(event.target.value as DataOrigin);
   };
 
   /**
@@ -132,91 +128,77 @@ export const Menu = ({
 
         <div className="flex items-center">
           <span className="font-bold">Trajectories:</span>
-          {trajectoryTypeOptionEnabled /* Trajectory Type Radio Buttons */ ? (
-            <>
-              <label className="flex items-center ml-2">
-                <input
-                  type="radio"
-                  name={`trajectoryType-${uniqueId}`}
-                  value={TrajectoryType.NominalPlan}
-                  className="form-radio h-4 w-4"
-                  aria-label="NominalPlan"
-                  checked={trajectoryType === TrajectoryType.NominalPlan}
-                  onChange={handleTrajectoryTypeChange}
-                />
-                <span className="ml-1 whitespace-nowrap">nominal plan</span>
-              </label>
-              <label className="flex items-center ml-2">
-                <input
-                  type="radio"
-                  name={`trajectoryType-${uniqueId}`}
-                  value={TrajectoryType.OpenLoop}
-                  className="form-radio h-4 w-4"
-                  aria-label="OpenLoop"
-                  checked={trajectoryType === TrajectoryType.OpenLoop}
-                  onChange={handleTrajectoryTypeChange}
-                />
-                <span className="ml-1 whitespace-nowrap">open-loop</span>
-              </label>
-              <label className="flex items-center ml-2">
-                <input
-                  type="radio"
-                  name={`trajectoryType-${uniqueId}`}
-                  value={TrajectoryType.ClosedLoop}
-                  className="form-radio h-4 w-4"
-                  aria-label="ClosedLoop"
-                  checked={trajectoryType === TrajectoryType.ClosedLoop}
-                  onChange={handleTrajectoryTypeChange}
-                />
-                <span className="ml-1 whitespace-nowrap">closed-loop</span>
-              </label>
-            </>
-          ) : trajectoryType === TrajectoryType.OpenLoop ? (
+          <label className="flex items-center ml-2">
+            <input
+              type="radio"
+              name={`trajectoryType-${uniqueId}`}
+              value={TrajectoryType.NominalPlan}
+              className="form-radio h-4 w-4"
+              aria-label="NominalPlan"
+              checked={trajectoryType === TrajectoryType.NominalPlan}
+              onChange={handleTrajectoryTypeChange}
+            />
+            <span className="ml-1 whitespace-nowrap">nominal plan</span>
+          </label>
+          <label className="flex items-center ml-2">
+            <input
+              type="radio"
+              name={`trajectoryType-${uniqueId}`}
+              value={TrajectoryType.OpenLoop}
+              className="form-radio h-4 w-4"
+              aria-label="OpenLoop"
+              checked={trajectoryType === TrajectoryType.OpenLoop}
+              onChange={handleTrajectoryTypeChange}
+            />
             <span className="ml-1 whitespace-nowrap">open-loop</span>
-          ) : (
+          </label>
+          <label className="flex items-center ml-2">
+            <input
+              type="radio"
+              name={`trajectoryType-${uniqueId}`}
+              value={TrajectoryType.ClosedLoop}
+              className="form-radio h-4 w-4"
+              aria-label="ClosedLoop"
+              checked={trajectoryType === TrajectoryType.ClosedLoop}
+              onChange={handleTrajectoryTypeChange}
+            />
             <span className="ml-1 whitespace-nowrap">closed-loop</span>
-          )}
+          </label>
         </div>
 
-        <div className="flex items-center">
-          <span className="font-bold">Data:</span>
-          {dataTypeOptionEnabled /* Data Type Radio Buttons */ ? (
-            <>
-              <label className="flex items-center ml-2">
-                <input
-                  type="radio"
-                  name={`dataType-${uniqueId}`}
-                  value={DataType.Simulation}
-                  className="form-radio h-4 w-4"
-                  aria-label="Simulation"
-                  checked={dataType === DataType.Simulation}
-                  onChange={handleDataTypeChange}
-                />
-                <span className="ml-1 whitespace-nowrap">simulation</span>
-              </label>
-              <label className="flex items-center ml-2">
-                <input
-                  type="radio"
-                  name={`dataType-${uniqueId}`}
-                  value={DataType.Hardware}
-                  className="form-radio h-4 w-4"
-                  aria-label="Hardware"
-                  checked={dataType === DataType.Hardware}
-                  onChange={handleDataTypeChange}
-                />
-                <span className="ml-1 whitespace-nowrap">hardware</span>
-              </label>
-            </>
-          ) : dataType === DataType.Simulation ? (
-            <span className="ml-1 whitespace-nowrap">simulation</span>
-          ) : (
-            <span className="ml-1 whitespace-nowrap">hardware</span>
-          )}
-        </div>
+        {trajectoryType != TrajectoryType.NominalPlan && (
+          <div className="flex items-center">
+            <span className="font-bold">Data:</span>
+            <label className="flex items-center ml-2">
+              <input
+                type="radio"
+                name={`dataOrigin-${uniqueId}`}
+                value={DataOrigin.Simulation}
+                className="form-radio h-4 w-4"
+                aria-label="Simulation"
+                checked={dataOrigin === DataOrigin.Simulation}
+                onChange={handleDataOriginChange}
+              />
+              <span className="ml-1 whitespace-nowrap">simulation</span>
+            </label>
+            <label className="flex items-center ml-2">
+              <input
+                type="radio"
+                name={`dataOrigin-${uniqueId}`}
+                value={DataOrigin.Hardware}
+                className="form-radio h-4 w-4"
+                aria-label="Hardware"
+                checked={dataOrigin === DataOrigin.Hardware}
+                onChange={handleDataOriginChange}
+              />
+              <span className="ml-1 whitespace-nowrap">hardware</span>
+            </label>
+          </div>
+        )}
 
         {videoOptionEnabled &&
-          dataTypeOptionEnabled &&
-          dataType === DataType.Hardware && (
+          trajectoryType != TrajectoryType.NominalPlan &&
+          dataOrigin === DataOrigin.Hardware && (
             <div className="flex items-center">
               <span className="font-bold whitespace-nowrap">Video:</span>
               <label className="flex items-center ml-2">
