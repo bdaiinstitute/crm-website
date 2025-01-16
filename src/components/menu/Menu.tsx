@@ -97,7 +97,7 @@ export const Menu = ({
           <span className="font-bold">Error:</span>
           {errorTypeOptionEnabled ? (
             <>
-              <label className="flex items-center">
+              <label className="flex items-center gap-x-1">
                 <input
                   type="radio"
                   name={`errorType-${uniqueId}`}
@@ -107,9 +107,9 @@ export const Menu = ({
                   checked={errorType === ErrorType.Position}
                   onChange={handleErrorTypeChange}
                 />
-                <span className="ml-1 whitespace-nowrap">position</span>
+                <span className="whitespace-nowrap">position</span>
               </label>
-              <label className="flex items-center">
+              <label className="flex items-center gap-x-1">
                 <input
                   type="radio"
                   name={`errorType-${uniqueId}`}
@@ -119,13 +119,13 @@ export const Menu = ({
                   checked={errorType === ErrorType.Rotation}
                   onChange={handleErrorTypeChange}
                 />
-                <span className="ml-1 whitespace-nowrap">rotation</span>
+                <span className="whitespace-nowrap">rotation</span>
               </label>
             </>
           ) : errorType === ErrorType.Position ? (
-            <span className="ml-1 whitespace-nowrap">position</span>
+            <span className="whitespace-nowrap">position</span>
           ) : (
-            <span className="ml-1 whitespace-nowrap">rotation</span>
+            <span className="whitespace-nowrap">rotation</span>
           )}
         </div>
 
