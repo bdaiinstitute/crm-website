@@ -132,7 +132,7 @@ export const Menu = ({
         {/* Trajectories */}
         <div className="flex items-center gap-x-2">
           <span className="font-bold">Trajectories:</span>
-          <label className="flex items-center">
+          <label className="flex items-center gap-x-1">
             <input
               type="radio"
               name={`trajectoryType-${uniqueId}`}
@@ -142,9 +142,9 @@ export const Menu = ({
               checked={trajectoryType === TrajectoryType.NominalPlan}
               onChange={handleTrajectoryTypeChange}
             />
-            <span className="ml-1 whitespace-nowrap">nominal plan</span>
+            <span className="whitespace-nowrap">nominal plan</span>
           </label>
-          <label className="flex items-center">
+          <label className="flex items-center gap-x-1">
             <input
               type="radio"
               name={`trajectoryType-${uniqueId}`}
@@ -154,9 +154,9 @@ export const Menu = ({
               checked={trajectoryType === TrajectoryType.OpenLoop}
               onChange={handleTrajectoryTypeChange}
             />
-            <span className="ml-1 whitespace-nowrap">open-loop</span>
+            <span className="whitespace-nowrap">open-loop</span>
           </label>
-          <label className="flex items-center">
+          <label className="flex items-center gap-x-1">
             <input
               type="radio"
               name={`trajectoryType-${uniqueId}`}
@@ -166,7 +166,7 @@ export const Menu = ({
               checked={trajectoryType === TrajectoryType.ClosedLoop}
               onChange={handleTrajectoryTypeChange}
             />
-            <span className="ml-1 whitespace-nowrap">closed-loop</span>
+            <span className="whitespace-nowrap">closed-loop</span>
           </label>
         </div>
 
@@ -174,7 +174,7 @@ export const Menu = ({
         {trajectoryType != TrajectoryType.NominalPlan && (
           <div className="flex items-center gap-x-2">
             <span className="font-bold">Data:</span>
-            <label className="flex items-center">
+            <label className="flex items-center gap-x-1">
               <input
                 type="radio"
                 name={`dataOrigin-${uniqueId}`}
@@ -184,9 +184,9 @@ export const Menu = ({
                 checked={dataOrigin === DataOrigin.Simulation}
                 onChange={handleDataOriginChange}
               />
-              <span className="ml-1 whitespace-nowrap">simulation</span>
+              <span className="whitespace-nowrap">simulation</span>
             </label>
-            <label className="flex items-center">
+            <label className="flex items-center gap-x-1">
               <input
                 type="radio"
                 name={`dataOrigin-${uniqueId}`}
@@ -196,7 +196,7 @@ export const Menu = ({
                 checked={dataOrigin === DataOrigin.Hardware}
                 onChange={handleDataOriginChange}
               />
-              <span className="ml-1 whitespace-nowrap">hardware</span>
+              <span className="whitespace-nowrap">hardware</span>
             </label>
           </div>
         )}
