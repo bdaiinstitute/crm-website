@@ -88,7 +88,7 @@ export const Menu = ({
   };
 
   return (
-    <nav className=" m-0 bg">
+    <nav className="m-0 bg-white">
       <div className="container mx-auto px-2 py-3 gap-x-6 flex flex-col lg:flex-row items-start md:items-center md:justify-start">
         <div className="flex items-center">
           <span className="font-bold">Error:</span>
@@ -99,7 +99,7 @@ export const Menu = ({
                   type="radio"
                   name={`errorType-${uniqueId}`}
                   value={ErrorType.Position}
-                  className="form-radio h-4 w-4"
+                  className="h-4 w-4"
                   aria-label="PositionError"
                   checked={errorType === ErrorType.Position}
                   onChange={handleErrorTypeChange}
@@ -111,7 +111,7 @@ export const Menu = ({
                   type="radio"
                   name={`errorType-${uniqueId}`}
                   value={ErrorType.Rotation}
-                  className="form-radio h-4 w-4"
+                  className="h-4 w-4"
                   aria-label="RotationError"
                   checked={errorType === ErrorType.Rotation}
                   onChange={handleErrorTypeChange}
@@ -133,7 +133,7 @@ export const Menu = ({
               type="radio"
               name={`trajectoryType-${uniqueId}`}
               value={TrajectoryType.NominalPlan}
-              className="form-radio h-4 w-4"
+              className="h-4 w-4"
               aria-label="NominalPlan"
               checked={trajectoryType === TrajectoryType.NominalPlan}
               onChange={handleTrajectoryTypeChange}
@@ -145,7 +145,7 @@ export const Menu = ({
               type="radio"
               name={`trajectoryType-${uniqueId}`}
               value={TrajectoryType.OpenLoop}
-              className="form-radio h-4 w-4"
+              className="h-4 w-4"
               aria-label="OpenLoop"
               checked={trajectoryType === TrajectoryType.OpenLoop}
               onChange={handleTrajectoryTypeChange}
@@ -157,7 +157,7 @@ export const Menu = ({
               type="radio"
               name={`trajectoryType-${uniqueId}`}
               value={TrajectoryType.ClosedLoop}
-              className="form-radio h-4 w-4"
+              className="h-4 w-4"
               aria-label="ClosedLoop"
               checked={trajectoryType === TrajectoryType.ClosedLoop}
               onChange={handleTrajectoryTypeChange}
@@ -174,7 +174,7 @@ export const Menu = ({
                 type="radio"
                 name={`dataOrigin-${uniqueId}`}
                 value={DataOrigin.Simulation}
-                className="form-radio h-4 w-4"
+                className="h-4 w-4"
                 aria-label="Simulation"
                 checked={dataOrigin === DataOrigin.Simulation}
                 onChange={handleDataOriginChange}
@@ -186,7 +186,7 @@ export const Menu = ({
                 type="radio"
                 name={`dataOrigin-${uniqueId}`}
                 value={DataOrigin.Hardware}
-                className="form-radio h-4 w-4"
+                className="h-4 w-4"
                 aria-label="Hardware"
                 checked={dataOrigin === DataOrigin.Hardware}
                 onChange={handleDataOriginChange}
@@ -205,7 +205,7 @@ export const Menu = ({
                 <input
                   type="checkbox"
                   name={`showVideo-${uniqueId}`}
-                  className="form-checkbox h-4 w-4"
+                  className="h-4 w-4"
                   aria-label="ShowVideo"
                   checked={showVideo}
                   onChange={handleShowVideoChange}
