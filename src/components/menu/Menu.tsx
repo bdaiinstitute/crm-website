@@ -87,9 +87,11 @@ export const Menu = ({
     }
   };
 
+  // sm, md, lg, xl, 2xl
+
   return (
-    <nav className="m-0 bg-white">
-      <div className="container mx-auto px-2 py-3 gap-x-6 flex flex-col lg:flex-row items-start md:items-center md:justify-start">
+    <nav className="container mx-auto bg-white">
+      <div className="py-3 gap-x-6 flex flex-col items-center xl:flex-row justify-center">
         <div className="flex items-center">
           <span className="font-bold">Error:</span>
           {errorTypeOptionEnabled /* Error Type Radio Buttons */ ? (
