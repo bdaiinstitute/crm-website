@@ -155,16 +155,8 @@ const App = () => {
       </section>
 
       {/* Carousel. */}
-      <section className="hero">
-        <div className="hero-body">
-          <div className="container is-max-desktop">
-            <div className="columns is-centered">
-              <div className="column has-text-centered">
-                <VideoCarousel videos={videoData} />
-              </div>
-            </div>
-          </div>
-        </div>
+      <section>
+        <VideoCarousel videos={videoData} />
       </section>
 
       {/* Abstract. */}
@@ -202,7 +194,7 @@ const App = () => {
       </section>
 
       {/* Teaser. */}
-      <section className="section">
+      <section>
         <div className="container is-max-desktop">
           <div className="columns is-centered has-text-centered">
             <div className="column is-four-fifths">
@@ -239,26 +231,14 @@ const App = () => {
 
       {/* IIWA section. */}
       <section>
-        <div className="columns is-centered">
-          <div className="column is-full-width">
-            <h2 className="title is-3">IIWA</h2>
-            <br />
-            <IiwaComponent />
-            <br />
-          </div>
-        </div>
+        <h2 className="title is-3">IIWA</h2>
+        <IiwaComponent />
       </section>
 
       {/* Allegro section. */}
       <section>
-        <div className="columns is-centered">
-          <div className="column is-full-width">
-            <h2 className="title is-3">Allegro</h2>
-            <br />
-            <AllegroComponent />
-            <br />
-          </div>
-        </div>
+        <h2 className="title is-3">Allegro</h2>
+        <AllegroComponent />
       </section>
     </QueryClientProvider>
   );
