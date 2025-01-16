@@ -92,11 +92,12 @@ export const Menu = ({
   return (
     <nav className="container mx-auto bg-white">
       <div className="py-3 gap-x-6 flex flex-col items-center xl:flex-row justify-center">
-        <div className="flex items-center">
+        {/* Error */}
+        <div className="flex items-center gap-x-2">
           <span className="font-bold">Error:</span>
-          {errorTypeOptionEnabled /* Error Type Radio Buttons */ ? (
+          {errorTypeOptionEnabled ? (
             <>
-              <label className="flex items-center ml-2">
+              <label className="flex items-center">
                 <input
                   type="radio"
                   name={`errorType-${uniqueId}`}
@@ -108,7 +109,7 @@ export const Menu = ({
                 />
                 <span className="ml-1 whitespace-nowrap">position</span>
               </label>
-              <label className="flex items-center ml-2">
+              <label className="flex items-center">
                 <input
                   type="radio"
                   name={`errorType-${uniqueId}`}
@@ -128,9 +129,10 @@ export const Menu = ({
           )}
         </div>
 
-        <div className="flex items-center">
+        {/* Trajectories */}
+        <div className="flex items-center gap-x-2">
           <span className="font-bold">Trajectories:</span>
-          <label className="flex items-center ml-2">
+          <label className="flex items-center">
             <input
               type="radio"
               name={`trajectoryType-${uniqueId}`}
@@ -142,7 +144,7 @@ export const Menu = ({
             />
             <span className="ml-1 whitespace-nowrap">nominal plan</span>
           </label>
-          <label className="flex items-center ml-2">
+          <label className="flex items-center">
             <input
               type="radio"
               name={`trajectoryType-${uniqueId}`}
@@ -154,7 +156,7 @@ export const Menu = ({
             />
             <span className="ml-1 whitespace-nowrap">open-loop</span>
           </label>
-          <label className="flex items-center ml-2">
+          <label className="flex items-center">
             <input
               type="radio"
               name={`trajectoryType-${uniqueId}`}
@@ -168,10 +170,11 @@ export const Menu = ({
           </label>
         </div>
 
+        {/* Data */}
         {trajectoryType != TrajectoryType.NominalPlan && (
-          <div className="flex items-center">
+          <div className="flex items-center gap-x-2">
             <span className="font-bold">Data:</span>
-            <label className="flex items-center ml-2">
+            <label className="flex items-center">
               <input
                 type="radio"
                 name={`dataOrigin-${uniqueId}`}
@@ -183,7 +186,7 @@ export const Menu = ({
               />
               <span className="ml-1 whitespace-nowrap">simulation</span>
             </label>
-            <label className="flex items-center ml-2">
+            <label className="flex items-center">
               <input
                 type="radio"
                 name={`dataOrigin-${uniqueId}`}
@@ -198,12 +201,13 @@ export const Menu = ({
           </div>
         )}
 
+        {/* Video */}
         {videoOptionEnabled &&
           trajectoryType != TrajectoryType.NominalPlan &&
           dataOrigin === DataOrigin.Hardware && (
-            <div className="flex items-center">
+            <div className="flex items-center gap-x-2">
               <span className="font-bold whitespace-nowrap">Video:</span>
-              <label className="flex items-center ml-2">
+              <label className="flex items-center">
                 <input
                   type="checkbox"
                   name={`showVideo-${uniqueId}`}
