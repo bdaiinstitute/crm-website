@@ -115,7 +115,7 @@ const App = () => {
                         <span className="icon">
                           <i className="ai ai-arxiv"></i>
                         </span>
-                        <span>arXiv</span>
+                        <span>arXiv (coming soon)</span>
                       </a>
                     </span>
 
@@ -143,7 +143,7 @@ const App = () => {
                         <span className="icon">
                           <FontAwesomeIcon icon={faGithub} />
                         </span>
-                        <span>Datasets</span>
+                        <span>Datasets (coming soon)</span>
                       </a>
                     </span>
                   </div>
