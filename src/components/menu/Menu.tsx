@@ -90,7 +90,7 @@ export const Menu = ({
   // sm, md, lg, xl, 2xl
 
   return (
-    <nav className="container mx-auto bg-white">
+    <nav className="container mx-auto bg-transparent">
       <div className="py-3 gap-x-6 flex flex-col items-center xl:flex-row justify-center">
         {/* Error */}
         <div className="flex items-center gap-x-2">
