@@ -177,15 +177,8 @@ const App = () => {
                   With CTR, we first develop a Model-Predictive Control (MPC) algorithm
                   capable of synthesizing local contact-rich plans. Then, we extend this
                   capability to plan globally by stitching together local MPC plans,
-                  enabling efficient and dexterous contact-rich manipulation. To verify
-                  the performance of our method, we perform comprehensive evaluations,
-                  both in high-fidelity simulation and on hardware, on two contact-rich
-                  systems: a planar IiwaBimanual system and a 3D AllegroHand system. On
-                  both systems, our method offers a significantly lower-compute
-                  alternative to existing RL-based approaches to contact-rich
-                  manipulation. In particular, our Allegro in-hand manipulation policy, in
-                  the form of a roadmap, takes less than 10 minutes to build offline on a
-                  standard laptop, and online inference takes a few seconds.
+                  enabling efficient and dexterous contact-rich manipulation.
+                  To verify the performance of our method, we perform comprehensive evaluations, both in high-fidelity simulation and on hardware, on two contact-rich systems: a planar IiwaBimanual system and a 3D AllegroHand system. On both systems, our method offers a significantly lower-compute alternative to existing RL-based approaches to contact-rich manipulation. In particular, our Allegro in-hand manipulation policy, in the form of a roadmap, takes fewer than 10 minutes to build offline on a standard laptop using just its CPU, with online inference taking just a few seconds.
                 </p>
               </div>
             </div>
@@ -209,7 +202,7 @@ const App = () => {
                 }}
               >
                 <iframe
-                  src="https://www.youtube.com/embed/ps4tbflAPSI?mute=1&loop=1&playlist=ps4tbflAPSI&vq=hd1080"
+                  src="https://www.youtube.com/embed/kSQZwOz64rg?si=-azM9eJC6ezphKaF?mute=1&loop=1&vq=hd1080"
                   style={{
                     position: "absolute",
                     top: 0,
