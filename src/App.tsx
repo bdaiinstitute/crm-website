@@ -92,13 +92,12 @@ const App = () => {
                 {/* Affiliations. */}
                 <div className="is-size-6 publication-authors">
                   <span className="author-block">
-                    <sup>1</sup>Computer Science and Artificial Intelligence Laboratory
-                    (CSAIL), Massachusetts Institute of Technology
+                    <sup>1</sup>Massachusetts Institute of Technology
                   </span>
                 </div>
                 <div className="is-size-6 publication-authors">
                   <span className="author-block">
-                    <sup>2</sup>Boston Dynamics AI Institute.
+                    <sup>2</sup>RAI Institute (formerly Boston Dynamics AI Institute).
                   </span>
                 </div>
 
@@ -108,14 +107,14 @@ const App = () => {
                     {/* arxiv Link. */}
                     <span className="link-block">
                       <a
-                        href="#"
+                        href="https://www.arxiv.org/abs/2505.02291"
                         target="_blank"
                         className="external-link button is-normal is-rounded is-dark"
                       >
                         <span className="icon">
                           <i className="ai ai-arxiv"></i>
                         </span>
-                        <span>arXiv (coming soon)</span>
+                        <span>arXiv</span>
                       </a>
                     </span>
 
@@ -136,14 +135,14 @@ const App = () => {
                     {/* Datasets. */}
                     <span className="link-block">
                       <a
-                        href="#"
+                        href="https://github.com/bdaiinstitute/crm-website/tree/main/public/data"
                         target="_blank"
                         className="external-link button is-normal is-rounded is-dark"
                       >
                         <span className="icon">
                           <FontAwesomeIcon icon={faGithub} />
                         </span>
-                        <span>Datasets (coming soon)</span>
+                        <span>Datasets</span>
                       </a>
                     </span>
                   </div>
